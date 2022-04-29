@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function Eye({ handler, show }) {
     return (
-        <i onClick={handler} className={`bi bi-${show ? 'eye-slash' : 'eye'}`}>Show Password</i>
+        <p onClick={handler}>Show Password <i className={`bi mx-1 bi-${show ? 'eye-slash' : 'eye'}`}>
+        </i></p>
     )
 }
