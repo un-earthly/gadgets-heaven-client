@@ -6,7 +6,7 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Error from './SharedAndUtils/Error';
 import Footer from './SharedAndUtils/Footer';
-import Item from './SharedAndUtils/Item';
+import ItemsDetail from './SharedAndUtils/ItemsDetail';
 import Navbar from './SharedAndUtils/Navbar';
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/inventory' element={<Inventory />} />
-        <Route path='/inventory/:id' element={<Item />} />
+        <Route path='/inventory/:id' element={<ItemsDetail />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='*' element={<Error />} />
