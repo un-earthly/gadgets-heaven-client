@@ -11,6 +11,7 @@ import Error from './SharedAndUtils/Error';
 import Footer from './SharedAndUtils/Footer';
 import ItemsDetail from './SharedAndUtils/ItemsDetail';
 import Navbar from './SharedAndUtils/Navbar';
+import 'react-loading-skeleton/dist/skeleton.css'
 function App() {
   return (
     <div className="bg-gray-200">
