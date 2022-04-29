@@ -16,6 +16,7 @@ function App() {
   return (
     <div className="bg-gray-200">
       <Navbar />
+      {/* <div className='min-h-[65vh]'> */}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/blogs' element={<Blogs />} />
@@ -28,6 +29,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='*' element={<Error />} />
       </Routes>
+      {/* </div> */}
       <Footer />
     </div>
   );
