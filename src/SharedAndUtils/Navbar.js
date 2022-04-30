@@ -8,9 +8,9 @@ export default function Navbar() {
     const [open, setOpen] = useState(false)
     const [user, Loading] = useAuthState(auth)
     return (
-        <header className='p-4 container mx-auto'>
+        <header className='p-4 px-24 mx-auto bg-white'>
             <nav className='hidden md:flex items-center justify-between'>
-                <Link to='/'><h1 style={{ fontFamily: 'Lavishly Yours' }} className="text-5xl text-gray-900 font-semibold tracking-wide">Gadgets Heaven</h1></Link>
+                <Link to='/'><h1 className="text-3xl text-gray-900 font-semibold tracking-wide">Gadgets Heaven</h1></Link>
                 <ul className='flex items-center justify-center space-x-4'>
                     <NavLink to='/blogs'><h2 className="text-xl">Blogs</h2></NavLink>
 
@@ -35,7 +35,7 @@ export default function Navbar() {
                     <i onClick={() => setOpen(!open)} className='bi bi-list text-gray-900'></i>
                 </div>
                 <ul className={`${open ? 'flex' : 'hidden'} flex-col justify-center items-center`}>
-                    <Link to='/blogs'>Blogs</Link>
+                    <NavLink to='/blogs'>Blogs</NavLink>
 
                     {
                         user ? <>

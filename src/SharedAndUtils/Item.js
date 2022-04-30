@@ -13,7 +13,7 @@ export default function Item({ img, title, desc, id }) {
                     <div className="text-gray-900 font-bold text-xl mb-2">{title.length > 20 ? title.slice(0, 30) + '...' : title}</div>
                     <p className="text-gray-700 text-base">{desc.length > 20 ? desc.slice(0, 120) + '...' : desc}</p>
                     <Link to={`/inventory/${id}`}><Button classes='block w-full mt-4' btnText='Show Details'></Button></Link>
-                    <Link to={`/inventory/${id}`}><Button classes='block w-full mt-4' btnText='Update'></Button></Link>
+                    <Link to={`/update/${id}`}><Button classes='block w-full mt-4' btnText='Update'></Button></Link>
                 </div>
             </div>
         </div>

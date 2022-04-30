@@ -3,6 +3,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../firebase.init';
 import useShowPass from '../Hooks/useShowPass';
 import Button from '../SharedAndUtils/Button';
@@ -11,8 +12,7 @@ import Social from '../SharedAndUtils/Social';
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
-  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth
-  );
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth)
   const [email, setEmail] = useState('')
   const onSubmit = data => {
@@ -33,17 +33,21 @@ export default function Login() {
           <input className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type={show ? 'text' : 'password'} placeholder="Password" {...register("password", { required: true })} />
         </label>
         <p>
-          <Link to='/register'>New Here? Register Now!!</Link>
-        </p>
-        <p>
           <Eye show={show} handler={setToggle} />
         </p>
-        <p onClick={async () => {
-          await sendPasswordResetEmail(email);
-          alert('Sent email');
-        }}>Forgot Password?</p>
-        <p>{error?.message}</p>
-        <Button btnText='Submit' />
+        <p className='text-red-500'>{error?.message}</p>
+        <Button btnText='Submit' classes='w-full my-3' />
+        <div className='flex justify-between mx-auto'>
+          <Link to='/register'><p>New Here? Register Now!!</p></Link>
+          <p onClick={async () => {
+            if (email.length > 0) {
+              await sendPasswordResetEmail(email);
+              alert('Sent email');
+            } else {
+              toast('Please Provide Email')
+            }
+          }}>Forgot Password?</p>
+        </div>
       </form>
       <Social />
     </div>

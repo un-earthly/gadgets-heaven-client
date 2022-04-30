@@ -1,8 +1,10 @@
 import React from 'react'
 import MySkeleton from '../SharedAndUtils/MySkeleton'
-import Experiment from '../SharedAndUtils/Experiment'
+import InventoryItems from '../SharedAndUtils/InventoryItems'
 import useItems from '../Hooks/useItems'
 import { SkeletonTheme } from 'react-loading-skeleton'
+import { Link } from 'react-router-dom'
+import Button from '../SharedAndUtils/Button'
 export default function Inventory() {
   const [items, loading] = useItems()
 
@@ -18,12 +20,13 @@ export default function Inventory() {
       </div>
     </SkeletonTheme>
       :
-
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 xl:gap-10 xl:p-7">
-        {
-          items.map(item => <Experiment itemData={item} />)
-        }
-
-      </div>
+      <>
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 xl:gap-10 xl:p-7">
+          {
+            items.map(item => <InventoryItems itemData={item} />)
+          }
+        </div>
+        <Link to='/additems'><Button btnText='Add Items' classes='w-1/2' /></Link>
+      </>
   )
 }

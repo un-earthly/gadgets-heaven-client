@@ -40,10 +40,7 @@ export default function ItemsDetail() {
                             </span>
                         </div>
                         <p className="leading-relaxed">{item.desc}</p>
-                        <div className="flex">
-                            <p className="title-font font-medium text-2xl text-gray-900">{item.price}</p>
-                            <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Delivered</button>
-                        </div>
+
                         <p>Quantity In Stock: {item.quantity}</p>
                         <p>Supplier: {item.supplier}</p>
                         <p>Distributor: {item.distributor}</p>
@@ -52,6 +49,10 @@ export default function ItemsDetail() {
                         <p>Sold in Last Month: {item.lastMonthSold || item.target}</p>
                         <p>Platform: {item.platform}</p>
                         <p>Category: {item.category}</p>
+                        <div className="flex">
+                            <p className="title-font font-medium text-2xl text-gray-900">{item.price}</p>
+                            <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Delivered</button>
+                        </div>
                         <form className='mt-6' onSubmit={handleSubmit(onSubmit)}>
                             <input className="shadow appearance-none border border-gray-800 border-r-transparent rounded-r-none rounded py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number"{...register("amount")} placeholder='Please Re stock amount' />
                             <Button classes='inline text-xl rounded-l-none' btnText='Submit' />

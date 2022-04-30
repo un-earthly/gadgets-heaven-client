@@ -26,7 +26,7 @@ export default function Register() {
     return (
         <div className='bg-white shadow-md md:w-1/2 w-3/4 mx-auto rounded px-8 pt-16 pb-8 mb-4 space-y-7 mt-16'>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h1 className="text-4xl text-center">Login Now</h1>
+                <h1 className="text-4xl text-center">Register Now</h1>
                 <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="name">
                     <span>Name</span>
                     <input className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Name" {...register("name", { required: true })} />
@@ -40,13 +40,13 @@ export default function Register() {
                     <input className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type={show ? 'text' : 'password'} placeholder="Password" {...register("password", { required: true })} />
                 </label>
                 <p>
-                    <Link to='/login'>Already Have An Account?Login Now!!</Link>
-                </p>
-                <p>
                     <Eye show={show} handler={setToggle} />
                 </p>
                 <p>{error?.message}</p>
-                <Button btnText='Submit' />
+                <Button btnText='Submit' classes='w-full my-3' />
+                <p>
+                    <Link to='/login' className='text-gray-900 font-semibold text-right block'>Already Have An Account?</Link>
+                </p>
             </form>
             <Social />
         </div>

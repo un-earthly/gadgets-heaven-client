@@ -3,7 +3,6 @@ import Blogs from './Pages/Blogs'
 import Home from './Pages/Home';
 import Inventory from './Pages/Inventory';
 import MyItems from './Pages/MyItems.js';
-import ManageItems from './Pages/ManageItems.js';
 import AddItems from './Pages/AddItems.js';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
@@ -13,6 +12,9 @@ import ItemsDetail from './SharedAndUtils/ItemsDetail';
 import Navbar from './SharedAndUtils/Navbar';
 import RequireAuth from './SharedAndUtils/RequireAuth';
 import 'react-loading-skeleton/dist/skeleton.css'
+import UpdateItem from './Pages/UpdateItem';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist'
 function App() {
   return (
     <div className="bg-gray-200">
@@ -22,15 +24,15 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/myitems' element={<MyItems />} />
-        <Route path='/manage/:id' element={<RequireAuth><ManageItems /></RequireAuth>} />
-        <Route path='/additems' element={<AddItems />} />
+        <Route path='/update/:id' element={<RequireAuth><UpdateItem /></RequireAuth>} />
+        <Route path='/additems' element={<RequireAuth> <AddItems /></RequireAuth>} />
         <Route path='/inventory' element={<Inventory />} />
         <Route path='/inventory/:id' element={<RequireAuth><ItemsDetail /></RequireAuth>} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='*' element={<Error />} />
       </Routes>
-      {/* </div> */}
+      <ToastContainer />
       <Footer />
     </div>
   );

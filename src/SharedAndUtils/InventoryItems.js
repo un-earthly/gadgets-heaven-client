@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Button from './Button'
 
 
-export default function TableData({ itemData, handleDelete }) {
+export default function InventoryItems({ itemData, handleDelete }) {
 
     return (
         <div class="bg-gray-50 text-gray-900 h-[600px] flex rounded-lg relative p-4">
@@ -39,7 +39,6 @@ export default function TableData({ itemData, handleDelete }) {
 
                 <div className='space-x-5'>
                     <Button classes="inline" btnText='Delivered' />
-                    <Link to='/additems'><Button classes="inline" btnText='Add Items' /></Link>
                 </div>
             </div>
         </div>
