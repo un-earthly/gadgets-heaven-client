@@ -19,7 +19,6 @@ export default function Inventory() {
     </SkeletonTheme> :
       <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 xl:p-4 mx-auto'>
         {items.map(item => {
-          
         })
         }</div>
   )
