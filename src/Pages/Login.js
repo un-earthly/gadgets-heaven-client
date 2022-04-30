@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
@@ -11,9 +11,13 @@ import Social from '../SharedAndUtils/Social';
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth
+  );
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth)
+  const [email, setEmail] = useState('')
   const onSubmit = data => {
     signInWithEmailAndPassword(data.email, data.password)
+    setEmail(data.email)
   };
   const [show, setToggle] = useShowPass()
   return (
@@ -34,6 +38,10 @@ export default function Login() {
         <p>
           <Eye show={show} handler={setToggle} />
         </p>
+        <p onClick={async () => {
+          await sendPasswordResetEmail(email);
+          alert('Sent email');
+        }}>Forgot Password?</p>
         <p>{error?.message}</p>
         <Button btnText='Submit' />
       </form>

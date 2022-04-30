@@ -77,12 +77,6 @@ export default function AddItems() {
                         className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="quantity" type="text" placeholder="Quantity" {...register("quantity", { required: true })} />
                 </label>
-                <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="location">
-                    <span>Location</span>
-                    <input
-                        className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="location" type="text" placeholder="Location" {...register("location", { required: true })} />
-                </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="target">
                     <span>Target</span>
                     <input

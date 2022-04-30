@@ -8,7 +8,7 @@ export default function Inventory() {
 
   return (
     loading ? <SkeletonTheme baseColor='black' highlightColor='darkgray'>
-      <div className='grid  grid-cols-1 md:grid-cols-3 gap-8'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 xl:p-4 mx-auto'>
         <MySkeleton />
         <MySkeleton />
         <MySkeleton />
@@ -17,9 +17,10 @@ export default function Inventory() {
         <MySkeleton />
       </div>
     </SkeletonTheme> :
-      <div className='grid grid-cols-1 md:grid-cols-3  mx-auto'>{
-
-        items.map(item => <Item img={item.img1} desc={item.desc} title={item.title} id={item._id} key={item._id} />)
-      }</div>
+      <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 xl:p-4 mx-auto'>
+        {items.map(item => {
+          
+        })
+        }</div>
   )
 }

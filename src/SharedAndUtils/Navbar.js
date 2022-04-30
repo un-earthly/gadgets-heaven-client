@@ -17,7 +17,7 @@ export default function Navbar() {
 
                     {
                         user ? <>
-                            <Button onClick={() => signOut(auth)} btnText='Login' />
+                            <Button handler={() => signOut(auth)} classes='bg-red-500 border-transparent text-gray-200' btnText='Sign Out' />
                         </> : <>
                             <Link to='/login'><Button btnText='Login' /></Link>
                             <Link to='/register'><Button btnText='Register' classes='bg-slate-800 text-white hover:bg-transparent hover:text-gray-800' /></Link>

@@ -9,20 +9,19 @@ export default function Home() {
     const [items, loading] = useItems()
     return (
         <div>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:p-10'>
-                <SkeletonTheme baseColor="#202020" highlightColor="#444">
-                    {
-                        loading ? <>
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:p-10'>
+                {
+                    loading ?
+                        <SkeletonTheme baseColor="#202020" highlightColor="#444">
                             <MySkeleton />
                             <MySkeleton />
                             <MySkeleton />
                             <MySkeleton />
                             <MySkeleton />
                             <MySkeleton />
-                        </>
-                            : items.slice(0, 6).map(item => <Item key={item._id} title={item.title} desc={item.desc} id={item._id} img={item.img1} />)
-                    }
-                </SkeletonTheme>
+                        </SkeletonTheme>
+                        : items.slice(0, 6).map(item => <Item key={item._id} title={item.title} desc={item.desc} id={item._id} img={item.img1} />)
+                }
             </div>
             <Link to='/inventory'><Button btnText='Show All'></Button></Link>
         </div>
