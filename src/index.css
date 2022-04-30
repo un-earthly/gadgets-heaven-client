@@ -7,3 +7,8 @@
 * {
     font-family: Montserrat;
 }
+
+.active {
+    color: red;
+    font-size: 1.5rem;
+}
