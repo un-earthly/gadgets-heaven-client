@@ -29,11 +29,7 @@ export default function ItemsDetail() {
                         <h1 className="text-gray-900 text-3xl title-font font-medium mb-1 capitalize">{item.title}</h1>
                         <div className="flex mb-4">
                             <span className="flex items-center">
-                                {/* <i className='bi bi-star'></i> */}
-                                {
-
-                                }
-                                {/* <span className="text-gray-600 ml-3">{item.ratings}</span> */}
+                                <span className="text-gray-600 ml-3">{item.ratings}</span>
                             </span>
                             <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
                                 <a className="text-gray-500">
@@ -53,7 +49,7 @@ export default function ItemsDetail() {
                                 </a>
                             </span>
                         </div>
-                        <p className="leading-relaxed">Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo juiceramps cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean shorts keytar banjo tattooed umami cardigan.</p>
+                        <p className="leading-relaxed">{item.desc}</p>
                         <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
                             <div className="flex">
                                 <span className="mr-3">Color</span>

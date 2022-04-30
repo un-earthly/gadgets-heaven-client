@@ -11,6 +11,7 @@ import Error from './SharedAndUtils/Error';
 import Footer from './SharedAndUtils/Footer';
 import ItemsDetail from './SharedAndUtils/ItemsDetail';
 import Navbar from './SharedAndUtils/Navbar';
+import RequireAuth from './SharedAndUtils/RequireAuth';
 import 'react-loading-skeleton/dist/skeleton.css'
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/myitems' element={<MyItems />} />
-        <Route path='/manage' element={<ManageItems />} />
+        <Route path='/manage/:id' element={<RequireAuth><ManageItems /></RequireAuth>} />
         <Route path='/additems' element={<AddItems />} />
         <Route path='/inventory' element={<Inventory />} />
         <Route path='/inventory/:id' element={<ItemsDetail />} />
