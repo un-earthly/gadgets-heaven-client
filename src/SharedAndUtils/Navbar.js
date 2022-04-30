@@ -8,11 +8,12 @@ export default function Navbar() {
     const [open, setOpen] = useState(false)
     const [user, Loading] = useAuthState(auth)
     return (
-        <header className='p-4 px-24 mx-auto bg-white'>
+        <header className='p-4 xl:px-24 mx-auto bg-white sticky top-0'>
             <nav className='hidden md:flex items-center justify-between'>
                 <Link to='/'><h1 className="text-3xl text-gray-900 font-semibold tracking-wide">Gadgets Heaven</h1></Link>
                 <ul className='flex items-center justify-center space-x-4'>
-                    <NavLink to='/blogs'><h2 className="text-xl">Blogs</h2></NavLink>
+                    <NavLink to='/blogs'><h2>Blogs</h2></NavLink>
+
 
 
                     {

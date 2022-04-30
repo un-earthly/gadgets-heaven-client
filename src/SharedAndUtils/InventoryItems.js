@@ -6,7 +6,7 @@ import Button from './Button'
 export default function InventoryItems({ itemData, handleDelete }) {
 
     return (
-        <div class="bg-gray-50 text-gray-900 h-[600px] flex rounded-lg relative p-4">
+        <div className="bg-gray-50 text-gray-900 h-[600px] flex rounded-lg relative p-4">
 
             <div className="h-3/4 absolute top-1/2 -translate-y-1/2 w-1/2 right-0 rounded-xl hidden xl:flex items-center justify-center">
                 <img src={itemData.img1} className='h-80' alt="" />
