@@ -8,8 +8,8 @@
 * site has jwt feature while creating user with email and password
 * fully responsive for mobile and bigger devices
 
-Github-client:
-GitHub-server:
-live:https://gadgets-heaven-97bc2.firebaseapp.com/
+Github-client:https://github.com/ProgrammingHeroWC4/warehouse-management-client-side-un-earthly
+GitHub-server:https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-un-earthly
+live-site:https://gadgets-heaven-97bc2.firebaseapp.com/
 
-StackOverflow question:https://stackoverflow.com/questions/72076999/how-to-decrease-quantity-field-value-on-button-click-by-one-and-save-it-in-datab
+StackOverflow-question:https://stackoverflow.com/questions/72076999/how-to-decrease-quantity-field-value-on-button-click-by-one-and-save-it-in-datab

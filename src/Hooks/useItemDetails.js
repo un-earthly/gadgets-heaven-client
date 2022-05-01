@@ -6,7 +6,7 @@ export default function useItemDetails(id) {
     useEffect(() => {
         axios.get(`https://guarded-shelf-11836.herokuapp.com/inventory/${id}`)
             .then(data => setItem(data.data))
-    }, [id])
+    }, [id, item])
 
     return [item]
 }

@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toast'
+import handleDelivary from '../Hooks/useDeliveryBtn'
 import Button from './Button'
 
 
@@ -12,16 +13,7 @@ export default function InventoryItems({ itemData }) {
             then(
                 res => toast('deleted', res.id, 'success'))
     }
-    const handleDelivary = id => {
 
-        console.log(id)
-        axios.put(`https://guarded-shelf-11836.herokuapp.com/${id}`)
-            .then(res => {
-                console.log(res.data)
-            })
-
-
-    }
     return (
         <div className="bg-gray-50 text-gray-900 h-[600px] flex rounded-lg relative p-4">
 

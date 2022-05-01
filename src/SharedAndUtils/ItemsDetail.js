@@ -5,7 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { useForm } from 'react-hook-form';
 import Button from './Button';
-import axios from 'axios';
+import handleDelivary from '../Hooks/useDeliveryBtn';
 export default function ItemsDetail() {
     const { id } = useParams()
     const [item] = useItemDetails(id)
@@ -15,6 +15,7 @@ export default function ItemsDetail() {
     const onSubmit = data => {
         const newQuantity = parseInt(quantity) + parseInt(data.amount)
         setQuantity(newQuantity)
+
     };
     return (
         <section className="text-gray-700 body-font overflow-hidden bg-white">
@@ -54,11 +55,11 @@ export default function ItemsDetail() {
                         <p>Category: {item.category}</p>
                         <div className="flex">
                             <p className="title-font font-medium text-2xl text-gray-900">{item.price}</p>
-                            <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Delivered</button>
+                            <button onClick={() => handleDelivary(item._id)} className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Delivered</button>
                         </div>
-                        <form className='mt-6' onSubmit={handleSubmit(onSubmit)}>
-                            <input className="shadow appearance-none border border-gray-800 border-r-transparent rounded-r-none rounded py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number"{...register("amount")} placeholder='Please Re stock amount' />
-                            <Button classes='inline text-xl rounded-l-none' btnText='Submit' />
+                        <form className='mt-6 flex items-center justify-center' onSubmit={handleSubmit(onSubmit)}>
+                            <input className="shadow appearance-none border border-gray-800 border-r-transparent rounded-r-none rounded py-2 md:text-xl md:px-3 px-1 text-gray-700 leading-tight xl:flex-grow focus:outline-none focus:shadow-outline" type="number"{...register("amount")} placeholder='Please Re stock amount' />
+                            <Button classes='inline md:text-xl px-2 py-1 rounded-l-none' btnText='Submit' />
                         </form>
                     </div>
                 </div>
