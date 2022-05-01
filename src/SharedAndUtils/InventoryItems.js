@@ -1,14 +1,26 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toast'
+import useItemDetails from '../Hooks/useItemDetails'
 import Button from './Button'
 
 
-export default function InventoryItems({ itemData, handleDelete }) {
+export default function InventoryItems({ itemData }) {
+    const deleteHandler = id => {
+        const confirm = window.confirm('Are You Sure?')
+        confirm && axios.delete(`https://guarded-shelf-11836.herokuapp.com/delete/${id}`).
+            then(
+                res => toast('deleted', res.id, 'success'))
+    }
+    const handleDelivary = id => {
 
+        console.log(id)
+    }
     return (
         <div className="bg-gray-50 text-gray-900 h-[600px] flex rounded-lg relative p-4">
 
-            <div className="h-3/4 absolute top-1/2 -translate-y-1/2 w-1/2 right-0 rounded-xl hidden xl:flex items-center justify-center">
+            <div className="h-3/4 absolute top-1/2 -translate-y-1/2 w-1/2 right-0 rounded-xl hidden lg:flex items-center justify-center">
                 <img src={itemData.img1} className='h-80' alt="" />
             </div>
             <div className='space-y-4'>
@@ -37,8 +49,12 @@ export default function InventoryItems({ itemData, handleDelete }) {
                     <p className='capitalize'>Category : {itemData.category}</p>
                 </div>
 
-                <div className='space-x-5'>
-                    <Button classes="inline" btnText='Delivered' />
+                <div >
+                    <div className='flex space-x-5'>
+                        <Button classes="block w-full" btnText='Delivered' handler={() => handleDelivary(itemData._id)} />
+                        <Button handler={() => deleteHandler(itemData._id)} classes="block w-full" btnText='Delete' />
+                    </div>
+                    <Link to={`/update/${itemData._id}`}><Button classes='block w-full mx-auto mt-4' btnText='Update'></Button></Link>
                 </div>
             </div>
         </div>

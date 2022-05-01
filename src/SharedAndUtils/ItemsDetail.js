@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useItemDetails from '../Hooks/useItemDetails'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -9,9 +9,12 @@ import axios from 'axios';
 export default function ItemsDetail() {
     const { id } = useParams()
     const [item] = useItemDetails(id)
+    const prevQuantity = item.quantity
+    const [quantity, setQuantity] = useState(prevQuantity)
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
-        axios.post('', data)
+        const newQuantity = parseInt(quantity) + parseInt(data.amount)
+        setQuantity(newQuantity)
     };
     return (
         <section className="text-gray-700 body-font overflow-hidden bg-white">
@@ -19,7 +22,7 @@ export default function ItemsDetail() {
                 <div className="lg:w-4/5 mx-auto flex flex-wrap">
                     <div className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200">
 
-                        <Carousel interval='1500' showThumbs={false} autoPlay={true} >
+                        <Carousel interval='1500' showThumbs={false} autoPlay={true} showIndicators={false} infiniteLoop={true} showStatus={false} >
                             <div>
                                 <img className='object-cover' src={item.img1} />
                             </div>
@@ -41,7 +44,7 @@ export default function ItemsDetail() {
                         </div>
                         <p className="leading-relaxed">{item.desc}</p>
 
-                        <p>Quantity In Stock: {item.quantity}</p>
+                        <p>Quantity In Stock: {quantity ? quantity : item.quantity}</p>
                         <p>Supplier: {item.supplier}</p>
                         <p>Distributor: {item.distributor}</p>
                         <p>Target Per Month: {item.target}</p>

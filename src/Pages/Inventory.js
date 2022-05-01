@@ -9,8 +9,9 @@ export default function Inventory() {
   const [items, loading] = useItems()
 
   return (
-    loading ? <SkeletonTheme baseColor='black' highlightColor='darkgray'>
-      <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8 xl:p-4 mx-auto'>
+    loading ? <SkeletonTheme baseColor="#ccc" highlightColor="#eee">
+
+      <div className='grid grid-cols-1 sm:grid-cols-2 gap-8 xl:p-4 mx-auto'>
         <MySkeleton />
         <MySkeleton />
         <MySkeleton />
@@ -23,7 +24,7 @@ export default function Inventory() {
       <>
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 xl:gap-10 xl:p-7">
           {
-            items.map(item => <InventoryItems itemData={item} />)
+            items.map(item => <InventoryItems key={item._id} itemData={item} />)
           }
         </div>
         <Link to='/additems'><Button btnText='Add Items' classes='w-1/2' /></Link>

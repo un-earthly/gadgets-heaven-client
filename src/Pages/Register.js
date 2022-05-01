@@ -17,7 +17,7 @@ export default function Register() {
         createUserWithEmailAndPassword(data.email, data.password)
     };
     if (loading) {
-        console.log(loading)
+        toast('loading')
     }
     if (user) {
         navigate('/')

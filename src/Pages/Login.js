@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
@@ -16,8 +17,13 @@ export default function Login() {
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth)
   const [email, setEmail] = useState('')
   const onSubmit = data => {
-    signInWithEmailAndPassword(data.email, data.password)
     setEmail(data.email)
+    const email = (data.email)
+    axios.post('http://localhost/login', { email })
+      .then(res => localStorage.setItem('token', res.data.token))
+    signInWithEmailAndPassword(email, data.password)
+
+
   };
   const [show, setToggle] = useShowPass()
   return (

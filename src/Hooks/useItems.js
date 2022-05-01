@@ -12,7 +12,7 @@ export default function useItems() {
                 setItems(data.data)
                 setLoading(false)
             })
-    }, [])
+    }, [items])
 
 
 

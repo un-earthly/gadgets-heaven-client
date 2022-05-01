@@ -1,22 +1,31 @@
 import axios from 'axios';
 import React from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import auth from '../firebase.init';
 import Button from '../SharedAndUtils/Button';
 
 export default function AddItems() {
     const { register, handleSubmit } = useForm();
+    const [user] = useAuthState(auth)
     const navigate = useNavigate()
     const onSubmit = data => {
-        axios.post('', data)
-            .then(res => console.log(res.data))
-
-        data && navigate('/myitems')
+        axios.post('https://guarded-shelf-11836.herokuapp.com/additem', data)
+            .then(res => {
+                res.data && navigate('/myitems')
+            })
     };
     return (
-        <div className='bg-white shadow-md md:w-1/2 w-3/4 mx-auto rounded px-8 pt-16 pb-8 mb-4 space-y-7 mt-16'>
+        <div className='bg-white shadow-md md:w-1/2 sm:w-3/4 mx-auto rounded px-8 pt-16 pb-8 xl:mb-4 space-y-7 xl:mt-16'>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h1 className="text-4xl text-center">Add Items</h1>
+                <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="email">
+                    <span>Email</span>
+                    <input
+                        className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="email" type="email" value={user.email} {...register("email")} />
+                </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="title">
                     <span>Title</span>
                     <input

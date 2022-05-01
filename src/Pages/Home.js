@@ -26,7 +26,7 @@ export default function Home() {
                                 <MySkeleton />
                                 <MySkeleton />
                             </SkeletonTheme>
-                            : items.slice(0, 6).map(item => <Item key={item._id} title={item.title} desc={item.desc} id={item._id} img={item.img1} />)
+                            : items.slice(0, 6).map(item => <Item key={item._id} title={item.title} quantity={item.quantity} supplier={item.supplier} desc={item.desc} id={item._id} img={item.img1} />)
                     }
                 </div>
                 <Link to='/inventory'><Button classes='w-1/2' btnText='Show All'></Button></Link>

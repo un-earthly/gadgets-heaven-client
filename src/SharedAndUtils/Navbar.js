@@ -8,7 +8,7 @@ export default function Navbar() {
     const [open, setOpen] = useState(false)
     const [user, Loading] = useAuthState(auth)
     return (
-        <header className='p-4 xl:px-24 mx-auto bg-white sticky top-0'>
+        <header className='p-4 xl:px-24 mx-auto bg-white sticky top-0 z-50'>
             <nav className='hidden md:flex items-center justify-between'>
                 <Link to='/'><h1 className="text-3xl text-gray-900 font-semibold tracking-wide">Gadgets Heaven</h1></Link>
                 <ul className='flex items-center justify-center space-x-4'>
