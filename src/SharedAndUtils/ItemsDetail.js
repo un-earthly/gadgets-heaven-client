@@ -6,16 +6,14 @@ import { Carousel } from 'react-responsive-carousel';
 import { useForm } from 'react-hook-form';
 import Button from './Button';
 import handleDelivary from '../Hooks/useDeliveryBtn';
+import axios from 'axios';
 export default function ItemsDetail() {
     const { id } = useParams()
     const [item] = useItemDetails(id)
-    const prevQuantity = item.quantity
-    const [quantity, setQuantity] = useState(prevQuantity)
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
-        const newQuantity = parseInt(quantity) + parseInt(data.amount)
-        setQuantity(newQuantity)
-
+        console.log(data)
+        axios.put(`https://guarded-shelf-11836.herokuapp.com/addquanity/${id}`, { quantity: data.quantity })
     };
     return (
         <section className="text-gray-700 body-font overflow-hidden bg-white">
@@ -25,13 +23,13 @@ export default function ItemsDetail() {
 
                         <Carousel interval='1500' showThumbs={false} autoPlay={true} showIndicators={false} infiniteLoop={true} showStatus={false} >
                             <div>
-                                <img className='object-cover' src={item.img1} />
+                                <img className='object-cover' src={item.img1} alt='' />
                             </div>
                             <div>
-                                <img className='object-cover' src={item.img3} />
+                                <img className='object-cover' src={item.img3} alt='' />
                             </div>
                             <div>
-                                <img className='object-cover' src={item.img2} />
+                                <img className='object-cover' src={item.img2} alt='' />
                             </div>
                         </Carousel>
                     </div>
@@ -45,7 +43,7 @@ export default function ItemsDetail() {
                         </div>
                         <p className="leading-relaxed">{item.desc}</p>
 
-                        <p>Quantity In Stock: {quantity ? quantity : item.quantity}</p>
+                        <p>Quantity In Stock: {item.quantity}</p>
                         <p>Supplier: {item.supplier}</p>
                         <p>Distributor: {item.distributor}</p>
                         <p>Target Per Month: {item.target}</p>
@@ -58,8 +56,8 @@ export default function ItemsDetail() {
                             <button onClick={() => handleDelivary(item._id)} className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Delivered</button>
                         </div>
                         <form className='mt-6 flex items-center justify-center' onSubmit={handleSubmit(onSubmit)}>
-                            <input className="shadow appearance-none border border-gray-800 border-r-transparent rounded-r-none rounded py-2 md:text-xl md:px-3 px-1 text-gray-700 leading-tight xl:flex-grow focus:outline-none focus:shadow-outline" type="number"{...register("amount")} placeholder='Please Re stock amount' />
-                            <Button classes='inline md:text-xl px-2 py-1 rounded-l-none' btnText='Submit' />
+                            <input className="shadow appearance-none border border-gray-800 border-r-transparent rounded-r-none rounded py-2 md:text-xl md:px-3 px-1 text-gray-700 leading-tight sm:flex-grow focus:outline-none focus:shadow-outline" type="number"{...register("quantity")} placeholder='Please Re stock amount' />
+                            <Button classes='block md:text-xl px-2 py-1 rounded-l-none' btnText='Submit' />
                         </form>
                     </div>
                 </div>
