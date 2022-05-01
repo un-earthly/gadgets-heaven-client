@@ -15,10 +15,10 @@ export default function InventoryItems({ itemData }) {
     }
 
     return (
-        <div className="bg-gray-50 text-gray-900 h-[600px] flex rounded-lg relative p-4">
+        <div className="bg-gray-50 text-gray-900 xl:h-[600px] flex rounded-lg xl:relative p-4 flex-col">
 
-            <div className="h-3/4 absolute top-1/2 -translate-y-1/2 w-1/2 right-0 rounded-xl hidden lg:flex items-center justify-center">
-                <img src={itemData.img1} className='h-80' alt="" />
+            <div className="xl:h-3/4 h-full xl:absolute xl:top-1/2 xl:-translate-y-1/2 w-1/2 xl:right-0 rounded-xl lg:flex items-center justify-center">
+                <img src={itemData.img1} className='xl:h-80' alt="" />
             </div>
             <div className='space-y-4'>
                 <div>

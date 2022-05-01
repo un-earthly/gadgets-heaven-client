@@ -12,7 +12,6 @@ export default function ItemsDetail() {
     const [item] = useItemDetails(id)
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
-        console.log(data)
         axios.put(`https://guarded-shelf-11836.herokuapp.com/addquanity/${id}`, { quantity: data.quantity })
     };
     return (
