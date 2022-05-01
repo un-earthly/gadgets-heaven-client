@@ -22,10 +22,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/blogs' element={<Blogs />} />
-        <Route path='/myitems' element={<MyItems />} />
+        <Route path='/myitems' element={<RequireAuth><MyItems /></RequireAuth>} />
         <Route path='/update/:id' element={<RequireAuth><UpdateItem /></RequireAuth>} />
         <Route path='/additems' element={<RequireAuth> <AddItems /></RequireAuth>} />
-        <Route path='/inventory' element={<Inventory />} />
+        <Route path='/inventory' element={<RequireAuth><Inventory /></RequireAuth>} />
         <Route path='/inventory/:id' element={<RequireAuth><ItemsDetail /></RequireAuth>} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../firebase.init';
 import useShowPass from '../Hooks/useShowPass';
@@ -13,6 +13,7 @@ import Social from '../SharedAndUtils/Social';
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate()
   const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth)
   const [email, setEmail] = useState('')
@@ -22,9 +23,10 @@ export default function Login() {
     axios.post('http://localhost/login', { email })
       .then(res => localStorage.setItem('token', res.data.token))
     signInWithEmailAndPassword(email, data.password)
-
-
   };
+  if (user) {
+    navigate('/myitems')
+  }
   const [show, setToggle] = useShowPass()
   return (
     <div className='bg-white shadow-md md:w-1/2 w-3/4 mx-auto rounded px-8 pt-16 pb-8 mb-4 space-y-7 mt-16'>
