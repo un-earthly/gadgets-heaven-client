@@ -13,7 +13,7 @@ export default function MyItems() {
 
         const getOrders = async () => {
             const email = user.email;
-            const url = `http://localhost/byemail?email=${email}`;
+            const url = `https://guarded-shelf-11836.herokuapp.com/byemail?email=${email}`;
             const { data } = await axios.get(url, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`

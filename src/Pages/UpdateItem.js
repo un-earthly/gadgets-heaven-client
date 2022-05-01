@@ -1,15 +1,20 @@
 import axios from 'axios'
 import React from 'react'
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useItemDetails from '../Hooks/useItemDetails';
 import Button from '../SharedAndUtils/Button';
 
 export default function UpdateItem() {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate()
   const onSubmit = data => {
     axios.put(`https://guarded-shelf-11836.herokuapp.com/update/${id}`, data)
-      .then(res => console.log(res))
+      .then(res => {
+        toast(res)
+        navigate('/inventory')
+      })
   }
   const { id } = useParams()
   const [item] = useItemDetails(id)
@@ -163,10 +168,8 @@ export default function UpdateItem() {
           <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" >
             <span>Distributor</span>
             <input
-              value={item.dist}
-
-              className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              type="text" />
+              value={item.dist || item.distributor}
+              className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
           </label>
           <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3">
             <span>Category</span>
@@ -210,7 +213,7 @@ export default function UpdateItem() {
             <span>Lastmonth Sold</span>
             <input
               className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              value={item.lastmonthsold}
+              value={item.lastmonthsold || item.lastMonthSold}
             />
           </label>
           <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="ratings">

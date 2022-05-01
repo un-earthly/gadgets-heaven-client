@@ -15,25 +15,43 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import UpdateItem from './Pages/UpdateItem';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist'
+import { useEffect, useState } from 'react';
 function App() {
+  const [loadin, setLoadin] = useState(false)
+  useEffect(() => {
+    setLoadin(true)
+    setTimeout(() => {
+      setLoadin(false)
+    }, 5000)
+  }, [])
   return (
     <div className="bg-gray-200">
-      <Navbar />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/blogs' element={<Blogs />} />
-        <Route path='/myitems' element={<RequireAuth><MyItems /></RequireAuth>} />
-        <Route path='/update/:id' element={<RequireAuth><UpdateItem /></RequireAuth>} />
-        <Route path='/additems' element={<RequireAuth> <AddItems /></RequireAuth>} />
-        <Route path='/inventory' element={<RequireAuth><Inventory /></RequireAuth>} />
-        <Route path='/inventory/:id' element={<RequireAuth><ItemsDetail /></RequireAuth>} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='*' element={<Error />} />
-      </Routes>
-      <ToastContainer />
-      <Footer />
-    </div>
+      {
+        loadin ?
+          <div className='flex items-center justify-center h-screen'>
+            <img style={{ animationDuration: '5s' }} src="favicon.png" className='animate-spin ' alt="" />
+          </div>
+          :
+          <>
+            <Navbar />
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/home' element={<Home />} />
+              <Route path='/blogs' element={<Blogs />} />
+              <Route path='/myitems' element={<RequireAuth><MyItems /></RequireAuth>} />
+              <Route path='/update/:id' element={<RequireAuth><UpdateItem /></RequireAuth>} />
+              <Route path='/additems' element={<RequireAuth> <AddItems /></RequireAuth>} />
+              <Route path='/inventory' element={<RequireAuth><Inventory /></RequireAuth>} />
+              <Route path='/inventory/:id' element={<RequireAuth><ItemsDetail /></RequireAuth>} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='*' element={<Error />} />
+            </Routes>
+            <ToastContainer />
+            <Footer />
+          </>
+      }
+    </div >
   );
 }
 

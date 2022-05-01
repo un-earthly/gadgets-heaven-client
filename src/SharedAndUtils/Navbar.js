@@ -12,6 +12,7 @@ export default function Navbar() {
             <nav className='hidden md:flex items-center justify-between'>
                 <Link to='/'><h1 className="text-3xl text-gray-900 font-semibold tracking-wide">Gadgets Heaven</h1></Link>
                 <ul className='flex items-center justify-center space-x-4'>
+                    <NavLink to='/home'><h2>Home</h2></NavLink>
                     <NavLink to='/blogs'><h2>Blogs</h2></NavLink>
 
 

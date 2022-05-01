@@ -20,7 +20,7 @@ export default function Login() {
   const onSubmit = data => {
     setEmail(data.email)
     const email = (data.email)
-    axios.post('http://localhost/login', { email })
+    axios.post('https://guarded-shelf-11836.herokuapp.com/login', { email })
       .then(res => localStorage.setItem('token', res.data.token))
     signInWithEmailAndPassword(email, data.password)
   };

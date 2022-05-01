@@ -1,8 +1,7 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toast'
-import useItemDetails from '../Hooks/useItemDetails'
 import Button from './Button'
 
 
@@ -16,6 +15,12 @@ export default function InventoryItems({ itemData }) {
     const handleDelivary = id => {
 
         console.log(id)
+        axios.put(`https://guarded-shelf-11836.herokuapp.com/${id}`)
+            .then(res => {
+                console.log(res.data)
+            })
+
+
     }
     return (
         <div className="bg-gray-50 text-gray-900 h-[600px] flex rounded-lg relative p-4">
@@ -54,7 +59,10 @@ export default function InventoryItems({ itemData }) {
                         <Button classes="block w-full" btnText='Delivered' handler={() => handleDelivary(itemData._id)} />
                         <Button handler={() => deleteHandler(itemData._id)} classes="block w-full" btnText='Delete' />
                     </div>
-                    <Link to={`/update/${itemData._id}`}><Button classes='block w-full mx-auto mt-4' btnText='Update'></Button></Link>
+                    <div className='flex space-x-5 mt-4 '>
+                        <Link to={`/update/${itemData._id}`}><Button classes='block w-full' btnText='Update'></Button></Link>
+                        <Link to={`/inventory/${itemData._id}`}><Button classes='block w-full' btnText='Show Details'></Button></Link>
+                    </div>
                 </div>
             </div>
         </div>

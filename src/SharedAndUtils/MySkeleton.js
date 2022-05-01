@@ -8,7 +8,6 @@ export default function MySkeleton() {
             <Skeleton count={1} height={40} />
             <Skeleton count={1} height={105} />
             <Skeleton count={1} height={65} />
-
         </div>
     )
 }

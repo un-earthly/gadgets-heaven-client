@@ -27,7 +27,7 @@ export default function Inventory() {
             items.map(item => <InventoryItems key={item._id} itemData={item} />)
           }
         </div>
-        <Link to='/additems'><Button btnText='Add Items' classes='w-1/2' /></Link>
+        <Link to='/additems'><Button btnText='Add New Item' classes='w-1/2' /></Link>
       </>
   )
 }
