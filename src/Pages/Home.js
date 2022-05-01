@@ -14,7 +14,7 @@ export default function Home() {
         <div>
             <HomeBanner />
             <div>
-                <h1 className="text-xl xl:text-4xl text-center my-5 mt-10 font-semibold">Some Of Our Products</h1>
+                <h1 className="text-xl xl:text-4xl border-b-red-500 border-b-4 text-red-600 w-3/4 mx-auto text-center my-5 mt-10 font-semibold">Some Of Our Products</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:p-10'>
                     {
                         loading ?

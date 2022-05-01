@@ -4,7 +4,7 @@ import Button from './Button'
 
 export default function Item({ img, title, desc, id, supplier, quantity }) {
     return (
-        <div className="max-w-sm w-full h-full lg:flex items-center justify-center">
+        <div className="lg:flex items-center justify-center">
             <div className="border bg-white rounded-lg p-4 leading-normal flex md:items-center md:justify-center flex-col md:flow-row">
                 <div className="md:h-80 md:w-80 w-30 h-30 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
                     <img src={img} className='w-full h-full object-contain' alt="" />

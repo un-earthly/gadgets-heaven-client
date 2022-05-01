@@ -21,7 +21,7 @@ export default function AboutUs() {
                     <div className=""><input type="text" className="py-3 px-5 outline-none border border-gray-800  w-full" aria-invalid="false" required placeholder="Subject" /></div>
                     <div className=""><textarea className="py-3 px-5 outline-none border border-gray-800  w-full" required placeholder="Message"></textarea></div>
 
-                    <Button btnText='Submit' classes='w-full ' />
+                    <Button btnText='Submit' classes='w-full bg-gray-800 text-gray-100 ' />
                 </form>
             </div>
         </div>

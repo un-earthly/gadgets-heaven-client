@@ -6,7 +6,7 @@ import auth from '../firebase.init'
 import { signOut } from 'firebase/auth'
 export default function Navbar() {
     const [open, setOpen] = useState(false)
-    const [user, Loading] = useAuthState(auth)
+    const [user] = useAuthState(auth)
     return (
         <header className='p-4 xl:px-24 mx-auto bg-white sticky top-0 z-50'>
             <nav className='hidden md:flex items-center justify-between'>
@@ -33,7 +33,8 @@ export default function Navbar() {
 
             <nav>
                 <div className="md:hidden flex items-center justify-around">
-                    <NavLink to='/'><h3 style={{ fontFamily: 'Lavishly Yours' }} className="text-2xl">Gadgest Heaven</h3></NavLink>
+
+                    <Link to='/'><h1 className="text-xl text-gray-900 font-semibold tracking-wide">Gadgets Heaven</h1></Link>
                     <i onClick={() => setOpen(!open)} className='bi bi-list text-gray-900'></i>
                 </div>
                 <ul className={`${open ? 'flex' : 'hidden'} flex-col justify-center items-center`}>

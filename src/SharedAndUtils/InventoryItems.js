@@ -46,8 +46,8 @@ export default function InventoryItems({ itemData }) {
                     <p className='capitalize'>Category : {itemData.category}</p>
                 </div>
 
-                <div >
-                    <div className='flex space-x-5'>
+                <div className='w-1/2 pr-5'>
+                    <div className='flex space-x-5 mt-4'>
                         <Button classes="block w-full" btnText='Delivered' handler={() => handleDelivary(itemData._id)} />
                         <Button handler={() => deleteHandler(itemData._id)} classes="block w-full" btnText='Delete' />
                     </div>
