@@ -230,6 +230,7 @@ export default function UpdateItem() {
               value={item.platform}
             />
           </label>
+
         </div>
       </div>
     </div>

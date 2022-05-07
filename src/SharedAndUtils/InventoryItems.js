@@ -9,8 +9,8 @@ import Button from './Button'
 export default function InventoryItems({ itemData }) {
     const deleteHandler = id => {
         const confirm = window.confirm('Are You Sure?')
-        confirm && axios.delete(`https://guarded-shelf-11836.herokuapp.com/delete/${id}`).
-            then(
+        confirm && axios.delete(`https://guarded-shelf-11836.herokuapp.com/delete/${id}`)
+            .then(
                 res => toast('deleted', res.id, 'success'))
     }
 
@@ -32,8 +32,9 @@ export default function InventoryItems({ itemData }) {
 
                     <p className='capitalize'>Distributor: {itemData.distributor}</p>
                     <p className='capitalize'>Supplier: {itemData.supplier}</p>
-                    <p className='capitalize'>In Stock: {itemData.quantity} pcs</p>
+                    <p className='capitalize'>In Stock: {!itemData.quantity ? 'Out Of Stock' : itemData.quantity + 'pcs'} </p>
                 </div>
+
 
                 <div>
 

@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MySkeleton from '../SharedAndUtils/MySkeleton'
 import InventoryItems from '../SharedAndUtils/InventoryItems'
-import useItems from '../Hooks/useItems'
 import { SkeletonTheme } from 'react-loading-skeleton'
 import { Link } from 'react-router-dom'
 import Button from '../SharedAndUtils/Button'
+import axios from 'axios'
 export default function Inventory() {
-  const [items, loading] = useItems()
-
+  const [items, setItems] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [pagesCount, setPagesCount] = useState(0)
+  const [activePage, setActivePage] = useState(0)
+  const [pageSize, setPageSize] = useState(10)
+  useEffect(() => {
+    axios.get(`https://guarded-shelf-11836.herokuapp.com/inventory?pageSize=${pageSize}&activePage=${activePage}`)
+      .then(data => {
+        setItems(data.data)
+        setLoading(false)
+      })
+  }, [items, activePage, pageSize])
+  useEffect(() => {
+    axios.get('https://guarded-shelf-11836.herokuapp.com/pageCount')
+      .then(data => setPagesCount(Math.ceil(data.data.count / pageSize)))
+  }, [pageSize])
   return (
     loading ? <SkeletonTheme baseColor="#ccc" highlightColor="#eee">
 
@@ -28,6 +42,19 @@ export default function Inventory() {
           }
         </div>
         <Link to='/additems'><Button btnText='Add New Item' classes='w-1/2' /></Link>
+        <div className='mx-auto flex items-center justify-center mt-6 space-x-2'>{
+          [...Array(pagesCount).keys()].map(page => <button key={page} className={`px-2 border block border-red-500 ${activePage === page ? 'pageActive' : ''}`} onClick={() => { setActivePage(page) }}>{(page + 1)}</button>)
+
+        }
+          <select className='outline-none bg-red-500 py-1 px-1 text-white' onClick={e => setPageSize(e.target.value)}>
+            <option value='2'>2</option>
+            <option value='5'>5</option>
+            <option selected value='10'>10</option>
+            <option value='15'>15</option>
+            <option value='20'>20</option>
+          </select>
+          <div> <p>{pageSize} items per page</p></div>
+        </div>
       </>
   )
 }

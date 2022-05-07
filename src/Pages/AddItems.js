@@ -98,11 +98,11 @@ export default function AddItems() {
                         className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="sold" type="text" placeholder="Sold All Time" {...register("sold", { required: true })} />
                 </label>
-                <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="lastmonthsold">
+                <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="lastMonthSold">
                     <span>Lastmonth Sold</span>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="lastmonthsold" type="text" placeholder="Lastmonth Sold" {...register("lastmonthsold", { required: true })} />
+                        id="lastMonthSold" type="text" placeholder="Lastmonth Sold" {...register("lastMonthSold", { required: true })} />
                 </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="ratings">
                     <span>Ratings</span>

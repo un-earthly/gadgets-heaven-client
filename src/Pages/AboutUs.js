@@ -11,7 +11,10 @@ export default function AboutUs() {
             </div>
             <div className='my-5'>
                 <h1 className="text-center text-xl xl:text-3xl font-semibold my-4"> REQUEST A QUICK QUOTE</h1>
-                <form className="space-y-5" onSubmit={() => toast('Success')}>
+                <form className="space-y-5" onSubmit={e => {
+                    e.preventDefault()
+                    toast('Success')
+                }}>
                     <div>
                         <input type="text" className="py-3 px-5 outline-none border border-gray-800  w-full" aria-required="true" aria-invalid="false" required placeholder="First and Last Name" /></div>
                     <div className="">
