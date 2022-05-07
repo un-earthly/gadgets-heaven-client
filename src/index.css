@@ -15,6 +15,7 @@
 
 nav>ul>a {
     position: relative;
+    font-weight: 600;
 }
 
 nav>ul>a::after {
@@ -23,7 +24,7 @@ nav>ul>a::after {
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 0);
-    height: 1px;
+    height: 2px;
     width: 0;
     background: red;
     transition: .5s;
@@ -35,7 +36,7 @@ nav>ul>a:hover:after {
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 0);
-    height: 1px;
+    height: 2px;
     width: 50%;
     background: red;
 }
@@ -51,7 +52,7 @@ nav>ul>a:hover:after {
     bottom: 0;
     left: 50%;
     transform: translate(-50%, 0);
-    height: 1px;
+    height: 2px;
     width: 50%;
     background: red;
 }

@@ -22,7 +22,7 @@ function App() {
     setLoadin(true)
     setTimeout(() => {
       setLoadin(false)
-    }, 5000)
+    }, 1000)
   }, [])
   return (
     <div className="bg-gray-200">

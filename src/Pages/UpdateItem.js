@@ -230,7 +230,6 @@ export default function UpdateItem() {
               value={item.platform}
             />
           </label>
-          <Button classes='w-full mt-4' btnText='Submit' />
         </div>
       </div>
     </div>

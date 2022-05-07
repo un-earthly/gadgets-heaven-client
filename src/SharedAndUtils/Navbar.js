@@ -23,10 +23,11 @@ export default function Navbar() {
                             <NavLink to='/additems'>Add Items</NavLink>
                             <NavLink to='/myitems'>My items</NavLink>
                             <Button handler={() => signOut(auth)} classes='bg-red-500 border-transparent text-gray-200' btnText='Sign Out' />
-                        </> : <>
-                            <Link to='/login'><Button btnText='Login' /></Link>
-                            <Link to='/register'><Button btnText='Register' classes='bg-slate-800 text-white hover:bg-transparent hover:text-gray-800' /></Link>
-                        </>
+                        </> :
+                            <span className='flex items-center justify-center space-x-3'>
+                                <Link to='/login'><Button btnText='Login' /></Link>
+                                <Link to='/register'><Button btnText='Register' classes='bg-slate-800 text-white hover:bg-transparent hover:text-gray-800' /></Link>
+                            </span>
                     }
                 </ul>
             </nav>
