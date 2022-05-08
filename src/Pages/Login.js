@@ -25,7 +25,7 @@ export default function Login() {
     signInWithEmailAndPassword(email, data.password)
   };
   if (user) {
-    navigate('/myitems')
+    navigate('/')
   }
   const [show, setToggle] = useShowPass()
   return (

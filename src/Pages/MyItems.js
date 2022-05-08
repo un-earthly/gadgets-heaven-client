@@ -22,7 +22,7 @@ export default function MyItems() {
                     authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             });
-            setLoading(false)
+            setLoading(false);
             setMyItems(data);
         }
         getOrders();
@@ -53,7 +53,7 @@ export default function MyItems() {
                 }
             </div>
 
-            <div className='mx-auto flex items-center justify-center mt-6 space-x-2'>{
+            <div className='mx-auto flex flex-wrap space-y-2 items-center justify-center mt-6 space-x-2'>{
                 [...Array(pagesCount).keys()].map(page => <button key={page} className={`px-2 border block border-red-500 ${activePage === page ? 'pageActive' : ''}`} onClick={() => { setActivePage(page) }}>{(page + 1)}</button>)
 
             }

@@ -39,8 +39,9 @@ export default function Navbar() {
                     <Link to='/'><h1 className="text-xl text-gray-900 font-semibold tracking-wide">Gadgets Heaven</h1></Link>
                     <i onClick={() => setOpen(!open)} className='bi bi-list text-gray-900'></i>
                 </div>
-                <ul className={`${open ? 'flex' : 'hidden'} flex-col justify-center items-center`}>
+                <ul className={`${open ? 'flex' : 'hidden'} flex-col justify-center items-center space-y-2`}>
                     <NavLink to='/blogs'>Blogs</NavLink>
+                    <NavLink to='/contact'>Contact</NavLink>
 
                     {
                         user ? <>
@@ -48,10 +49,12 @@ export default function Navbar() {
                             <NavLink to='/additems'>Add Items</NavLink>
                             <NavLink to='/myitems'>My items</NavLink>
                             <Button handler={() => signOut(auth)} classes='bg-red-500 border-transparent text-gray-200' btnText='Sign Out' />
-                        </> : <>
+                        </> : <span className='flex items-center justify-center space-x-3'>
+
                             <Link to='/login'><Button btnText='Login' /></Link>
                             <Link to='/register'><Button btnText='Register' classes='bg-slate-800 text-white hover:bg-transparent hover:text-gray-800' /></Link>
-                        </>
+                        </span>
+
                     }
                 </ul>
             </nav>
