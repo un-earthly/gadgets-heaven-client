@@ -41,7 +41,7 @@ export default function Inventory() {
             items.map(item => <InventoryItems key={item._id} itemData={item} />)
           }
         </div>
-        <Link to='/additems'><Button btnText='Add New Item' classes='w-1/2' /></Link>
+        <Link to='/additems'><Button btnText='Add New Item' classes='w-1/2 mt-5' /></Link>
         <div className='mx-auto flex items-center justify-center mt-6 space-x-2'>{
           [...Array(pagesCount).keys()].map(page => <button key={page} className={`px-2 border block border-red-500 ${activePage === page ? 'pageActive' : ''}`} onClick={() => { setActivePage(page) }}>{(page + 1)}</button>)
 

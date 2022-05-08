@@ -6,9 +6,12 @@ import auth from '../firebase.init'
 import InventoryItems from '../SharedAndUtils/InventoryItems'
 
 export default function MyItems() {
-    toast('only works for email password logins. social are not considered due to errors ')
+
     const [user] = useAuthState(auth)
     const [myItems, setMyItems] = useState([])
+    useEffect(() => {
+        toast('only works for email password logins. social are not considered due to errors ')
+    }, [])
     useEffect(() => {
 
         const getOrders = async () => {
@@ -22,7 +25,7 @@ export default function MyItems() {
             setMyItems(data);
         }
         getOrders();
-    }, [user])
+    }, [user, myItems])
     return (
         <div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 xl:gap-10 xl:p-7">

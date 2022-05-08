@@ -84,31 +84,31 @@ export default function AddItems() {
                     <span>Quantity</span>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="quantity" type="text" placeholder="Quantity" {...register("quantity", { required: true })} />
+                        id="quantity" type="number" placeholder="Quantity" {...register("quantity", { required: true })} />
                 </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="target">
                     <span>Target</span>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="target" type="text" placeholder="Target" {...register("target", { required: true })} />
+                        id="target" type="number" placeholder="Target" {...register("target", { required: true })} />
                 </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="sold">
                     <span> Sold</span>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="sold" type="text" placeholder="Sold All Time" {...register("sold", { required: true })} />
+                        id="sold" type="number" placeholder="Sold All Time" {...register("sold", { required: true })} />
                 </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="lastMonthSold">
                     <span>Lastmonth Sold</span>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="lastMonthSold" type="text" placeholder="Lastmonth Sold" {...register("lastMonthSold", { required: true })} />
+                        id="lastMonthSold" type="number" placeholder="Lastmonth Sold" {...register("lastMonthSold", { required: true })} />
                 </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="ratings">
                     <span>Ratings</span>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="ratings" type="text" placeholder="Ratings" {...register("ratings", { required: true })} />
+                        id="ratings" type="number" placeholder="Ratings" {...register("ratings", { required: true })} />
                 </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="platform">
                     <span>Platform</span>

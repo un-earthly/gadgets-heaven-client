@@ -9,9 +9,12 @@ import Button from './Button'
 export default function InventoryItems({ itemData }) {
     const deleteHandler = id => {
         const confirm = window.confirm('Are You Sure?')
-        confirm && axios.delete(`https://guarded-shelf-11836.herokuapp.com/delete/${id}`)
-            .then(
-                res => toast('deleted', res.id, 'success'))
+        if (confirm) {
+            axios.delete(`https://guarded-shelf-11836.herokuapp.com/delete/${id}`)
+                .then(
+                    res => toast('Deleted Successfully')
+                )
+        }
     }
 
     return (
@@ -26,7 +29,7 @@ export default function InventoryItems({ itemData }) {
                     <h1 className="text-xl font-semibold capitalize">{itemData.title > 20 ? itemData.title.slice(0, 20) + '...' : itemData.title}</h1>
                     <p className="text-sm">Product Code:{itemData._id}</p>
                 </div>
-                <p className="text-orange-600 text-xl flex items-center"> Price : <span className='text-4xl font-semibold'> {itemData.price}</span> </p>
+                <p className="text-orange-600 text-xl flex items-center"> Price : <span className='text-4xl font-semibold'>$ {itemData.price}</span> </p>
 
                 <div>
 
