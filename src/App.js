@@ -16,6 +16,7 @@ import UpdateItem from './Pages/UpdateItem';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist'
 import { useEffect, useState } from 'react';
+import Contact from './Pages/Contact';
 function App() {
   const [loadin, setLoadin] = useState(false)
   useEffect(() => {
@@ -45,6 +46,7 @@ function App() {
               <Route path='/inventory/:id' element={<RequireAuth><ItemsDetail /></RequireAuth>} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
+              <Route path='/contact' element={<Contact />} />
               <Route path='*' element={<Error />} />
             </Routes>
             <ToastContainer />

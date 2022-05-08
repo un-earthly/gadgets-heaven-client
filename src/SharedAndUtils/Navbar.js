@@ -14,6 +14,7 @@ export default function Navbar() {
                 <ul className='flex items-center justify-center space-x-4'>
                     <NavLink to='/home'><h2>Home</h2></NavLink>
                     <NavLink to='/blogs'><h2>Blogs</h2></NavLink>
+                    <NavLink to='/contact'>Contact</NavLink>
 
 
 
