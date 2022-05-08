@@ -10,7 +10,7 @@ export default function Social() {
     const from = location.state?.from?.pathname
     if (user) {
         navigate(from || '/', { replace: true })
-
+        
     }
     return (
         <div>

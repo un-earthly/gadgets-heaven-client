@@ -60,13 +60,13 @@ export default function AddItems() {
                     <span>Price</span>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="price" type="text" placeholder="Price" {...register("price", { required: true })} />
+                        id="price" type="number" placeholder="Price" {...register("price", { required: true })} />
                 </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="dist">
                     <span>Distributor</span>
                     <input
                         className="shadow appearance-none border rounded w-full py-2 md:text-xl px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="dist" type="text" placeholder="Distributor" {...register("dist", { required: true })} />
+                        id="dist" type="text" placeholder="Distributor" {...register("distributor", { required: true })} />
                 </label>
                 <label className="block text-gray-700 text-sm font-bold mb-2 space-y-3" htmlFor="category">
                     <span>Category</span>
