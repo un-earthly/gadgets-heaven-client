@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React from 'react'
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -9,8 +10,10 @@ export default function Social() {
     const location = useLocation()
     const from = location.state?.from?.pathname
     if (user) {
+        const email = user.user.email
+        axios.post('https://guarded-shelf-11836.herokuapp.com/login', { email })
+            .then(res => localStorage.setItem('token', res.data.token))
         navigate(from || '/', { replace: true })
-        
     }
     return (
         <div>

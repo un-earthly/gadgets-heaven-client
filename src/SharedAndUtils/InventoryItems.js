@@ -26,7 +26,7 @@ export default function InventoryItems({ itemData }) {
             <div className='space-y-4'>
                 <div>
                     <p className="text-sm capitalize">{itemData.brand}</p>
-                    <h1 className="text-xl font-semibold capitalize">{itemData.title > 20 ? itemData.title.slice(0, 20) + '...' : itemData.title}</h1>
+                    <h1 className="text-xl font-semibold capitalize">{itemData.title.length >= 30 ? itemData.title.slice(0, 30) + '...' : itemData.title}</h1>
                     <p className="text-sm">Product Code:{itemData._id}</p>
                 </div>
                 <p className="text-orange-600 text-xl flex items-center"> Price : <span className='text-4xl font-semibold'>$ {itemData.price}</span> </p>
