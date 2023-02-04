@@ -5,12 +5,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useItemDetails from '../Hooks/useItemDetails';
 import Button from '../SharedAndUtils/Button';
+import { SERVER_URL } from '../SharedAndUtils/urls';
 
 export default function UpdateItem() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate()
   const onSubmit = data => {
-    axios.put(`https://guarded-shelf-11836.herokuapp.com/update/${id}`, data)
+    axios.put(`${SERVER_URL}/update/${id}`, data)
       .then(res => {
         toast(res)
         navigate('/inventory')

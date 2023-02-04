@@ -5,13 +5,14 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
 import Button from '../SharedAndUtils/Button';
+import { SERVER_URL } from '../SharedAndUtils/urls';
 
 export default function AddItems() {
     const { register, handleSubmit } = useForm();
     const [user] = useAuthState(auth)
     const navigate = useNavigate()
     const onSubmit = data => {
-        axios.post('https://guarded-shelf-11836.herokuapp.com/additem', data)
+        axios.post(`${SERVER_URL}/additem`, data)
             .then(res => {
                 res.data && navigate('/myitems')
             })

@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toast'
 import handleDelivary from '../Hooks/useDeliveryBtn'
 import Button from './Button'
+import { SERVER_URL } from './urls'
 
 
 export default function InventoryItems({ itemData }) {
     const deleteHandler = id => {
         const confirm = window.confirm('Are You Sure?')
         if (confirm) {
-            axios.delete(`https://guarded-shelf-11836.herokuapp.com/delete/${id}`)
+            axios.delete(`${SERVER_URL}/delete/${id}`)
                 .then(
                     res => toast('Deleted Successfully')
                 )
@@ -18,7 +19,7 @@ export default function InventoryItems({ itemData }) {
     }
 
     return (
-        <div className="bg-gray-50 text-gray-900 xl:h-[600px] flex rounded-lg xl:relative p-4 flex-col">
+        <div className="bg-white text-gray-900 xl:h-[600px] flex rounded-lg xl:relative p-4 flex-col">
 
             <div className="xl:h-3/4 h-full xl:absolute xl:top-1/2 xl:-translate-y-1/2 w-1/2 xl:right-0 rounded-xl lg:flex items-center justify-center">
                 <img src={itemData.img1} className='xl:h-80' alt="" />

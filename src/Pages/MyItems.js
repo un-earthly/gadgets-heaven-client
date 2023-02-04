@@ -4,6 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import auth from '../firebase.init'
 import InventoryItems from '../SharedAndUtils/InventoryItems'
 import MySkeleton from '../SharedAndUtils/MySkeleton'
+import { SERVER_URL } from '../SharedAndUtils/urls'
 
 export default function MyItems() {
 
@@ -16,21 +17,21 @@ export default function MyItems() {
     const email = user.email
     useEffect(() => {
         const getOrders = async () => {
-            const url = `https://guarded-shelf-11836.herokuapp.com/byemail?email=${email}&pageSize=${pageSize}&activePage=${activePage}`;
+            const url = `${SERVER_URL}/utility/filter_by_email?email=${email}&pageSize=${pageSize}&activePage=${activePage}`;
             const { data } = await axios.get(url, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`
                 }
             });
             setLoading(false);
-            setMyItems(data);
+            setMyItems(data.data);
         }
         getOrders();
     }, [user, myItems, pageSize, activePage, email])
 
     useEffect(() => {
-        axios.get(`https://guarded-shelf-11836.herokuapp.com/pageCountEmail?email=${email}`)
-            .then(data => setPagesCount(Math.ceil(data.data.count / pageSize)))
+        axios.get(`${SERVER_URL}/utility/page_count_email?email=${email}`)
+            .then(data => setPagesCount(Math.ceil(data.data.data / pageSize)))
     }, [pageSize, email])
     return (
         <div>

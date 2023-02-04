@@ -3,6 +3,7 @@ import React from 'react'
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth'
 import { useLocation, useNavigate } from 'react-router-dom'
 import auth from '../firebase.init'
+import { SERVER_URL } from './urls'
 
 export default function Social() {
     const [SignInWithGoogle, user] = useSignInWithGoogle(auth)
@@ -11,7 +12,7 @@ export default function Social() {
     const from = location.state?.from?.pathname
     if (user) {
         const email = user.user.email
-        axios.post('https://guarded-shelf-11836.herokuapp.com/login', { email })
+        axios.post(`${SERVER_URL}/login`, { email })
             .then(res => localStorage.setItem('token', res.data.token))
         navigate(from || '/', { replace: true })
     }

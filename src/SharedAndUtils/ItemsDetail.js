@@ -7,12 +7,13 @@ import { useForm } from 'react-hook-form';
 import Button from './Button';
 import handleDelivary from '../Hooks/useDeliveryBtn';
 import axios from 'axios';
+import { SERVER_URL } from './urls';
 export default function ItemsDetail() {
     const { id } = useParams()
     const [item] = useItemDetails(id)
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
-        axios.put(`https://guarded-shelf-11836.herokuapp.com/addquanity/${id}`, { quantity: data.quantity })
+        axios.put(`${SERVER_URL}/addquanity/${id}`, { quantity: data.quantity })
     };
     return (
         <section className="text-gray-700 body-font overflow-hidden bg-white">

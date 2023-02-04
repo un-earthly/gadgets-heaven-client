@@ -11,7 +11,9 @@ import Social from '../SharedAndUtils/Social'
 
 export default function Register() {
     const { register, handleSubmit } = useForm();
-    const [createUserWithEmailAndPassword, loading, user, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true })
+    const [createUserWithEmailAndPassword, loading, user, error] = useCreateUserWithEmailAndPassword(auth,
+        { sendEmailVerification: true }
+    )
     const navigate = useNavigate()
     const onSubmit = data => {
         createUserWithEmailAndPassword(data.email, data.password)

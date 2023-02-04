@@ -10,6 +10,7 @@ import useShowPass from '../Hooks/useShowPass';
 import Button from '../SharedAndUtils/Button';
 import Eye from '../SharedAndUtils/Eye';
 import Social from '../SharedAndUtils/Social';
+import { SERVER_URL } from '../SharedAndUtils/urls';
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
@@ -20,7 +21,7 @@ export default function Login() {
   const onSubmit = data => {
     setEmail(data.email)
     const email = (data.email)
-    axios.post('https://guarded-shelf-11836.herokuapp.com/login', { email })
+    axios.post(`${SERVER_URL}/login`, { email })
       .then(res => localStorage.setItem('token', res.data.token))
     signInWithEmailAndPassword(email, data.password)
   };

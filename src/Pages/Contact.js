@@ -8,7 +8,7 @@ export default function Contact() {
             e.preventDefault()
             toast('Successfull')
             e.target.reset()
-        }} className="md:w-1/2 mt-4 rounded-md mx-auto shadow-md p-5">
+        }} className="md:w-1/2 mt-4 rounded-md mx-auto bg-blue-50 shadow-md p-5">
             <div className="w-full mb-6 md:mb-0">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                     Name
