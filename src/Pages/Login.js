@@ -1,12 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import auth from '../firebase.init';
-import useShowPass from '../Hooks/useShowPass';
+import useShowPass from '../../app/hooks/useShowPass';
 import Button from '../SharedAndUtils/Button';
 import Eye from '../SharedAndUtils/Eye';
 import Social from '../SharedAndUtils/Social';
@@ -15,15 +12,13 @@ import { SERVER_URL } from '../SharedAndUtils/urls';
 export default function Login() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate()
-  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
-  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth)
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState('');
+  const [user, setUser] = useState(null);
   const onSubmit = data => {
     setEmail(data.email)
     const email = (data.email)
     axios.post(`${SERVER_URL}/login`, { email })
       .then(res => localStorage.setItem('token', res.data.token))
-    signInWithEmailAndPassword(email, data.password)
   };
   if (user) {
     navigate('/')
@@ -48,14 +43,7 @@ export default function Login() {
         <Button btnText='Submit' classes='w-full my-3' />
         <div className='flex justify-between mx-auto'>
           <Link to='/register'><p>New Here? Register Now!!</p></Link>
-          <p onClick={async () => {
-            if (email.length > 0) {
-              await sendPasswordResetEmail(email);
-              alert('Sent email');
-            } else {
-              toast('Please Provide Email')
-            }
-          }}>Forgot Password?</p>
+          <p>Forgot Password?</p>
         </div>
       </form>
       <Social />

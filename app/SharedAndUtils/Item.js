@@ -1,7 +1,6 @@
+import Link from 'next/link'
 import React from 'react'
-import { Link } from 'react-router-dom'
-import Button from './Button'
-
+import { Button } from '@/components/ui/button'
 export default function Item({ img, title, desc, id, supplier, quantity }) {
     return (
         <div className="lg:flex items-center justify-center">
@@ -14,8 +13,8 @@ export default function Item({ img, title, desc, id, supplier, quantity }) {
                     <p className="text-gray-700 text-base">{desc.length > 20 ? desc.slice(0, 120) + '...' : desc}</p>
                     <p className="text-gray-700 text-base">Supplier :{supplier}</p>
                     <p className="text-gray-700 text-base">Quantity :{quantity}pcs</p>
-                    <Link to={`/inventory/${id}`}><Button classes='block w-full mt-4' btnText='Show Details'></Button></Link>
-                    <Link to={`/update/${id}`}><Button classes='block w-full mt-4' btnText='Update'></Button></Link>
+                    <Link href={`/inventory/${id}`}><Button>Show Details</Button></Link>
+                    <Link href={`/update/${id}`}><Button>Update</Button></Link>
                 </div>
             </div>
         </div>

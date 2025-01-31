@@ -1,9 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { SERVER_URL } from "../SharedAndUtils/urls"
-
-
-
+import { SERVER_URL } from "@/SharedAndUtils/urls"
 export default function useItems() {
     const [items, setItems] = useState([])
     const [loading, setLoading] = useState(true)
