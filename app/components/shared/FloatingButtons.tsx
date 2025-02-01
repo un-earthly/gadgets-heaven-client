@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { ArrowUp, MessageCircle, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "../ui/button"
 
 const FloatingButtons = () => {
     const [isVisible, setIsVisible] = useState(false)

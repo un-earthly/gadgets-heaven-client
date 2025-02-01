@@ -1,14 +1,38 @@
 "use client"
 
 import { useState } from "react"
-import { Star, ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react"
+import { Button } from "../ui/button"
 
 const reviews = [
-    { name: "John Doe", rating: 5, text: "Great service and products! Will definitely shop here again." },
-    { name: "Jane Smith", rating: 4, text: "Good selection of gadgets. The staff was very helpful." },
-    { name: "Mike Johnson", rating: 5, text: "Excellent customer support. They went above and beyond." },
-    { name: "Sarah Williams", rating: 4, text: "Fast shipping and good prices. Very satisfied with my purchase." },
+    {
+        name: "Mike Johnson",
+        rating: 5,
+        text: "Excellent customer support. They went above and beyond.",
+        role: "Business Owner",
+        date: "January 2025"
+    },
+    {
+        name: "Sarah Williams",
+        rating: 4,
+        text: "Fast shipping and good prices. Very satisfied with my purchase.",
+        role: "Gamer",
+        date: "January 2025"
+    },
+    {
+        name: "John Doe",
+        role: "Tech Enthusiast",
+        rating: 5,
+        text: "Great service and products! Will definitely shop here again. The team went above and beyond to help me find the perfect gadget.",
+        date: "January 2025"
+    },
+    {
+        name: "Sarah Smith",
+        role: "Professional Photographer",
+        rating: 5,
+        text: "Outstanding selection of camera gear and exceptional technical support. Their expertise helped me choose the perfect equipment for my studio.",
+        date: "December 2024"
+    },
 ]
 
 const ClientReviews = () => {
@@ -23,32 +47,85 @@ const ClientReviews = () => {
     }
 
     return (
-        <section className="py-16 bg-gray-50">
+        <section className="py-20">
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
-                <div className="max-w-2xl mx-auto">
-                    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-                        <div className="flex justify-between items-center mb-4">
-                            <h3 className="text-xl font-semibold">{reviews[currentReview].name}</h3>
-                            <div className="flex">
-                                {[...Array(reviews[currentReview].rating)].map((_, i) => (
-                                    <Star key={i} className="h-5 w-5 text-orange-400 fill-current" />
-                                ))}
+                <div className="text-center space-y-4 mb-12">
+                    <span className="text-orange-500 font-medium">Testimonials</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                        What Our Clients Say
+                    </h2>
+                    <p className="text-gray-600 max-w-2xl mx-auto">
+                        Discover why thousands of tech enthusiasts trust Gadgets Heaven for their technology needs
+                    </p>
+                </div>
+
+                <div className="max-w-3xl mx-auto">
+                    <div className="relative">
+                        <div className="absolute -top-4 -left-4 text-orange-400/20">
+                            <Quote size={60} />
+                        </div>
+
+                        <div className="bg-white rounded-xl shadow-lg p-8 md:p-10">
+                            <div className="space-y-6">
+                                <div className="flex justify-between items-start">
+                                    <div className="space-y-1">
+                                        <h3 className="text-xl font-semibold text-gray-900">
+                                            {reviews[currentReview].name}
+                                        </h3>
+                                        <p className="text-orange-500">
+                                            {reviews[currentReview]?.role}
+                                        </p>
+                                    </div>
+                                    <div className="flex gap-1">
+                                        {[...Array(reviews[currentReview].rating)].map((_, i) => (
+                                            <Star
+                                                key={i}
+                                                className="h-5 w-5 text-orange-400 fill-current"
+                                                strokeWidth={0}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <p className="text-gray-600 text-lg leading-relaxed">
+                                    "{reviews[currentReview].text}"
+                                </p>
+
+                                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                                    <span className="text-sm text-gray-500">
+                                        {reviews[currentReview].date}
+                                    </span>
+                                    <div className="flex gap-2">
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            onClick={prevReview}
+                                            className="hover:bg-orange-50 border-orange-200"
+                                        >
+                                            <ChevronLeft className="h-4 w-4 text-orange-500" />
+                                        </Button>
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            onClick={nextReview}
+                                            className="hover:bg-orange-50 border-orange-200"
+                                        >
+                                            <ChevronRight className="h-4 w-4 text-orange-500" />
+                                        </Button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <p className="text-gray-600 mb-4">{reviews[currentReview].text}</p>
-                        <div className="flex justify-between items-center">
-                            <Button variant="outline" size="icon" onClick={prevReview}>
-                                <ChevronLeft className="h-4 w-4" />
-                            </Button>
-                            <Button variant="outline" size="icon" onClick={nextReview}>
-                                <ChevronRight className="h-4 w-4" />
-                            </Button>
-                        </div>
                     </div>
-                </div>
-                <div className="text-center mt-8">
-                    <Button variant="link">Read more reviews</Button>
+
+                    <div className="text-center mt-8">
+                        <Button
+                            variant="link"
+                            className="text-orange-500 hover:text-orange-600"
+                        >
+                            Read more reviews →
+                        </Button>
+                    </div>
                 </div>
             </div>
         </section>

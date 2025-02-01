@@ -1,6 +1,6 @@
 import React from 'react'
 import { toast } from 'react-toastify'
-import Button from '../SharedAndUtils/Button'
+import Button from './Button'
 
 export default function AboutUs() {
     return (
