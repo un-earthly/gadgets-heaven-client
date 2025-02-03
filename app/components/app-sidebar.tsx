@@ -1,208 +1,148 @@
-import * as React from "react"
-import { GalleryVerticalEnd } from "lucide-react"
+import Link from "next/link";
+import { useState } from "react";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, ChevronRight, Menu } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
-  SidebarRail,
-} from "@/components/ui/sidebar"
-
-// This is sample data.
-const data = {
-  navMain: [
-    {
-      title: "Getting Started",
-      url: "#",
-      items: [
-        {
-          title: "Installation",
-          url: "#",
-        },
-        {
-          title: "Project Structure",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Building Your Application",
-      url: "#",
-      items: [
-        {
-          title: "Routing",
-          url: "#",
-        },
-        {
-          title: "Data Fetching",
-          url: "#",
-          isActive: true,
-        },
-        {
-          title: "Rendering",
-          url: "#",
-        },
-        {
-          title: "Caching",
-          url: "#",
-        },
-        {
-          title: "Styling",
-          url: "#",
-        },
-        {
-          title: "Optimizing",
-          url: "#",
-        },
-        {
-          title: "Configuring",
-          url: "#",
-        },
-        {
-          title: "Testing",
-          url: "#",
-        },
-        {
-          title: "Authentication",
-          url: "#",
-        },
-        {
-          title: "Deploying",
-          url: "#",
-        },
-        {
-          title: "Upgrading",
-          url: "#",
-        },
-        {
-          title: "Examples",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "API Reference",
-      url: "#",
-      items: [
-        {
-          title: "Components",
-          url: "#",
-        },
-        {
-          title: "File Conventions",
-          url: "#",
-        },
-        {
-          title: "Functions",
-          url: "#",
-        },
-        {
-          title: "next.config.js Options",
-          url: "#",
-        },
-        {
-          title: "CLI",
-          url: "#",
-        },
-        {
-          title: "Edge Runtime",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Architecture",
-      url: "#",
-      items: [
-        {
-          title: "Accessibility",
-          url: "#",
-        },
-        {
-          title: "Fast Refresh",
-          url: "#",
-        },
-        {
-          title: "Next.js Compiler",
-          url: "#",
-        },
-        {
-          title: "Supported Browsers",
-          url: "#",
-        },
-        {
-          title: "Turbopack",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Community",
-      url: "#",
-      items: [
-        {
-          title: "Contribution Guide",
-          url: "#",
-        },
-      ],
-    },
-  ],
+interface NavigationItem {
+  name: string;
+  href?: string;
+  icon: React.ComponentType<{ className?: string }>;
+  subItems?: SubItem[];
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+interface SubItem {
+  name: string;
+  href: string;
+}
+
+interface SidebarProps {
+  navigationItems: NavigationItem[];
+  title?: string;
+  onNavigate?: () => void;
+}
+
+interface NavLinkProps {
+  item: NavigationItem;
+  isNested?: boolean;
+  onNavigate?: () => void;
+}
+
+const NavLink = ({ item, isNested = false, onNavigate }: NavLinkProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const hasSubItems = item.subItems && item.subItems.length > 0;
+  const Icon = item.icon;
+
+  const handleClick = (e: React.MouseEvent) => {
+    if (hasSubItems) {
+      e.preventDefault();
+      setIsOpen(!isOpen);
+    } else if (onNavigate) {
+      onNavigate();
+    }
+  };
+
   return (
-    <Sidebar {...props}>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <a href="#">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <GalleryVerticalEnd className="size-4" />
-                </div>
-                <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-semibold">Documentation</span>
-                  <span className="">v1.0.0</span>
-                </div>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarMenu>
-            {data.navMain.map((item) => (
-              <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild>
-                  <a href={item.url} className="font-medium">
-                    {item.title}
-                  </a>
-                </SidebarMenuButton>
-                {item.items?.length ? (
-                  <SidebarMenuSub>
-                    {item.items.map((item) => (
-                      <SidebarMenuSubItem key={item.title}>
-                        <SidebarMenuSubButton asChild isActive={item.isActive}>
-                          <a href={item.url}>{item.title}</a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    ))}
-                  </SidebarMenuSub>
-                ) : null}
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-        </SidebarGroup>
-      </SidebarContent>
-      <SidebarRail />
-    </Sidebar>
-  )
-}
+    <div className="space-y-1">
+      <div
+        className={cn(
+          "flex items-center px-3 py-2 text-sm font-medium rounded-md",
+          "text-zinc-700 dark:text-zinc-300",
+          "transition-colors cursor-pointer",
+          "hover:bg-zinc-100 dark:hover:bg-zinc-800",
+          isNested && "pl-10"
+        )}
+      >
+        {!isNested && <Icon className="w-5 h-5 mr-3" />}
+
+        {hasSubItems ? (
+          <div onClick={handleClick} className="flex items-center flex-1">
+            <span className="flex-1">{item.name}</span>
+            {isOpen
+              ? <ChevronDown className="w-4 h-4" />
+              : <ChevronRight className="w-4 h-4" />
+            }
+          </div>
+        ) : (
+          <Link href={item.href!} className="flex-1" onClick={onNavigate}>
+            {item.name}
+          </Link>
+        )}
+      </div>
+
+      {hasSubItems && isOpen && (
+        <div className="space-y-1">
+          {(item && item.subItems) && item.subItems.map((subItem) => (
+            <Link
+              key={subItem.name}
+              href={subItem.href}
+              onClick={onNavigate}
+              className={cn(
+                "flex items-center pl-11 pr-3 py-2 text-sm font-medium rounded-md",
+                "text-zinc-600 dark:text-zinc-400",
+                "hover:bg-zinc-100 dark:hover:bg-zinc-800",
+                "transition-colors"
+              )}
+            >
+              {subItem.name}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export const DesktopSidebar = ({
+  navigationItems,
+  title = "Dashboard"
+}: SidebarProps) => (
+  <div className="hidden md:flex md:flex-col md:w-64 md:bg-white dark:bg-zinc-900 md:border-r">
+    <div className="flex flex-col flex-grow pt-5 overflow-y-auto">
+      <div className="flex items-center flex-shrink-0 px-4">
+        <span className="text-xl font-semibold tracking-wider">{title}</span>
+      </div>
+      <nav className="flex-1 px-2 mt-5 space-y-1">
+        {navigationItems.map((item) => (
+          <NavLink key={item.name} item={item} />
+        ))}
+      </nav>
+    </div>
+  </div>
+);
+
+export const MobileSidebar = ({
+  navigationItems,
+  title = "Dashboard"
+}: SidebarProps) => {
+  const [open, setOpen] = useState(false);
+
+  const handleNavigate = () => {
+    setOpen(false);
+  };
+
+  return (
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="icon" className="md:hidden">
+          <Menu className="w-6 h-6" />
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="left" className="w-64 p-0">
+        <SheetHeader className="px-4 pt-5">
+          <SheetTitle>{title}</SheetTitle>
+        </SheetHeader>
+        <nav className="flex-1 px-2 mt-5 space-y-1">
+          {navigationItems.map((item) => (
+            <NavLink
+              key={item.name}
+              item={item}
+              onNavigate={handleNavigate}
+            />
+          ))}
+        </nav>
+      </SheetContent>
+    </Sheet>
+  );
+};
