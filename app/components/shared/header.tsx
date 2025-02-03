@@ -6,85 +6,53 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { ShoppingCart, User, Menu, X } from "lucide-react"
 
+const navLinks = ["Home", "Products", "Services", "Reviews", "Blog", "Contact Us"]
+
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
     <header className="shadow-md">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center">
-          <Link href="/" className="text-2xl font-bold text-orange-600">
-            Gadgets Heaven
-          </Link>
-        </div>
+        <Link href="/" className="text-2xl font-bold text-orange-600">
+          Gadgets Heaven
+        </Link>
         <nav className="hidden md:flex space-x-4">
-          <Link href="/" className="text-gray-600 hover:text-orange-600">
-            Home
-          </Link>
-          <Link href="/shop" className="text-gray-600 hover:text-orange-600">
-            Shop
-          </Link>
-          <Link href="/services" className="text-gray-600 hover:text-orange-600">
-            Services
-          </Link>
-          <Link href="/reviews" className="text-gray-600 hover:text-orange-600">
-            Reviews
-          </Link>
-          <Link href="/blog" className="text-gray-600 hover:text-orange-600">
-            Blog
-          </Link>
-          <Link href="/contact" className="text-gray-600 hover:text-orange-600">
-            Contact Us
-          </Link>
+          {navLinks.map((link) => (
+            <Link key={link} href={`/${link.toLowerCase().replace(/\s+/g, "")}`} className="text-gray-600 hover:text-orange-600">
+              {link}
+            </Link>
+          ))}
         </nav>
         <div className="hidden md:flex items-center space-x-4">
           <Input type="search" placeholder="Search products..." className="w-64" />
-          <Button variant="ghost" size="icon">
-            <ShoppingCart className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon">
-            <User className="h-5 w-5" />
-          </Button>
+          {[ShoppingCart, User].map((Icon, idx) => (
+            <Button key={idx} variant="ghost" size="icon">
+              <Icon className="h-5 w-5" />
+            </Button>
+          ))}
         </div>
-        <div className="md:hidden">
-          <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
-        </div>
+        <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </Button>
       </div>
       {isMenuOpen && (
-        <div className="md:hidden bg-white py-2">
-          <nav className="flex flex-col space-y-2 px-4">
-            <Link href="/" className="text-gray-600 hover:text-orange-600">
-              Home
-            </Link>
-            <Link href="/shop" className="text-gray-600 hover:text-orange-600">
-              Shop
-            </Link>
-            <Link href="/services" className="text-gray-600 hover:text-orange-600">
-              Services
-            </Link>
-            <Link href="/reviews" className="text-gray-600 hover:text-orange-600">
-              Reviews
-            </Link>
-            <Link href="/blog" className="text-gray-600 hover:text-orange-600">
-              Blog
-            </Link>
-            <Link href="/contact" className="text-gray-600 hover:text-orange-600">
-              Contact Us
-            </Link>
+        <div className="md:hidden bg-white py-2 px-4">
+          <nav className="flex flex-col space-y-2">
+            {navLinks.map((link) => (
+              <Link key={link} href={`/${link.toLowerCase().replace(/\s+/g, "")}`} className="text-gray-600 hover:text-orange-600">
+                {link}
+              </Link>
+            ))}
           </nav>
-          <div className="mt-4 px-4 space-y-2">
+          <div className="mt-4 space-y-2">
             <Input type="search" placeholder="Search products..." className="w-full" />
             <div className="flex justify-between">
-              <Button variant="ghost" size="sm">
-                <ShoppingCart className="h-5 w-5 mr-2" />
-                Cart
-              </Button>
-              <Button variant="ghost" size="sm">
-                <User className="h-5 w-5 mr-2" />
-                Login
-              </Button>
+              {[{ Icon: ShoppingCart, label: "Cart" }, { Icon: User, label: "Login" }].map(({ Icon, label }) => (
+                <Button key={label} variant="ghost" size="sm">
+                  <Icon className="h-5 w-5 mr-2" /> {label}
+                </Button>
+              ))}
             </div>
           </div>
         </div>
@@ -94,4 +62,3 @@ const Header = () => {
 }
 
 export default Header
-
