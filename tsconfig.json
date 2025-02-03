@@ -23,17 +23,22 @@
       }
     ],
     "strictNullChecks": true,
-     "baseUrl": "./app",
+    "baseUrl": "./app",
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": [
+        "./*"
+      ]
+    },
+    "module": "esnext"
   },
   "include": [
-    "next-env.d.ts",
-    "./build/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "postcss.configtjs"  ],
+    "**/*.tsx",
+    "./build/types/**/*.ts",
+    "next-env.d.ts",
+    "postcss.configtjs",
+    ".next/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
