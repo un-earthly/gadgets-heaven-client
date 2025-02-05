@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState } from "react"
-import { ChevronLeft, ChevronRight, Clock, Calendar, Star, ArrowRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, Clock, Calendar, ArrowRight } from "lucide-react"
 import { Button } from "../ui/button"
 import { Card, CardHeader, CardContent, CardFooter } from "../ui/card"
 

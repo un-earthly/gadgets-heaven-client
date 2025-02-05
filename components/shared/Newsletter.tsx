@@ -36,6 +36,7 @@ const Newsletter = () => {
                                 className="bg-orange-950/50 border-orange-800/50 text-white placeholder:text-orange-200/50 focus:border-orange-500"
                             />
                             <Button
+                                onClick={handleSubmit}
                                 type="submit"
                                 className="bg-orange-500 hover:bg-orange-600 text-white font-medium whitespace-nowrap"
                             >

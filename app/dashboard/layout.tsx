@@ -224,7 +224,7 @@ const userItems = [
 ];
 
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = ({ children }:{children:React.ReactNode}) => {
   const items = usePathname()?.split('/')[2] === "user" ? userItems : adminItems;
   return (
     <div className="flex h-screen bg-gradient-to-b from-orange-50 to bg-orange-100 dark:bg-zinc-950">

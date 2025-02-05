@@ -6,24 +6,10 @@ import { Button } from "../ui/button"
 
 const reviews = [
     {
-        name: "Mike Johnson",
-        rating: 5,
-        text: "Excellent customer support. They went above and beyond.",
-        role: "Business Owner",
-        date: "January 2025"
-    },
-    {
-        name: "Sarah Williams",
-        rating: 4,
-        text: "Fast shipping and good prices. Very satisfied with my purchase.",
-        role: "Gamer",
-        date: "January 2025"
-    },
-    {
-        name: "John Doe",
+        name: "Emily Chen",
         role: "Tech Enthusiast",
         rating: 5,
-        text: "Great service and products! Will definitely shop here again. The team went above and beyond to help me find the perfect gadget.",
+        text: "The best tech store I've ever shopped at. Their customer service is exceptional!",
         date: "January 2025"
     },
     {
@@ -88,7 +74,7 @@ const ClientReviews = () => {
                                 </div>
 
                                 <p className="text-gray-600 text-lg leading-relaxed">
-                                    "{reviews[currentReview].text}"
+                                    &quot;{reviews[currentReview].text}&quot;
                                 </p>
 
                                 <div className="flex justify-between items-center pt-4 border-t border-gray-100">

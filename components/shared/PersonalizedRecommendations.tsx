@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 import { Card, CardHeader, CardContent, CardFooter } from "../ui/card";
