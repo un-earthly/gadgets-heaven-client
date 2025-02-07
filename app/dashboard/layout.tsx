@@ -218,7 +218,6 @@ const userItems = [
       { name: 'Multi-Language Support', href: '/dashboard/user/settings/language' },
       { name: 'Multi-Currency Support', href: '/dashboard/user/settings/currency' },
       { name: 'Security Settings', href: '/dashboard/user/settings/security' },
-      { name: 'Biometric Authentication', href: '/dashboard/user/settings/biometric' },
     ],
   },
 ];
