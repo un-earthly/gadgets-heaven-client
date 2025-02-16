@@ -40,7 +40,7 @@ const DataPrivacyPage = () => {
           <CardContent>
             <div className="flex justify-between items-end">
               <div>
-                <Badge variant="success">Compliant</Badge>
+                <Badge variant="default">Compliant</Badge>
                 <p className="text-xs text-muted-foreground mt-1">Last checked: 2h ago</p>
               </div>
               <ShieldCheck className="h-4 w-4 text-green-500" />

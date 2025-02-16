@@ -1,5 +1,7 @@
 import React from "react"
 import "./globals.css"
+import { ThemeProvider } from "next-themes"
+
 export default function RootLayout({
     children,
 }: {
@@ -9,13 +11,20 @@ export default function RootLayout({
         <html lang="en" >
             <head>
                 <meta charSet="UTF-8" />
-                <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+                <link rel="icon" href="/favicon.ico" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <title>React App </title>
+                <title>Gadgets Heaven - Keep Moving Forward</title>
                 < meta name="description" content="Web site created..." />
             </head>
             <body >
-                <div id="root" > {children} </div>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    <div id="root" > {children} </div>
+                </ThemeProvider>
             </body>
         </html>
     )

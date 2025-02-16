@@ -13,9 +13,11 @@ import FloatingButtons from '../components/shared/FloatingButtons'
 export default function Home() {
     return (
         <main className="min-h-screen">
-            <Header />
+            <div className="sticky z-50 backdrop-blur-xl top-0">
+                <Header />
+            </div>
             <Hero />
-            <div className="bg-gradient-to-b from-orange-50 to-orange-100">
+            <div className="bg-gradient-to-b from-orange-50 to-orange-100 dark:from-stone-950 dark:to-black">
                 <FeaturedProducts />
                 <AvailableServices />
                 <PersonalizedRecommendations />

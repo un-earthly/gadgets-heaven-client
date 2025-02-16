@@ -226,7 +226,7 @@ const userItems = [
 const DashboardLayout = ({ children }:{children:React.ReactNode}) => {
   const items = usePathname()?.split('/')[2] === "user" ? userItems : adminItems;
   return (
-    <div className="flex h-screen bg-gradient-to-b from-orange-50 to bg-orange-100 dark:bg-zinc-950">
+    <div className="flex h-screen bg-gradient-to-b from-gray-50 to bg-gray-100 dark:bg-zinc-950">
       <DesktopSidebar navigationItems={items} />
 
       <div className="flex flex-col flex-1 overflow-hidden">

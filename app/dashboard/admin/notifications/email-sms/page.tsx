@@ -215,7 +215,7 @@ const SendEmailSMSAlertsPage = () => {
                 </div>
                 <div className="flex items-center gap-4">
                   <Badge variant={
-                    campaign.status === "sent" ? "success" :
+                    campaign.status === "sent" ? "primary" :
                     campaign.status === "scheduled" ? "secondary" : "destructive"
                   }>
                     {campaign.status}
