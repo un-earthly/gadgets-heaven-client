@@ -1,3 +1,5 @@
+'use client'
+import BackgroundGradient from '../components/shared/BackgroundGradient'
 import Header from '../components/shared/header'
 import Hero from '../components/shared/hero'
 import FeaturedProducts from '../components/shared/FeaturedProducts'
@@ -12,12 +14,13 @@ import FloatingButtons from '../components/shared/FloatingButtons'
 
 export default function Home() {
     return (
-        <main className="min-h-screen">
+        <main className="min-h-screen relative">
+            <BackgroundGradient />
             <div className="sticky z-50 backdrop-blur-xl top-0">
                 <Header />
             </div>
             <Hero />
-            <div className="bg-gradient-to-b from-orange-50 to-orange-100 dark:from-stone-950 dark:to-black">
+            <div className="relative z-10">
                 <FeaturedProducts />
                 <AvailableServices />
                 <PersonalizedRecommendations />
