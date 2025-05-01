@@ -1,6 +1,10 @@
 import React from "react"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
+import BackgroundGradient from "@/components/shared/BackgroundGradient"
+import Header from "@/components/shared/header"
+import FloatingButtons from "@/components/shared/FloatingButtons"
+import Footer from "@/components/shared/Footer"
 
 export default function RootLayout({
     children,
@@ -23,7 +27,10 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <div id="root" > {children} </div>
+                    <div id="root" >
+
+                        {children}
+                    </div>
                 </ThemeProvider>
             </body>
         </html>
