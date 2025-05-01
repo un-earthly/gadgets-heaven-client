@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Camera, Save, User, Mail, Phone, MapPin } from 'lucide-react';
+import { Camera } from 'lucide-react';
 
 const ProfileSettingsPage = () => {
   return (
@@ -34,7 +34,7 @@ const ProfileSettingsPage = () => {
                 Change Photo
               </Button>
             </div>
-            
+
             <div className="space-y-2">
               <label className="text-sm font-medium">Full Name</label>
               <Input placeholder="John Doe" />
@@ -95,7 +95,7 @@ const ProfileSettingsPage = () => {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <label className="text-sm font-medium">Bio</label>
-              <Textarea 
+              <Textarea
                 placeholder="Tell us about yourself..."
                 className="min-h-[100px]"
               />

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import { Bell, DollarSign, Trash2, Eye, Settings, LineChart, ArrowDown, AlertTriangle } from 'lucide-react';
+import { Bell, DollarSign, Trash2, Eye, Settings, LineChart, ArrowDown } from 'lucide-react';
 
 const PriceDropAlertsPage = () => {
   return (
@@ -88,7 +88,7 @@ const PriceDropAlertsPage = () => {
             </TableHeader>
             <TableBody>
               {[
-                { 
+                {
                   name: "MacBook Pro M3",
                   current: 1999.99,
                   target: 1799.99,

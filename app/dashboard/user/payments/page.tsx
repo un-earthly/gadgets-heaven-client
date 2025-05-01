@@ -1,10 +1,9 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
-import { CreditCard, Plus, Shield, Wallet, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { CreditCard, Plus, Shield, Wallet, CheckCircle2 } from 'lucide-react';
 
 const PaymentMethodsPage = () => {
   return (

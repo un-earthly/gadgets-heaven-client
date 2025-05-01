@@ -7,9 +7,6 @@ import {
   Shield, 
   Download, 
   Trash2, 
-  Bell, 
-  Mail, 
-  Cookie, 
   UserX,
   AlertTriangle 
 } from 'lucide-react';
@@ -51,7 +48,7 @@ const PrivacyDataPage = () => {
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <label className="text-sm font-medium">Activity Status</label>
-                <p className="text-sm text-muted-foreground">Show when you're active</p>
+                <p className="text-sm text-muted-foreground">Show when you&quot;re active</p>
               </div>
               <Switch />
             </div>

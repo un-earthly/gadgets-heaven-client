@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Calendar as CalendarIcon, Clock, AlertCircle } from 'lucide-react';
+import { Clock, AlertCircle } from 'lucide-react';
 
 const timeSlots = [
   "09:00 AM", "10:00 AM", "11:00 AM",
@@ -88,7 +88,7 @@ const RescheduleModifyPage = () => {
               mode="single"
               className="rounded-md border"
             />
-            
+
             <div className="space-y-2">
               <label className="text-sm font-medium">Available Time Slots</label>
               <div className="grid grid-cols-3 gap-2">

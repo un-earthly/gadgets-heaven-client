@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  Package, AlertTriangle, ArrowUpDown, Search, 
-  Filter, Download, Plus, BarChart, TagIcon 
+import {
+  Package, AlertTriangle, Search,
+  Download, Plus, BarChart, TagIcon
 } from 'lucide-react';
 
 const InventoryOverviewPage = () => {
@@ -103,8 +103,8 @@ const InventoryOverviewPage = () => {
               <CardDescription>Manage your product stock levels</CardDescription>
             </div>
             <div className="flex gap-2">
-              <Input 
-                placeholder="Search products..." 
+              <Input
+                placeholder="Search products..."
                 className="w-[300px]"
                 prefix={<Search className="h-4 w-4" />}
               />
@@ -170,7 +170,7 @@ const InventoryOverviewPage = () => {
                   <TableCell>
                     <Badge variant={
                       product.status === "In Stock" ? "success" :
-                      product.status === "Low Stock" ? "warning" : "destructive"
+                        product.status === "Low Stock" ? "warning" : "destructive"
                     }>
                       {product.status}
                     </Badge>

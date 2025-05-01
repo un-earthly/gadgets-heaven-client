@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mic, MicOff, History, Search } from 'lucide-react';
+import { Mic, History, Search } from 'lucide-react';
 
 const VoiceSearchPage = () => {
   return (
@@ -20,7 +20,7 @@ const VoiceSearchPage = () => {
           </div>
           <div>
             <h2 className="text-2xl font-semibold">Tap to Speak</h2>
-            <p className="text-muted-foreground">Say what you're looking for</p>
+            <p className="text-muted-foreground">Say what you&quot;re looking for</p>
           </div>
           <Button size="lg" className="rounded-full">
             Start Speaking

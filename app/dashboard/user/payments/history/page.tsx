@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Download, Filter, Search, Calendar, ArrowDownUp } from 'lucide-react';
+import { Download, Search, Calendar } from 'lucide-react';
 
 const transactions = [
   {
@@ -100,9 +100,9 @@ const BillingHistoryPage = () => {
                   <TableCell>${tx.amount.toFixed(2)}</TableCell>
                   <TableCell>{tx.method}</TableCell>
                   <TableCell>
-                    <Badge 
-                      variant={tx.status === "Completed" ? "default" : 
-                              tx.status === "Failed" ? "destructive" : "secondary"}
+                    <Badge
+                      variant={tx.status === "Completed" ? "default" :
+                        tx.status === "Failed" ? "destructive" : "secondary"}
                     >
                       {tx.status}
                     </Badge>

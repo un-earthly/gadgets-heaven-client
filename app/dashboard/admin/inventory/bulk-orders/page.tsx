@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  Package, Boxes, Clock, AlertCircle, 
-  Download, Filter, ArrowUpDown, CheckCircle 
+import {
+  Package, Boxes, Clock,
+  Download, CheckCircle
 } from 'lucide-react';
 
 const BulkOrderProcessingPage = () => {
@@ -100,8 +100,8 @@ const BulkOrderProcessingPage = () => {
               <CardDescription>Process and manage bulk orders</CardDescription>
             </div>
             <div className="flex gap-2">
-              <Input 
-                placeholder="Search orders..." 
+              <Input
+                placeholder="Search orders..."
                 className="w-[300px]"
               />
               <Select defaultValue="all">
@@ -167,7 +167,7 @@ const BulkOrderProcessingPage = () => {
                   <TableCell>
                     <Badge variant={
                       order.status === "completed" ? "success" :
-                      order.status === "processing" ? "default" : "secondary"
+                        order.status === "processing" ? "default" : "secondary"
                     }>
                       {order.status}
                     </Badge>
@@ -175,7 +175,7 @@ const BulkOrderProcessingPage = () => {
                   <TableCell>
                     <Badge variant={
                       order.priority === "high" ? "destructive" :
-                      order.priority === "medium" ? "warning" : "default"
+                        order.priority === "medium" ? "warning" : "default"
                     }>
                       {order.priority}
                     </Badge>

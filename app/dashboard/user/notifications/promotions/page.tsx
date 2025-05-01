@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
-import { Tag, Clock, Percent, Share2, Timer, Zap, FlameKindling, Gift } from 'lucide-react';
+import { Tag, Clock, Percent, Share2, Zap, FlameKindling, Gift } from 'lucide-react';
 
 const promotions = [
   {
@@ -96,7 +96,7 @@ const PromotionsOffersPage = () => {
                     <span className="text-muted-foreground">Valid until</span>
                     <span className="font-medium">{new Date(promo.validUntil).toLocaleDateString()}</span>
                   </div>
-                  
+
                   <div className="space-y-1">
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Remaining</span>

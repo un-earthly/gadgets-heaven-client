@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { CreditCard, Calendar, ArrowRight, AlertCircle, Box, CheckCircle, XCircle } from 'lucide-react';
+import { CreditCard, Calendar, AlertCircle, Box, CheckCircle, } from 'lucide-react';
 
 const ServiceSubscriptionsPage = () => {
   return (

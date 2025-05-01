@@ -1,12 +1,12 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Mail, MessageSquare, Users, Send, Calendar, BookTemplate, Clock, BarChart } from 'lucide-react';
+import { Mail, MessageSquare, Users, Send, BookTemplate, Clock, BarChart } from 'lucide-react';
 
 const SendEmailSMSAlertsPage = () => {
   return (
@@ -109,7 +109,7 @@ const SendEmailSMSAlertsPage = () => {
                 SMS
               </TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="email" className="space-y-4">
               <Input placeholder="Subject Line" />
               <Select>
@@ -124,7 +124,7 @@ const SendEmailSMSAlertsPage = () => {
               </Select>
               <Textarea placeholder="Email content..." className="min-h-[200px]" />
             </TabsContent>
-            
+
             <TabsContent value="sms" className="space-y-4">
               <Select>
                 <SelectTrigger>
@@ -202,8 +202,8 @@ const SendEmailSMSAlertsPage = () => {
             ].map((campaign, i) => (
               <div key={i} className="flex items-center justify-between p-4 border rounded-lg">
                 <div className="flex items-center gap-4">
-                  {campaign.type === 'email' ? 
-                    <Mail className="h-4 w-4" /> : 
+                  {campaign.type === 'email' ?
+                    <Mail className="h-4 w-4" /> :
                     <MessageSquare className="h-4 w-4" />
                   }
                   <div>
@@ -216,7 +216,7 @@ const SendEmailSMSAlertsPage = () => {
                 <div className="flex items-center gap-4">
                   <Badge variant={
                     campaign.status === "sent" ? "primary" :
-                    campaign.status === "scheduled" ? "secondary" : "destructive"
+                      campaign.status === "scheduled" ? "secondary" : "destructive"
                   }>
                     {campaign.status}
                   </Badge>

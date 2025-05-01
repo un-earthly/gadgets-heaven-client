@@ -10,7 +10,7 @@ const DashboardPage = () => {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Welcome back, John</h1>
-          <p className="text-muted-foreground">Here's what's happening with your account today.</p>
+          <p className="text-muted-foreground">Here&quot;s what&quot;s happening with your account today.</p>
         </div>
         <Button>View Settings</Button>
       </div>

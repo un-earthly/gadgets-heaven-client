@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Star, Filter, Edit, Trash2, MessageCircle, ThumbsUp } from 'lucide-react';
 import { Input } from "@/components/ui/input";
@@ -127,9 +127,8 @@ const MyReviewsPage = () => {
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
-                            className={`h-4 w-4 ${
-                              i < review.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
-                            }`}
+                            className={`h-4 w-4 ${i < review.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
+                              }`}
                           />
                         ))}
                         <span className="text-sm text-muted-foreground ml-2">
@@ -172,7 +171,7 @@ const MyReviewsPage = () => {
             <MessageCircle className="h-12 w-12 text-muted-foreground mx-auto" />
             <h3 className="text-lg font-medium">No Reviews Yet</h3>
             <p className="text-muted-foreground">
-              You haven't written any reviews yet. Share your experience with others!
+              You haven&quot;t written any reviews yet. Share your experience with others!
             </p>
           </div>
         </Card>

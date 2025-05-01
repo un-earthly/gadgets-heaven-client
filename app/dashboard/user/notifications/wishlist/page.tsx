@@ -1,10 +1,9 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import { Progress } from "@/components/ui/progress";
 import { Heart, Bell, Eye, Share2, Trash2, AlertCircle, ShoppingCart, Settings } from 'lucide-react';
 
 const WishlistAlertsPage = () => {
@@ -72,7 +71,7 @@ const WishlistAlertsPage = () => {
       <Card>
         <CardHeader>
           <CardTitle>Watched Items</CardTitle>
-          <CardDescription>Items you're tracking for updates</CardDescription>
+          <CardDescription>Items you&quot;re tracking for updates</CardDescription>
         </CardHeader>
         <CardContent>
           <Table>

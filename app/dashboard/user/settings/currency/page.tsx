@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
-import { DollarSign, Settings, RefreshCcw } from 'lucide-react';
+import { RefreshCcw } from 'lucide-react';
 
 const currencies = [
   { code: 'USD', symbol: '$', name: 'US Dollar', flag: '🇺🇸', rate: 1 },

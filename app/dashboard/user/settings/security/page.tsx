@@ -4,15 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { 
-  Shield, 
-  Key, 
-  Smartphone, 
-  Lock,
+import {
+  Shield,
+  Key,
+  Smartphone,
   LogOut,
-  AlertTriangle,
   History,
-  Bell
 } from 'lucide-react';
 
 const SecuritySettingsPage = () => {

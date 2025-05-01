@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { DollarSign, Download, Filter, Search, AlertCircle, CheckCircle, ArrowUpDown } from 'lucide-react';
+import { DollarSign, Download, Filter, Search, AlertCircle, CheckCircle } from 'lucide-react';
 
 const InvoicesBillingPage = () => {
   return (
@@ -96,8 +96,8 @@ const InvoicesBillingPage = () => {
               <CardDescription>View and manage all invoices</CardDescription>
             </div>
             <div className="flex gap-2">
-              <Input 
-                placeholder="Search invoices..." 
+              <Input
+                placeholder="Search invoices..."
                 className="w-[300px]"
                 prefix={`${<Search className="h-4 w-4" />}`}
               />
@@ -157,7 +157,7 @@ const InvoicesBillingPage = () => {
                   <TableCell>
                     <Badge variant={
                       invoice.status === "Paid" ? "default" :
-                      invoice.status === "Pending" ? "secondary" : "destructive"
+                        invoice.status === "Pending" ? "secondary" : "destructive"
                     }>
                       {invoice.status}
                     </Badge>
@@ -169,7 +169,7 @@ const InvoicesBillingPage = () => {
               ))}
             </TableBody>
           </Table>
-          
+
           <div className="flex items-center justify-between space-x-2 py-4">
             <div className="text-sm text-muted-foreground">
               Showing 3 of 100 invoices

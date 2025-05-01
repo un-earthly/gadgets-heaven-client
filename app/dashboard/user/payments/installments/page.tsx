@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Calendar, DollarSign, Clock, AlertCircle, CreditCard, ArrowRight } from 'lucide-react';
+import { Calendar, DollarSign, Clock, AlertCircle, CreditCard } from 'lucide-react';
 
 const InstallmentPlansPage = () => {
   return (

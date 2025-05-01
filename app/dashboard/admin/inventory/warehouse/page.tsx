@@ -4,9 +4,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { 
-  Warehouse, Box, LayersIcon, MoveIcon, 
-  AlertTriangle, BarChart2, Map, Plus 
+import {
+  Warehouse, LayersIcon,
+  AlertTriangle, BarChart2, Map, Plus
 } from 'lucide-react';
 
 const WarehouseLocationsPage = () => {
@@ -149,7 +149,7 @@ const WarehouseLocationsPage = () => {
                   <TableCell>
                     <Badge variant={
                       warehouse.status === "Operational" ? "success" :
-                      warehouse.status === "Near Capacity" ? "warning" : "destructive"
+                        warehouse.status === "Near Capacity" ? "warning" : "destructive"
                     }>
                       {warehouse.status}
                     </Badge>
@@ -205,16 +205,14 @@ const WarehouseLocationsPage = () => {
                 { message: "Zone A-3 requires reorganization", severity: "medium" },
                 { message: "South Facility optimal capacity", severity: "low" }
               ].map((alert, i) => (
-                <div key={i} className={`p-4 rounded-lg border flex items-center gap-2 ${
-                  alert.severity === 'high' ? 'bg-red-50 border-red-200' :
-                  alert.severity === 'medium' ? 'bg-yellow-50 border-yellow-200' :
-                  'bg-green-50 border-green-200'
-                }`}>
-                  <AlertTriangle className={`h-4 w-4 ${
-                    alert.severity === 'high' ? 'text-red-500' :
-                    alert.severity === 'medium' ? 'text-yellow-500' :
-                    'text-green-500'
-                  }`} />
+                <div key={i} className={`p-4 rounded-lg border flex items-center gap-2 ${alert.severity === 'high' ? 'bg-red-50 border-red-200' :
+                    alert.severity === 'medium' ? 'bg-yellow-50 border-yellow-200' :
+                      'bg-green-50 border-green-200'
+                  }`}>
+                  <AlertTriangle className={`h-4 w-4 ${alert.severity === 'high' ? 'text-red-500' :
+                      alert.severity === 'medium' ? 'text-yellow-500' :
+                        'text-green-500'
+                    }`} />
                   <span className="text-sm">{alert.message}</span>
                 </div>
               ))}

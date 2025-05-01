@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Globe, Check, Languages, Calendar, Clock } from 'lucide-react';
 
 const languages = [
   { code: 'en', name: 'English', region: 'United States', flag: '🇺🇸' },
