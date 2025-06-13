@@ -1,11 +1,11 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
-import { CreditCard, DollarSign, AlertTriangle, Users, Calendar, Search, ArrowUpDown, Filter } from 'lucide-react';
+import { CreditCard, DollarSign, AlertTriangle, Search, Filter } from 'lucide-react';
 
 const InstallmentPlansPage = () => {
   return (
@@ -84,8 +84,8 @@ const InstallmentPlansPage = () => {
               <CardDescription>Monitor ongoing installment plans and payment status</CardDescription>
             </div>
             <div className="flex gap-2">
-              <Input 
-                placeholder="Search plans..." 
+              <Input
+                placeholder="Search plans..."
                 className="w-[300px]"
                 prefix={`${<Search className="h-4 w-4" />}`}
               />

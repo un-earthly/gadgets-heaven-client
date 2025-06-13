@@ -2,13 +2,12 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
-import { 
+import {
   DollarSign, TrendingUp, CreditCard, Receipt,
-  Download, Calendar, ArrowUpRight, ArrowDownRight 
+  Download, ArrowUpRight, ArrowDownRight
 } from 'lucide-react';
 
 const FinancialOverviewPage = () => {
@@ -191,8 +190,8 @@ const FinancialOverviewPage = () => {
                   </TableCell>
                   <TableCell>
                     <Badge variant={
-                      transaction.status === "completed" ? "success" :
-                      transaction.status === "processed" ? "default" : "secondary"
+                      transaction.status === "completed" ? "default" :
+                        transaction.status === "processed" ? "default" : "secondary"
                     }>
                       {transaction.status}
                     </Badge>

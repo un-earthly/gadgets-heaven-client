@@ -148,8 +148,8 @@ const WarehouseLocationsPage = () => {
                   <TableCell>{warehouse.items.toLocaleString()} items</TableCell>
                   <TableCell>
                     <Badge variant={
-                      warehouse.status === "Operational" ? "success" :
-                        warehouse.status === "Near Capacity" ? "warning" : "destructive"
+                      warehouse.status === "Operational" ? "default" :
+                        warehouse.status === "Near Capacity" ? "secondary" : "destructive"
                     }>
                       {warehouse.status}
                     </Badge>
@@ -206,12 +206,12 @@ const WarehouseLocationsPage = () => {
                 { message: "South Facility optimal capacity", severity: "low" }
               ].map((alert, i) => (
                 <div key={i} className={`p-4 rounded-lg border flex items-center gap-2 ${alert.severity === 'high' ? 'bg-red-50 border-red-200' :
-                    alert.severity === 'medium' ? 'bg-yellow-50 border-yellow-200' :
-                      'bg-green-50 border-green-200'
+                  alert.severity === 'medium' ? 'bg-yellow-50 border-yellow-200' :
+                    'bg-green-50 border-green-200'
                   }`}>
                   <AlertTriangle className={`h-4 w-4 ${alert.severity === 'high' ? 'text-red-500' :
-                      alert.severity === 'medium' ? 'text-yellow-500' :
-                        'text-green-500'
+                    alert.severity === 'medium' ? 'text-yellow-500' :
+                      'text-green-500'
                     }`} />
                   <span className="text-sm">{alert.message}</span>
                 </div>

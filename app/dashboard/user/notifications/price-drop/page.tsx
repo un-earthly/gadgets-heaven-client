@@ -1,8 +1,7 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Bell, DollarSign, Trash2, Eye, Settings, LineChart, ArrowDown } from 'lucide-react';
@@ -72,7 +71,7 @@ const PriceDropAlertsPage = () => {
       <Card>
         <CardHeader>
           <CardTitle>Watched Products</CardTitle>
-          <CardDescription>Products you're tracking for price drops</CardDescription>
+          <CardDescription>Products you&apos;re tracking for price drops</CardDescription>
         </CardHeader>
         <CardContent>
           <Table>

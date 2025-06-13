@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { 
+import {
   ShieldCheck, Cookie, Trash2, Save,
   FileText, Lock, UserCheck, AlertTriangle,
-  Clock, Settings, Download, CheckCircle 
+  Clock, Download
 } from 'lucide-react';
 import { Select } from '@/components/ui/select';
 

@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
+import {
   Activity, Users, AlertCircle, Clock,
-  Search, Filter, Download, MoreVertical
+  Download, MoreVertical
 } from 'lucide-react';
 
 const ActivityLogsPage = () => {
@@ -19,10 +19,10 @@ const ActivityLogsPage = () => {
           <p className="text-muted-foreground">Monitor user activities and system events</p>
         </div>
         <div className="flex gap-2">
-          <Input 
-            placeholder="Search activities..." 
+          <Input
+            placeholder="Search activities..."
             className="w-[300px]"
-            prefix={<Search className="h-4 w-4" />}
+
           />
           <Button variant="outline">
             <Download className="mr-2 h-4 w-4" />
@@ -162,14 +162,14 @@ const ActivityLogsPage = () => {
                   <TableCell>
                     <Badge variant={
                       log.type === "security" ? "destructive" :
-                      log.type === "system" ? "secondary" : "default"
+                        log.type === "system" ? "secondary" : "default"
                     }>
                       {log.type}
                     </Badge>
                   </TableCell>
                   <TableCell>{log.details}</TableCell>
                   <TableCell>
-                    <Badge variant={log.status === "success" ? "success" : "secondary"}>
+                    <Badge variant={log.status === "success" ? "default" : "secondary"}>
                       {log.status}
                     </Badge>
                   </TableCell>

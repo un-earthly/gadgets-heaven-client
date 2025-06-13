@@ -166,7 +166,7 @@ const BulkOrderProcessingPage = () => {
                   <TableCell>${order.value.toFixed(2)}</TableCell>
                   <TableCell>
                     <Badge variant={
-                      order.status === "completed" ? "success" :
+                      order.status === "completed" ? "default" :
                         order.status === "processing" ? "default" : "secondary"
                     }>
                       {order.status}
@@ -175,7 +175,7 @@ const BulkOrderProcessingPage = () => {
                   <TableCell>
                     <Badge variant={
                       order.priority === "high" ? "destructive" :
-                        order.priority === "medium" ? "warning" : "default"
+                        order.priority === "medium" ? "secondary" : "default"
                     }>
                       {order.priority}
                     </Badge>

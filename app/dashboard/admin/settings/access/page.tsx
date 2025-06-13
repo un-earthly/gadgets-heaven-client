@@ -3,11 +3,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { 
+import {
   UserPlus, Shield, Key, History,
-  Plus, Search, Settings, Users 
+  Users
 } from 'lucide-react';
 
 const AccessControlsPage = () => {
@@ -99,10 +98,10 @@ const AccessControlsPage = () => {
               <CardTitle>Role Permissions</CardTitle>
               <CardDescription>Configure access levels for each role</CardDescription>
             </div>
-            <Input 
-              placeholder="Search permissions..." 
+            <Input
+              placeholder="Search permissions..."
               className="w-[250px]"
-              prefix={<Search className="h-4 w-4" />}
+
             />
           </div>
         </CardHeader>

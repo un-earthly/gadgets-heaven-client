@@ -165,7 +165,7 @@ const ServiceSubscriptionsPage = () => {
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground">
-            Canceling your subscription will stop future billing. You'll retain access to services
+            Canceling your subscription will stop future billing. You&apos;ll retain access to services
             until the end of your current billing period. No refunds are provided for unused time.
           </p>
         </CardContent>

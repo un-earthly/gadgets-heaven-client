@@ -4,9 +4,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { 
-  UserPlus, Shield, Key, History,
-  Search, Settings, UserCog, Activity 
+import {
+  UserPlus, Shield, History,
+  Settings, UserCog, Activity
 } from 'lucide-react';
 
 const AdminAccountsPage = () => {
@@ -94,10 +94,10 @@ const AdminAccountsPage = () => {
               <CardTitle>Admin Accounts</CardTitle>
               <CardDescription>Manage administrator access and roles</CardDescription>
             </div>
-            <Input 
-              placeholder="Search admins..." 
+            <Input
+              placeholder="Search admins..."
               className="w-[250px]"
-              prefix={<Search className="h-4 w-4" />}
+
             />
           </div>
         </CardHeader>
@@ -146,7 +146,7 @@ const AdminAccountsPage = () => {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <Badge variant={admin.status === "active" ? "success" : "secondary"}>
+                    <Badge variant={admin.status === "active" ? "default" : "secondary"}>
                       {admin.status}
                     </Badge>
                   </TableCell>

@@ -4,10 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
-import { 
+import {
   Settings, Mail, Database, Key,
-  Globe, Shield, Cloud, Save,
-  RefreshCcw, Terminal, Server, AlertCircle
+  Globe, Shield, Save,
+  RefreshCcw, Terminal, Server
 } from 'lucide-react';
 
 const SystemConfigurationPage = () => {
@@ -39,7 +39,7 @@ const SystemConfigurationPage = () => {
           <CardContent>
             <div className="flex justify-between items-end">
               <div>
-                <Badge variant="success">Operational</Badge>
+                <Badge variant="default">Operational</Badge>
                 <p className="text-xs text-muted-foreground mt-1">All systems normal</p>
               </div>
               <Server className="h-4 w-4 text-green-500" />
@@ -69,7 +69,7 @@ const SystemConfigurationPage = () => {
           <CardContent>
             <div className="flex justify-between items-end">
               <div>
-                <Badge variant="success">Active</Badge>
+                <Badge variant="default">Active</Badge>
                 <p className="text-xs text-muted-foreground mt-1">3 integrations</p>
               </div>
               <Terminal className="h-4 w-4 text-muted-foreground" />

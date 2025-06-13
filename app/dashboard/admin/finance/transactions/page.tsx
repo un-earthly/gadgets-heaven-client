@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  DollarSign, Search,  Download, 
-  CreditCard, CheckCircle, AlertCircle, TrendingUp 
+import {
+  DollarSign, Download,
+  CreditCard, CheckCircle, AlertCircle, TrendingUp
 } from 'lucide-react';
 
 const TransactionsPage = () => {
@@ -103,10 +103,9 @@ const TransactionsPage = () => {
               <CardDescription>View and manage transaction history</CardDescription>
             </div>
             <div className="flex gap-2">
-              <Input 
-                placeholder="Search transactions..." 
+              <Input
+                placeholder="Search transactions..."
                 className="w-[300px]"
-                prefix={<Search className="h-4 w-4" />}
               />
               <Select defaultValue="all">
                 <SelectTrigger className="w-[180px]">
@@ -169,8 +168,8 @@ const TransactionsPage = () => {
                   <TableCell>{transaction.type}</TableCell>
                   <TableCell>
                     <Badge variant={
-                      transaction.status === "completed" ? "success" :
-                      transaction.status === "pending" ? "warning" : "destructive"
+                      transaction.status === "completed" ? "default" :
+                        transaction.status === "pending" ? "secondary" : "destructive"
                     }>
                       {transaction.status}
                     </Badge>

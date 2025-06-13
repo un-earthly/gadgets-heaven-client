@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Box, Map, Users, Activity, Truck, ArrowRight } from 'lucide-react';
 
 const WarehouseDashboardPage = () => {
   return (
@@ -42,7 +41,6 @@ const WarehouseDashboardPage = () => {
                 </div>
                 <Button variant="ghost" className="w-full mt-4">
                   View Details
-                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
             </CardContent>

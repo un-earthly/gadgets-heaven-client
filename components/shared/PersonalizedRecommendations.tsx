@@ -5,6 +5,7 @@ import { Card, CardHeader, CardContent, CardFooter } from "../ui/card";
 import { Button } from "../ui/button";
 import { Sparkles, ArrowRight, Star } from 'lucide-react';
 import { recommendations } from '@/data';
+import Image from 'next/image';
 
 
 const PersonalizedRecommendations = () => {
@@ -50,7 +51,7 @@ const PersonalizedRecommendations = () => {
                                         before:absolute before:inset-0 before:bg-gradient-to-t 
                                         before:from-transparent before:to-orange-50/20 
                                         dark:before:to-orange-950/10 before:rounded-2xl">
-                                        <img
+                                        <Image
                                             src={product.image}
                                             alt={product.name}
                                             width={200}

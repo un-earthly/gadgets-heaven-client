@@ -4,9 +4,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { 
+import {
   Users, ShoppingBag, Activity, UserCheck,
-  Search, Filter, Settings, MoreHorizontal 
+  Filter, Settings, MoreHorizontal
 } from 'lucide-react';
 
 const CustomerAccountsPage = () => {
@@ -18,10 +18,10 @@ const CustomerAccountsPage = () => {
           <p className="text-muted-foreground">Manage customer profiles and activity</p>
         </div>
         <div className="flex gap-2">
-          <Input 
-            placeholder="Search customers..." 
+          <Input
+            placeholder="Search customers..."
             className="w-[300px]"
-            prefix={<Search className="h-4 w-4" />}
+
           />
           <Button variant="outline">
             <Filter className="mr-2 h-4 w-4" />
@@ -144,7 +144,7 @@ const CustomerAccountsPage = () => {
                   <TableCell>${customer.spent.toFixed(2)}</TableCell>
                   <TableCell>{customer.lastActive}</TableCell>
                   <TableCell>
-                    <Badge variant={customer.status === "active" ? "success" : "secondary"}>
+                    <Badge variant="default">
                       {customer.status}
                     </Badge>
                   </TableCell>

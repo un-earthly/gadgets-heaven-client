@@ -4,11 +4,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
-import { 
-  AlertCircle, Clock, CheckCircle, MessageSquare, 
-  Search, Filter, AlertTriangle, ArrowUpRight 
+import {
+  AlertCircle, Clock, CheckCircle
 } from 'lucide-react';
 
 const DisputeResolutionPage = () => {
@@ -20,10 +18,9 @@ const DisputeResolutionPage = () => {
           <p className="text-muted-foreground">Manage and resolve customer disputes</p>
         </div>
         <div className="flex gap-2">
-          <Input 
-            placeholder="Search disputes..." 
+          <Input
+            placeholder="Search disputes..."
             className="w-[300px]"
-            prefix={<Search className="h-4 w-4" />}
           />
           <Button>Create Case</Button>
         </div>
@@ -85,7 +82,7 @@ const DisputeResolutionPage = () => {
                 <div className="text-2xl font-bold">8</div>
                 <p className="text-xs text-red-600">Needs immediate attention</p>
               </div>
-              <AlertTriangle className="h-4 w-4 text-red-500" />
+              <AlertCircle className="h-4 w-4 text-red-500" />
             </div>
           </CardContent>
         </Card>
@@ -148,7 +145,7 @@ const DisputeResolutionPage = () => {
                   <TableCell>
                     <Badge variant={
                       dispute.priority === "high" ? "destructive" :
-                      dispute.priority === "medium" ? "warning" : "default"
+                        dispute.priority === "medium" ? "secondary" : "default"
                     }>
                       {dispute.priority}
                     </Badge>
@@ -156,8 +153,8 @@ const DisputeResolutionPage = () => {
                   <TableCell>
                     <Badge variant={
                       dispute.status === "open" ? "secondary" :
-                      dispute.status === "in-progress" ? "default" :
-                      dispute.status === "escalated" ? "destructive" : "success"
+                        dispute.status === "in-progress" ? "default" :
+                          dispute.status === "escalated" ? "destructive" : "default"
                     }>
                       {dispute.status}
                     </Badge>
@@ -196,7 +193,7 @@ const DisputeResolutionPage = () => {
                   </div>
                   <Progress value={
                     item.type === "Refund Request" ? 70 :
-                    item.type === "Product Issue" ? 45 : 85
+                      item.type === "Product Issue" ? 45 : 85
                   } />
                   <p className="text-xs text-muted-foreground">
                     {item.cases} active cases

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Star, Upload, Camera, Send } from 'lucide-react';
+import { Star, Camera, Send } from 'lucide-react';
 
 const SubmitFeedbackPage = () => {
   return (
@@ -76,7 +76,7 @@ const SubmitFeedbackPage = () => {
 
             <div className="space-y-2">
               <label className="text-sm font-medium">Detailed Feedback</label>
-              <Textarea 
+              <Textarea
                 placeholder="Please provide detailed feedback..."
                 className="min-h-[150px]"
               />
@@ -135,7 +135,7 @@ const SubmitFeedbackPage = () => {
                 <div>
                   <h4 className="font-medium">Response</h4>
                   <p className="text-sm text-muted-foreground">
-                    You'll receive an acknowledgment and any follow-up questions
+                    You&apos;ll receive an acknowledgment and any follow-up questions
                   </p>
                 </div>
               </div>
@@ -146,7 +146,7 @@ const SubmitFeedbackPage = () => {
                 <div>
                   <h4 className="font-medium">Action</h4>
                   <p className="text-sm text-muted-foreground">
-                    We'll take appropriate action based on your feedback
+                    We&apos;ll take appropriate action based on your feedback
                   </p>
                 </div>
               </div>

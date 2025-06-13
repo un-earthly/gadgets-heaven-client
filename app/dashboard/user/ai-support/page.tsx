@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Bot, Send, Upload, Smile, History } from 'lucide-react';
+import { Upload, Send } from "lucide-react";
 
 const AISupportPage = () => {
   return (

@@ -5,9 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  TicketIcon, AlertCircle, Clock, Users, 
-  Search, Filter, MessageSquare, CheckCircle 
+import {
+  TicketIcon, AlertCircle, Clock, MessageSquare, CheckCircle
 } from 'lucide-react';
 
 const ManageSupportTicketsPage = () => {
@@ -94,10 +93,9 @@ const ManageSupportTicketsPage = () => {
               <CardDescription>View and manage support requests</CardDescription>
             </div>
             <div className="flex gap-2">
-              <Input 
-                placeholder="Search tickets..." 
+              <Input
+                placeholder="Search tickets..."
                 className="w-[300px]"
-                prefix={<Search className="h-4 w-4" />}
               />
               <Select defaultValue="all">
                 <SelectTrigger className="w-[180px]">
@@ -164,7 +162,7 @@ const ManageSupportTicketsPage = () => {
                   <TableCell>
                     <Badge variant={
                       ticket.priority === "high" ? "destructive" :
-                      ticket.priority === "medium" ? "warning" : "default"
+                        ticket.priority === "medium" ? "secondary" : "default"
                     }>
                       {ticket.priority}
                     </Badge>
@@ -172,8 +170,8 @@ const ManageSupportTicketsPage = () => {
                   <TableCell>
                     <Badge variant={
                       ticket.status === "open" ? "secondary" :
-                      ticket.status === "in-progress" ? "default" :
-                      "success"
+                        ticket.status === "in-progress" ? "default" :
+                          "default"
                     }>
                       {ticket.status}
                     </Badge>

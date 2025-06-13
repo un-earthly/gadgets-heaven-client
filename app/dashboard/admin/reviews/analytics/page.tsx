@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { 
-  Star, Clock, CheckCircle, MessageCircle, 
-  TrendingUp, Download, BarChart2, ThumbsUp 
+import {
+  Star, Clock, CheckCircle, MessageCircle,
+  Download
 } from 'lucide-react';
 
 const ServicePerformanceAnalyticsPage = () => {
@@ -191,8 +191,8 @@ const ServicePerformanceAnalyticsPage = () => {
                   <TableCell>{review.date}</TableCell>
                   <TableCell>
                     <Badge variant={
-                      review.status === "resolved" ? "success" :
-                      review.status === "in-progress" ? "default" : "secondary"
+                      review.status === "resolved" ? "outline" :
+                        review.status === "in-progress" ? "default" : "secondary"
                     }>
                       {review.status}
                     </Badge>

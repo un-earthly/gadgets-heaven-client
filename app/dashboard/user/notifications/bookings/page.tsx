@@ -4,7 +4,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import { Calendar, Clock, Bell, AlertCircle, CheckCircle, XCircle, Calendar as CalendarIcon } from 'lucide-react';
+import { Calendar, Clock, Calendar as CalendarIcon, AlertCircle, CheckCircle } from 'lucide-react';
 
 const BookingConfirmationsPage = () => {
   return (

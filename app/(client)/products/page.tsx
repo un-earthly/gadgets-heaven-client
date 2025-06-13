@@ -1,7 +1,6 @@
 "use client"
 
 import React from 'react'
-import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -9,8 +8,6 @@ import { Badge } from "@/components/ui/badge"
 import { Search, SlidersHorizontal, Star } from "lucide-react"
 
 const ProductsPage = () => {
-    const [view, setView] = useState<"grid" | "list">("grid")
-
     return (
         <main className="min-h-screen relative">
             {/* Background gradient similar to other pages */}

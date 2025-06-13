@@ -2,10 +2,9 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Package, TrendingDown, Box, AlertTriangle, ArrowUpDown, Search, Filter } from 'lucide-react';
+import { Package, TrendingDown, Box, ArrowUpDown, Filter } from 'lucide-react';
 
 const InventoryDashboardPage = () => {
   return (
@@ -106,7 +105,7 @@ const InventoryDashboardPage = () => {
             </TableHeader>
             <TableBody>
               {[
-                { 
+                {
                   name: "iPhone 15 Pro",
                   sku: "IP15P-256-GR",
                   stock: 124,

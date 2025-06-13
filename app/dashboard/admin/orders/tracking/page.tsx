@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  TruckIcon, PackageSearch, MapPin, Clock, 
-  Search, Filter, AlertCircle, CheckCircle 
+import {
+  TruckIcon, PackageSearch, Clock,
+  CheckCircle
 } from 'lucide-react';
 
 const OrderTrackingPage = () => {
@@ -20,10 +20,9 @@ const OrderTrackingPage = () => {
           <p className="text-muted-foreground">Track and manage order deliveries</p>
         </div>
         <div className="flex gap-2">
-          <Input 
-            placeholder="Search order ID..." 
+          <Input
+            placeholder="Search order ID..."
             className="w-[250px]"
-            prefix={<Search className="h-4 w-4" />}
           />
           <Button>Track Order</Button>
         </div>
@@ -165,7 +164,7 @@ const OrderTrackingPage = () => {
                   <TableCell>
                     <Badge variant={
                       order.status === "in-transit" ? "default" :
-                      order.status === "out-for-delivery" ? "success" : "destructive"
+                        order.status === "out-for-delivery" ? "default" : "destructive"
                     }>
                       {order.status.replace(/-/g, ' ')}
                     </Badge>

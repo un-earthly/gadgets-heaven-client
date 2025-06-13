@@ -4,8 +4,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { 
-  History, Filter, Download, Search,
+import {
+  History, Filter, Download,
   Shield, Users, AlertCircle, Clock
 } from 'lucide-react';
 
@@ -18,10 +18,10 @@ const RoleActivityPage = () => {
           <p className="text-muted-foreground">Track role and permission changes</p>
         </div>
         <div className="flex gap-2">
-          <Input 
-            placeholder="Search activities..." 
+          <Input
+            placeholder="Search activities..."
             className="w-[300px]"
-            prefix={<Search className="h-4 w-4" />}
+
           />
           <Button variant="outline">
             <Download className="mr-2 h-4 w-4" />
@@ -158,7 +158,7 @@ const RoleActivityPage = () => {
                   <TableCell>{activity.user}</TableCell>
                   <TableCell>{activity.details}</TableCell>
                   <TableCell>
-                    <Badge variant={activity.status === "completed" ? "success" : "secondary"}>
+                    <Badge variant={activity.status === "completed" ? "default" : "secondary"}>
                       {activity.status}
                     </Badge>
                   </TableCell>

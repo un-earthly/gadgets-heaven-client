@@ -3,11 +3,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { 
+import {
   Users, Clock, MousePointer, TrendingUp,
-  Download, Calendar, BarChart2, ArrowUpRight 
+  Download, ArrowUpRight
 } from 'lucide-react';
 
 const UserBehaviorPage = () => {
@@ -86,7 +85,7 @@ const UserBehaviorPage = () => {
                 <p className="text-xs text-green-600">+0.5% vs last month</p>
               </div>
               <MousePointer className="h-4 w-4 text-muted-foreground" />
-              
+
             </div>
           </CardContent>
         </Card>

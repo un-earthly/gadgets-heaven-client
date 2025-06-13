@@ -5,10 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calendar } from "@/components/ui/calendar";
-import { 
-  Calendar as CalendarIcon, Clock, CheckCircle, AlertCircle,
-  Search, Filter, User, X 
+import {
+  Calendar as CalendarIcon, Clock, CheckCircle, User, X
 } from 'lucide-react';
 
 const BookingRequestsPage = () => {
@@ -20,10 +18,10 @@ const BookingRequestsPage = () => {
           <p className="text-muted-foreground">Manage service appointments and requests</p>
         </div>
         <div className="flex gap-2">
-          <Input 
-            placeholder="Search requests..." 
+          <Input
+            placeholder="Search requests..."
             className="w-[300px]"
-            prefix={<Search className="h-4 w-4" />}
+
           />
           <Button>New Booking</Button>
         </div>
@@ -32,7 +30,7 @@ const BookingRequestsPage = () => {
       <div className="grid gap-4 md:grid-cols-4">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Today's Bookings</CardTitle>
+            <CardTitle className="text-sm font-medium">Today&apos;s Bookings</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex justify-between items-end">
@@ -166,14 +164,14 @@ const BookingRequestsPage = () => {
                   </TableCell>
                   <TableCell>
                     <Badge variant={
-                      booking.status === "completed" ? "success" :
-                      booking.status === "approved" ? "default" : "secondary"
+                      booking.status === "completed" ? "default" :
+                        booking.status === "approved" ? "default" : "secondary"
                     }>
                       {booking.status}
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <Badge variant={booking.payment === "paid" ? "success" : "destructive"}>
+                    <Badge variant={booking.payment === "paid" ? "default" : "destructive"}>
                       {booking.payment}
                     </Badge>
                   </TableCell>

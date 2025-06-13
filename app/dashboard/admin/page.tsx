@@ -4,9 +4,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { 
-  Package, ShoppingCart, Wrench, DollarSign, Users, 
-  AlertCircle, CheckCircle, Clock, ArrowUp, ArrowDown 
+import {
+  Package, ShoppingCart, Wrench, ArrowUp
 } from 'lucide-react';
 
 const DashboardPage = () => {
@@ -61,7 +60,7 @@ const DashboardPage = () => {
 
         <Card className="bg-green-50">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Today's Revenue</CardTitle>
+            <CardTitle className="text-sm font-medium">Today&apos;s Revenue</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex justify-between items-end">
@@ -166,13 +165,12 @@ const DashboardPage = () => {
               { time: "1 hour ago", event: "Bulk order approved for Business Client", type: "order" }
             ].map((activity, i) => (
               <div key={i} className="flex items-center gap-4 p-2 rounded hover:bg-accent">
-                <div className={`p-2 rounded ${
-                  activity.type === 'order' ? 'bg-blue-100' :
+                <div className={`p-2 rounded ${activity.type === 'order' ? 'bg-blue-100' :
                   activity.type === 'inventory' ? 'bg-red-100' : 'bg-green-100'
-                }`}>
+                  }`}>
                   {activity.type === 'order' ? <ShoppingCart className="h-4 w-4" /> :
-                   activity.type === 'inventory' ? <Package className="h-4 w-4" /> :
-                   <Wrench className="h-4 w-4" />}
+                    activity.type === 'inventory' ? <Package className="h-4 w-4" /> :
+                      <Wrench className="h-4 w-4" />}
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{activity.event}</p>

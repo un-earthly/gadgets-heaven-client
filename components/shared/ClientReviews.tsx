@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Star, ChevronLeft, ChevronRight, Quote, User } from "lucide-react"
 import { Button } from "../ui/button"
 import { motion, AnimatePresence } from "framer-motion"
+import Image from "next/image"
 
 const reviews = [
     {
@@ -88,9 +89,11 @@ const ClientReviews = () => {
                                         <div className="flex items-center gap-4">
                                             <div className="relative">
                                                 {reviews[currentReview].image ? (
-                                                    <img
+                                                    <Image
                                                         src={reviews[currentReview].image}
                                                         alt={reviews[currentReview].name}
+                                                        width={64}
+                                                        height={64}
                                                         className="w-16 h-16 rounded-full object-cover border-2 
                                                             border-orange-200 dark:border-orange-800"
                                                     />

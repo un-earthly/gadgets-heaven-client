@@ -1,12 +1,10 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
-import { Progress } from "@/components/ui/progress";
-import { Package, Truck, Bell, Clock, Filter, MapPin, Calendar, ShoppingBag } from 'lucide-react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Bell, Calendar, Filter, Package, Truck } from 'lucide-react';
 
 const OrderUpdatesPage = () => {
   return (
@@ -110,7 +108,7 @@ const OrderUpdatesPage = () => {
                   <TableCell>
                     <Badge variant={
                       order.status === "In Transit" ? "default" :
-                      order.status === "Processing" ? "secondary" : "outline"
+                        order.status === "Processing" ? "secondary" : "outline"
                     }>
                       {order.status}
                     </Badge>
@@ -166,7 +164,7 @@ const OrderUpdatesPage = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             {[
-              { 
+              {
                 order: "ORD-001",
                 update: "Package arrived at local facility",
                 time: "2 hours ago"

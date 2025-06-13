@@ -5,6 +5,7 @@ import { Star, Filter, Edit, Trash2, MessageCircle, ThumbsUp } from 'lucide-reac
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import Image from 'next/image';
 
 const reviews = [
   {
@@ -113,10 +114,12 @@ const MyReviewsPage = () => {
             <CardContent className="p-6">
               <div className="flex gap-6">
                 <div className="w-24 h-24 bg-gray-100 rounded-lg flex items-center justify-center">
-                  <img
+                  <Image
                     src={review.productImage}
                     alt={review.productName}
                     className="w-20 h-20 object-contain"
+                    width={80}
+                    height={80}
                   />
                 </div>
                 <div className="flex-1">

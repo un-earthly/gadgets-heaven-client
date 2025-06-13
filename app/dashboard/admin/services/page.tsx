@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { 
-  Settings, Plus, Search, Filter, Edit,
+import {
+  Settings, Plus, Edit,
   Clock, DollarSign, BarChart, Package
 } from 'lucide-react';
 
@@ -19,10 +19,9 @@ const ManageServicesPage = () => {
           <p className="text-muted-foreground">Configure and manage service offerings</p>
         </div>
         <div className="flex gap-2">
-          <Input 
-            placeholder="Search services..." 
+          <Input
+            placeholder="Search services..."
             className="w-[300px]"
-            prefix={<Search className="h-4 w-4" />}
           />
           <Button>
             <Plus className="mr-2 h-4 w-4" />
@@ -160,7 +159,7 @@ const ManageServicesPage = () => {
                   <TableCell>${service.price}</TableCell>
                   <TableCell>{service.bookings}</TableCell>
                   <TableCell>
-                    <Badge variant={service.status === "active" ? "success" : "secondary"}>
+                    <Badge variant="default">
                       {service.status}
                     </Badge>
                   </TableCell>

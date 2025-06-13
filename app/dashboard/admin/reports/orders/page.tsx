@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { 
+import {
   ShoppingBag, TrendingUp, DollarSign, Clock,
-  Download, Calendar, BarChart2, ArrowUpRight
+  Download, ArrowUpRight
 } from 'lucide-react';
 
 const OrderTrendsPage = () => {
@@ -187,8 +187,8 @@ const OrderTrendsPage = () => {
                   <TableCell>{order.items} items</TableCell>
                   <TableCell>
                     <Badge variant={
-                      order.status === "completed" ? "success" :
-                      order.status === "processing" ? "default" : "secondary"
+                      order.status === "completed" ? "default" :
+                        order.status === "processing" ? "default" : "secondary"
                     }>
                       {order.status}
                     </Badge>

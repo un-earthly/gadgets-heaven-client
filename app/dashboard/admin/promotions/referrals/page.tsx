@@ -2,12 +2,11 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { 
-  Users, Gift, Trophy, DollarSign, 
-  Plus, Star, UserPlus, ArrowUpRight 
+import {
+  Users, Gift, Trophy,
+  Plus, Star, UserPlus, ArrowUpRight
 } from 'lucide-react';
 
 const ReferralLoyaltyProgramsPage = () => {
@@ -117,7 +116,7 @@ const ReferralLoyaltyProgramsPage = () => {
                     </div>
                     <Progress value={
                       tier.name === "Bronze" ? 65 :
-                      tier.name === "Silver" ? 45 : 25
+                        tier.name === "Silver" ? 45 : 25
                     } className="mt-2" />
                   </div>
                 </div>
@@ -177,8 +176,8 @@ const ReferralLoyaltyProgramsPage = () => {
               <div key={i} className="flex items-center justify-between p-4 border rounded-lg">
                 <div className="flex items-center gap-4">
                   {activity.type === 'referral' ? <UserPlus className="h-4 w-4" /> :
-                   activity.type === 'loyalty' ? <Trophy className="h-4 w-4" /> :
-                   <Gift className="h-4 w-4" />}
+                    activity.type === 'loyalty' ? <Trophy className="h-4 w-4" /> :
+                      <Gift className="h-4 w-4" />}
                   <div>
                     <p className="font-medium">{activity.user}</p>
                     <p className="text-sm text-muted-foreground">{activity.event}</p>

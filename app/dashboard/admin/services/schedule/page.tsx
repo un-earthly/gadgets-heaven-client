@@ -4,10 +4,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Calendar as CalendarIcon, Clock, Users, Settings,
-  Plus, ChevronLeft, ChevronRight, MoreHorizontal 
-} from 'lucide-react';
+import { Plus, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ServiceSchedulingPage = () => {
   return (
@@ -65,7 +62,7 @@ const ServiceSchedulingPage = () => {
                         {staff.bookings} appointments today
                       </p>
                     </div>
-                    <Badge variant={staff.available ? "success" : "secondary"}>
+                    <Badge variant="default">
                       {staff.available ? "Available" : "Off duty"}
                     </Badge>
                   </div>

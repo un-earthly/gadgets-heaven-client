@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
-  Search, Plus, History, RefreshCw
+  Plus, History, RefreshCw
 } from 'lucide-react';
 
 const ManageStockPage = () => {
@@ -84,7 +84,6 @@ const ManageStockPage = () => {
               <Input
                 placeholder="Search products..."
                 className="w-[300px]"
-                prefix={<Search className="h-4 w-4" />}
               />
               <Select defaultValue="all">
                 <SelectTrigger className="w-[180px]">
@@ -152,8 +151,8 @@ const ManageStockPage = () => {
                   <TableCell>{item.location}</TableCell>
                   <TableCell>
                     <Badge variant={
-                      item.status === "Normal" ? "success" :
-                        item.status === "Low Stock" ? "warning" : "destructive"
+                      item.status === "Normal" ? "default" :
+                        item.status === "Low Stock" ? "secondary" : "destructive"
                     }>
                       {item.status}
                     </Badge>

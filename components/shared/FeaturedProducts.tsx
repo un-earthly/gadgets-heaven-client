@@ -3,6 +3,7 @@ import { Button } from "../ui/button"
 import { Card, CardHeader, CardContent, CardFooter } from "../ui/card"
 import { ShoppingCart, Star } from "lucide-react"
 import { products } from "@/data"
+import Image from "next/image"
 
 const FeaturedProducts = () => {
     return (
@@ -42,7 +43,7 @@ const FeaturedProducts = () => {
                                     before:absolute before:inset-0 before:bg-gradient-to-t 
                                     before:from-transparent before:to-orange-50/20 
                                     dark:before:to-orange-950/10 before:rounded-2xl">
-                                    <img
+                                    <Image
                                         src={product.image}
                                         alt={product.name}
                                         className="h-40 w-40 object-contain group-hover:scale-110 

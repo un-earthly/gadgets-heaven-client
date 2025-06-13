@@ -2,12 +2,11 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { 
+import {
   Shield, Users, Key, History,
-  Plus, Search, Settings, UserCheck 
+  Plus, Settings, UserCheck
 } from 'lucide-react';
 
 const RolesPermissionsPage = () => {
@@ -116,7 +115,7 @@ const RolesPermissionsPage = () => {
                   <TableCell>Level {role.level}</TableCell>
                   <TableCell>{role.created}</TableCell>
                   <TableCell>
-                    <Badge variant={role.status === "active" ? "success" : "secondary"}>
+                    <Badge variant={role.status === "active" ? "secondary" : "secondary"}>
                       {role.status}
                     </Badge>
                   </TableCell>
