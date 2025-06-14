@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gadgets Heaven Server
 
-## Getting Started
+This is the backend server for the Gadgets Heaven e-commerce platform, built with NestJS and TypeScript.
 
-First, run the development server:
+## Features
 
+- User Authentication (JWT)
+- User Management
+- Role-based Access Control
+- RESTful API
+- Swagger Documentation
+- PostgreSQL Database
+- TypeORM Integration
+
+## Prerequisites
+
+- Node.js (v14 or later)
+- PostgreSQL
+- npm or yarn
+
+## Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd gadgets-heaven-server
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Create a `.env` file in the root directory with the following content:
+```env
+# Database Configuration
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+DB_DATABASE=gadgets_heaven
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# JWT Configuration
+JWT_SECRET=your_jwt_secret_key_here
+JWT_EXPIRATION=1d
 
-## Learn More
+# Server Configuration
+PORT=3001
+NODE_ENV=development
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Start PostgreSQL and create the database:
+```bash
+createdb gadgets_heaven
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Running the Application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Development
+```bash
+npm run start:dev
+```
 
-## Deploy on Vercel
+### Production
+```bash
+npm run build
+npm run start:prod
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## API Documentation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Once the application is running, you can access the Swagger documentation at:
+```
+http://localhost:3001/api
+```
+
+## Testing
+
+```bash
+# unit tests
+npm run test
+
+# e2e tests
+npm run test:e2e
+
+# test coverage
+npm run test:cov
+```
+
+## Project Structure
+
+```
+src/
+├── modules/
+│   ├── auth/           # Authentication module
+│   │   ├── guards/
+│   │   ├── strategies/
+│   │   └── ...
+│   └── users/          # Users module
+├── app.module.ts       # Main application module
+├── main.ts            # Application entry point
+└── ...
+```
+
+## API Endpoints
+
+### Authentication
+- POST /auth/register - Register a new user
+- POST /auth/login - Login user
+
+### Users
+- GET /users - Get all users (protected)
+- GET /users/:id - Get user by ID (protected)
+- PUT /users/:id - Update user (protected)
+- DELETE /users/:id - Delete user (protected)
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
+
+## License
+
+This project is licensed under the MIT License.
