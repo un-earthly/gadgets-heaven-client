@@ -7,6 +7,15 @@ import { Sparkles, ArrowRight, Star } from 'lucide-react';
 import { recommendations } from '@/data';
 import Image from 'next/image';
 
+type Recommendation = {
+    id: number;
+    name: string;
+    description: string;
+    image: string;
+    tag: string;
+    match: string;
+    price: number;
+}
 
 const PersonalizedRecommendations = () => {
     return (

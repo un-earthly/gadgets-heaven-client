@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
-import { ShoppingCart, User, Menu, X, Moon, Sun } from "lucide-react"
+import { ShoppingCart, User, Menu, X, Moon, Sun, Search } from "lucide-react"
 import Image from "next/image"
 import { useTheme } from "next-themes"
 import {
@@ -12,9 +12,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
-
-const navLinks = ["Home", "Products", "Services", "Reviews", "Blog", "Contact Us"]
 
 function ModeToggle() {
   const { setTheme } = useTheme()
@@ -29,15 +28,9 @@ function ModeToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
@@ -45,8 +38,9 @@ function ModeToggle() {
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const { theme } = useTheme()
-  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light") 
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light")
 
   useEffect(() => {
     if (theme === "system") {
@@ -56,53 +50,175 @@ const Header = () => {
       setResolvedTheme(theme as "light" | "dark")
     }
   }, [theme])
-  return (
-    <header className="shadow-md dark:shadow-slate-800/10">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link href="/" className="">
-          <Image src={resolvedTheme === "light" ? "/logo-text-dark.png" : "/logo-beige.png"} height={100} width={120} alt="logo" />
-        </Link>
-        <nav className="hidden md:flex space-x-4">
-          {navLinks.map((link) => (
-            <Link key={link} href={`/${link.toLowerCase().replace(/\s+/g, "")}`} className="text-gray-600 dark:text-gray-300 hover:text-orange-600">
-              {link}
-            </Link>
-          ))}
-        </nav>
-        <div className="hidden md:flex items-center space-x-4">
-          <Input type="search" placeholder="Search products..." className="w-64" />
-          {[ShoppingCart, User].map((Icon, idx) => (
-            <Button key={idx} variant="ghost" size="icon">
-              <Icon className="h-5 w-5" />
-            </Button>
-          ))}
-          <ModeToggle />
 
+  return (
+    <header className="relative">
+      {/* Top Bar - Contact & Support */}
+      <div className="bg-orange-50 dark:bg-zinc-900 py-2 border-b border-orange-100 dark:border-zinc-800">
+        <div className="container mx-auto px-4 flex justify-between items-center text-sm">
+          <span className="text-zinc-600 dark:text-zinc-400">Support: (123) 456-7890</span>
+          <Link href="/track-order" className="text-orange-600 dark:text-orange-400 hover:underline">
+            Track Your Order
+          </Link>
         </div>
-        <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </Button>
       </div>
-      {isMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-transparent py-2 px-4">
-          <nav className="flex flex-col space-y-2">
-            {navLinks.map((link) => (
-              <Link key={link} href={`/${link.toLowerCase().replace(/\s+/g, "")}`} className="text-gray-600 dark:text-gray-300 hover:text-orange-600">
-                {link}
-              </Link>
-            ))}
-          </nav>
-          <div className="mt-4 space-y-2">
-            <Input type="search" placeholder="Search products..." className="w-full" />
-            <div className="flex justify-start">
-            <ModeToggle />
-              {[{ Icon: ShoppingCart, label: "Cart" }, { Icon: User, label: "Login" }].map(({ Icon, label }) => (
-                <Button key={label} variant="ghost" size="sm">
-                  <Icon className="h-5 w-5 mr-2" /> {label}
-                </Button>
-              ))}
+
+      {/* Main Header */}
+      <div className="bg-white dark:bg-zinc-950 shadow-sm">
+        <div className="container mx-auto px-4">
+          {/* Upper Section - Logo & Actions */}
+          <div className="py-4 flex items-center justify-between">
+            <Link href="/" className="flex-shrink-0">
+              <Image
+                src={resolvedTheme === "light" ? "/logo-text-dark.png" : "/logo-beige.png"}
+                height={100}
+                width={120}
+                alt="logo"
+              />
+            </Link>
+
+            {/* Desktop Search Bar */}
+            <div className="hidden md:flex flex-1 max-w-xl mx-8">
+              <div className="relative w-full">
+                <Input
+                  type="search"
+                  placeholder="Search for products..."
+                  className="w-full pl-10 bg-orange-50/50 dark:bg-zinc-900/50 border-orange-100 dark:border-zinc-800"
+                />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-400" />
+              </div>
+            </div>
+
+            {/* Desktop Actions */}
+            <div className="hidden md:flex items-center space-x-1">
+              <Button variant="ghost" size="sm" className="text-zinc-600 dark:text-zinc-400" asChild>
+                <Link href="/auth/login">Sign In</Link>
+              </Button>
+              <Button variant="ghost" size="icon" className="text-zinc-600 dark:text-zinc-400">
+                <ShoppingCart className="h-5 w-5" />
+              </Button>
+              <ModeToggle />
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center space-x-2">
+              <Button variant="ghost" size="icon" onClick={() => setIsSearchOpen(!isSearchOpen)}>
+                <Search className="h-5 w-5" />
+              </Button>
+              <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
             </div>
           </div>
+
+          {/* Mobile Search (Collapsible) */}
+          {isSearchOpen && (
+            <div className="md:hidden py-3 border-t border-orange-100 dark:border-zinc-800">
+              <div className="relative">
+                <Input
+                  type="search"
+                  placeholder="Search for products..."
+                  className="w-full pl-10 bg-orange-50/50 dark:bg-zinc-900/50 border-orange-100 dark:border-zinc-800"
+                />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-400" />
+              </div>
+            </div>
+          )}
+
+          {/* Navigation Bar */}
+          <nav className="hidden md:flex py-4 border-t border-orange-100 dark:border-zinc-800">
+            <div className="flex items-center space-x-8">
+              <Link
+                href="/products"
+                className="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 font-medium"
+              >
+                Shop All
+              </Link>
+              <Link
+                href="/products/new"
+                className="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 font-medium"
+              >
+                New Arrivals
+              </Link>
+              <Link
+                href="/products/deals"
+                className="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 font-medium"
+              >
+                Deals
+              </Link>
+              <Link
+                href="/services"
+                className="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 font-medium"
+              >
+                Services
+              </Link>
+              <Link
+                href="/support"
+                className="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 font-medium"
+              >
+                Support
+              </Link>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white dark:bg-zinc-950 border-t border-orange-100 dark:border-zinc-800">
+          <nav className="container mx-auto px-4 py-4 space-y-4">
+            <div className="space-y-3">
+              <Link
+                href="/products"
+                className="block text-zinc-900 dark:text-zinc-100 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Shop All
+              </Link>
+              <Link
+                href="/products/new"
+                className="block text-zinc-900 dark:text-zinc-100 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                New Arrivals
+              </Link>
+              <Link
+                href="/products/deals"
+                className="block text-zinc-900 dark:text-zinc-100 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Deals
+              </Link>
+              <Link
+                href="/services"
+                className="block text-zinc-900 dark:text-zinc-100 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Services
+              </Link>
+              <Link
+                href="/support"
+                className="block text-zinc-900 dark:text-zinc-100 font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Support
+              </Link>
+            </div>
+
+            <div className="pt-4 border-t border-orange-100 dark:border-zinc-800">
+              <Button variant="default" className="w-full mb-2" asChild>
+                <Link href="/auth/login" onClick={() => setIsMenuOpen(false)}>
+                  Sign In
+                </Link>
+              </Button>
+              <Button variant="outline" className="w-full" asChild>
+                <Link href="/cart" onClick={() => setIsMenuOpen(false)}>
+                  <ShoppingCart className="h-4 w-4 mr-2" />
+                  View Cart
+                </Link>
+              </Button>
+            </div>
+          </nav>
         </div>
       )}
     </header>

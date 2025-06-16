@@ -2,8 +2,18 @@ import Link from "next/link"
 import { Button } from "../ui/button"
 import { Card, CardHeader, CardContent, CardFooter } from "../ui/card"
 import { ShoppingCart, Star } from "lucide-react"
-import { products } from "@/data"
 import Image from "next/image"
+import { products } from "@/data"
+import { Badge } from "../ui/badge"
+
+type Product = {
+    id: number
+    name: string
+    price: number
+    image: string
+    badge?: string
+    rating: number
+}
 
 const FeaturedProducts = () => {
     return (
@@ -25,63 +35,49 @@ const FeaturedProducts = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {products.map((product) => (
-                        <Card key={product.id} className="group relative overflow-hidden border-0 
-                            bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm 
-                            hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300">
+                    {products.map((product: Product) => (
+                        <Card key={product.id} className="group relative overflow-hidden hover:bg-accent/50 transition-all duration-200">
                             {product.badge && (
                                 <div className="absolute top-4 right-4 z-10">
-                                    <span className="px-3 py-1 bg-gradient-to-r from-orange-500 to-orange-600 
-                                        dark:from-orange-600 dark:to-orange-700 text-white text-sm 
-                                        rounded-full shadow-lg shadow-orange-500/20">
+                                    <Badge variant="secondary">
                                         {product.badge}
-                                    </span>
+                                    </Badge>
                                 </div>
                             )}
                             <CardHeader className="pt-8 px-6">
-                                <div className="relative h-48 flex items-center justify-center 
-                                    before:absolute before:inset-0 before:bg-gradient-to-t 
-                                    before:from-transparent before:to-orange-50/20 
-                                    dark:before:to-orange-950/10 before:rounded-2xl">
+                                <div className="relative h-48 flex items-center justify-center">
                                     <Image
                                         src={product.image}
                                         alt={product.name}
                                         width={160}
                                         height={160}
-                                        className="h-40 w-40 object-contain group-hover:scale-110 
+                                        className="h-40 w-40 object-contain group-hover:scale-105 
                                         transition-transform duration-500 ease-out"
                                     />
                                 </div>
                             </CardHeader>
                             <CardContent className="px-6">
-                                <h3 className="text-xl font-semibold mb-2 text-gray-900 
-                                    dark:text-gray-100">{product.name}</h3>
+                                <h3 className="text-xl font-semibold mb-2 group-hover:text-orange-500 
+                                    dark:group-hover:text-orange-400 transition-colors">{product.name}</h3>
                                 <div className="flex justify-between items-center mb-4">
-                                    <span className="text-2xl font-bold bg-gradient-to-r 
-                                        from-orange-600 to-orange-500 dark:from-orange-400 
-                                        dark:to-orange-300 bg-clip-text text-transparent">
+                                    <span className="text-2xl font-bold text-orange-500/90 dark:text-orange-400/90">
                                         ${product.price.toFixed(2)}
                                     </span>
-                                    <span className="flex items-center gap-1 text-sm font-medium 
-                                        text-orange-500 dark:text-orange-400">
-                                        <Star className="h-4 w-4 fill-current" />
+                                    <span className="flex items-center gap-1 text-sm text-muted-foreground">
+                                        <Star className="h-4 w-4 text-orange-400/90" />
                                         {product.rating}
                                     </span>
                                 </div>
                             </CardContent>
                             <CardFooter className="px-6 pb-6 flex gap-3">
                                 <Button
-                                    variant="ghost"
-                                    className="flex-1 hover:bg-orange-50 hover:text-orange-600 
-                                        dark:hover:bg-orange-950/50 dark:hover:text-orange-400"
+                                    variant="outline"
+                                    className="flex-1"
                                     asChild
                                 >
                                     <Link href={`/product/${product.id}`}>Details</Link>
                                 </Button>
-                                <Button className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 
-                                    dark:from-orange-600 dark:to-orange-700 hover:from-orange-600 
-                                    hover:to-orange-700 dark:hover:from-orange-500 dark:hover:to-orange-600 
-                                    text-white border-0">
+                                <Button className="flex-1" variant="default">
                                     <ShoppingCart className="mr-2 h-4 w-4" /> Add
                                 </Button>
                             </CardFooter>

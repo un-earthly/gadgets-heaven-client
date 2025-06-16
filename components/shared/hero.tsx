@@ -5,6 +5,16 @@ import Image from "next/image"
 import * as motion from "motion/react-client"
 import { Sparkles, ShoppingCart, Wrench, ArrowRight } from "lucide-react"
 import { stats } from "@/data"
+import { LucideIcon } from "lucide-react"
+
+type Stat = {
+    value: string;
+    label: string;
+    icon: LucideIcon;
+    gradient: string;
+    darkGradient: string;
+}
+
 const Hero = () => {
 
 

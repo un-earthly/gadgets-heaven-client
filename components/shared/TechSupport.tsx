@@ -1,8 +1,19 @@
 import React from 'react';
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Star, LucideIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardHeader, CardContent, CardFooter } from "../ui/card";
 import { supportOptions } from '@/data';
+
+type SupportOption = {
+    icon: LucideIcon;
+    title: string;
+    description: string;
+    buttonText: string;
+    stats: string;
+    action: string;
+    IconBg: LucideIcon;
+    gradient: string;
+}
 
 const TechSupport = () => {
 
