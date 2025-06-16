@@ -4,7 +4,9 @@ import { deals } from "@/data"
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Clock, Package, Sparkles, ShoppingCart } from "lucide-react"
+import { Clock, Package, Sparkles, ShoppingCart, Tag } from "lucide-react"
+import PageHeader from "@/components/shared/PageHeader"
+import SectionHeader from "@/components/shared/SectionHeader"
 
 // Define types for our data structure
 type BundleProduct = {
@@ -39,44 +41,33 @@ export default function DealsPage() {
         <main className="min-h-screen relative overflow-x-hidden">
             {/* Background decoration */}
             <div className="absolute inset-0 -z-10 overflow-hidden">
-                <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-[radial-gradient(circle_500px_at_50%_50%,#ff990020,transparent)] dark:bg-[radial-gradient(circle_500px_at_50%_50%,#ff990008,transparent)]" />
-                <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-[radial-gradient(circle_500px_at_80%_80%,#ffa50020,transparent)] dark:bg-[radial-gradient(circle_500px_at_80%_80%,#ffa50008,transparent)]" />
+                <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-[radial-gradient(circle_500px_at_50%_50%,#ff990010,transparent)]" />
+                <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-[radial-gradient(circle_500px_at_80%_80%,#ffa50010,transparent)]" />
             </div>
 
             <div className="container mx-auto px-4 py-8">
-                {/* Header */}
-                <div className="text-center space-y-4 mb-12">
-                    <Badge
-                        className="bg-orange-100 dark:bg-orange-900/50 text-orange-600 dark:text-orange-400 border-0"
-                    >
-                        Limited Time
-                    </Badge>
-                    <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-600 via-orange-500 to-orange-400 dark:from-orange-400 dark:via-orange-300 dark:to-orange-200">
-                        Special Deals
-                    </h1>
-                    <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-                        Don't miss out on our exclusive offers and discounts
-                    </p>
-                </div>
+                <PageHeader
+                    badge="Limited Time"
+                    title="Special Deals"
+                    description="Don't miss out on our exclusive offers and discounts"
+                />
 
-                {/* Deals Sections */}
-                {deals.map((deal: Deal) => (
+                {deals.map((deal) => (
                     <section key={deal.id} className="mb-16">
-                        <div className="flex items-center gap-3 mb-8">
-                            <h2 className="text-2xl font-semibold">{deal.name}</h2>
-                            {deal.type === "time-limited" && deal.endsAt && (
-                                <div className="flex items-center gap-2 text-sm text-orange-600 dark:text-orange-400">
-                                    <Clock className="h-4 w-4" />
-                                    <span>Ends {new Date(deal.endsAt).toLocaleDateString()}</span>
-                                </div>
-                            )}
-                        </div>
+                        <SectionHeader
+                            title={deal.name}
+                            description={deal.type === "time-limited" && deal.endsAt ?
+                                `Ends ${new Date(deal.endsAt).toLocaleDateString()}` : undefined}
+                            icon={deal.type === "time-limited" ? Clock :
+                                deal.type === "bundle" ? Package : Tag}
+                            gradient="from-orange-500 to-orange-600"
+                        />
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {deal.products.map((product) => (
                                 <Card
                                     key={product.id}
-                                    className="group overflow-hidden hover:bg-accent/50 transition-all duration-200"
+                                    className="group transition-all duration-300"
                                 >
                                     <CardHeader className="p-0">
                                         <div className="relative h-64">
@@ -104,7 +95,7 @@ export default function DealsPage() {
                                     </CardHeader>
 
                                     <CardContent className="p-6">
-                                        <h3 className="text-xl font-semibold mb-4 group-hover:text-orange-500 dark:group-hover:text-orange-400 transition-colors">
+                                        <h3 className="text-xl font-semibold mb-4 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
                                             {product.name}
                                         </h3>
 
@@ -153,21 +144,11 @@ export default function DealsPage() {
                                         )}
                                     </CardContent>
 
-                                    <CardFooter className="p-6 pt-0">
-                                        <div className="flex gap-3 w-full">
-                                            <Button
-                                                variant="ghost"
-                                                className="flex-1 hover:bg-accent"
-                                            >
-                                                Details
-                                            </Button>
-                                            <Button
-                                                variant="secondary"
-                                                className="flex-1 bg-orange-500/10 hover:bg-orange-500/20 text-orange-600 dark:text-orange-400"
-                                            >
-                                                <ShoppingCart className="mr-2 h-4 w-4" /> Add
-                                            </Button>
-                                        </div>
+                                    <CardFooter>
+                                        <Button variant="outline" className="w-full">
+                                            Add to Cart
+                                            <ShoppingCart className="ml-2 h-4 w-4" />
+                                        </Button>
                                     </CardFooter>
                                 </Card>
                             ))}

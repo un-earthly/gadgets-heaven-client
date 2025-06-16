@@ -4,7 +4,9 @@ import { supportOptions, upcomingServices } from "@/data"
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Clock } from "lucide-react"
+import { ArrowRight, Clock, HeadphonesIcon, Sparkles } from "lucide-react"
+import PageHeader from "@/components/shared/PageHeader"
+import SectionHeader from "@/components/shared/SectionHeader"
 
 export default function SupportPage() {
     return (
@@ -16,22 +18,20 @@ export default function SupportPage() {
             </div>
 
             <div className="container mx-auto px-4 py-8">
-                {/* Header */}
-                <div className="text-center space-y-4 mb-12">
-                    <Badge variant="secondary" className="bg-orange-50 text-orange-600 dark:bg-orange-900/20 dark:text-orange-400">
-                        24/7 Support
-                    </Badge>
-                    <h1 className="text-4xl md:text-5xl font-bold text-orange-600 dark:text-orange-400">
-                        Tech Support & Help
-                    </h1>
-                    <p className="text-muted-foreground max-w-2xl mx-auto">
-                        Get expert help and support for all your tech needs
-                    </p>
-                </div>
+                <PageHeader
+                    badge="24/7 Support"
+                    title="Tech Support & Help"
+                    description="Get expert help and support for all your tech needs"
+                />
 
                 {/* Current Support Options */}
                 <section className="mb-16">
-                    <h2 className="text-2xl font-semibold mb-8">Available Support Options</h2>
+                    <SectionHeader
+                        title="Available Support Options"
+                        description="Get help through our various support channels"
+                        icon={HeadphonesIcon}
+                        gradient="from-orange-500 to-orange-600"
+                    />
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {supportOptions.map((option) => (
                             <Card key={option.title} className="group transition-all duration-300">
@@ -66,7 +66,12 @@ export default function SupportPage() {
 
                 {/* Upcoming Support Services */}
                 <section>
-                    <h2 className="text-2xl font-semibold mb-8">Coming Soon</h2>
+                    <SectionHeader
+                        title="Coming Soon"
+                        description="Exciting new support features on the horizon"
+                        icon={Sparkles}
+                        gradient="from-orange-400 to-orange-500"
+                    />
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {upcomingServices.map((service) => (
                             <Card key={service.title} className="group transition-all flex-column justify-between duration-300">

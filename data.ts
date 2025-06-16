@@ -2,11 +2,21 @@ import { BookOpen, Clock, FileText, HeadphonesIcon, MessageCircle, Package, Play
 
 type DealType = "time-limited" | "bundle" | "clearance";
 
-type Category = {
+export type Category = {
     id: number;
     name: string;
     description: string;
-    icon: LucideIcon;
+    image: string;
+}
+
+export type Product = {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    image: string;
+    category: string;
+    stock: number;
 }
 
 type Service = {
@@ -15,6 +25,7 @@ type Service = {
     description: string;
     price: string;
     duration: string;
+    icon: LucideIcon;
 }
 
 type ServiceCategory = {
@@ -23,18 +34,21 @@ type ServiceCategory = {
     description: string;
     icon: LucideIcon;
     services: Service[];
+    gradient: string;
 }
 
-type NewArrival = {
+export type NewArrival = {
     id: number;
     name: string;
     description: string;
     price: number;
     image: string;
-    releaseDate: string;
-    arrivalDate: string;
-    category: string;
-    preorderAvailable: boolean;
+    rating: number;
+}
+
+export type NewArrivalsData = {
+    featured: NewArrival[];
+    latest: NewArrival[];
 }
 
 export const stats = [
@@ -61,38 +75,90 @@ export const stats = [
     }
 ];
 
-export const products = [
+// Test image for development
+const TEST_IMAGE = "/laptop.jpg";
+
+export const categories: Category[] = [
     {
         id: 1,
-        name: "Smart Watch",
-        price: 199.99,
-        image: "/smart-watch.png",
-        badge: "Best Seller",
-        rating: 4.8,
+        name: "Smartphones",
+        description: "Latest mobile devices",
+        image: TEST_IMAGE
     },
     {
         id: 2,
-        name: "Wireless Earbuds",
-        price: 149.99,
-        image: "/smart-watch.png",
-        badge: "New",
-        rating: 4.7,
+        name: "Laptops",
+        description: "Powerful computing",
+        image: TEST_IMAGE
     },
     {
         id: 3,
-        name: "Smartphone",
-        price: 699.99,
-        image: "/smart-watch.png",
-        badge: "Featured",
-        rating: 4.9,
+        name: "Audio",
+        description: "Premium sound",
+        image: TEST_IMAGE
     },
     {
         id: 4,
-        name: "Laptop",
+        name: "Gaming",
+        description: "Gaming gear",
+        image: TEST_IMAGE
+    }
+];
+
+export const products: Product[] = [
+    {
+        id: 1,
+        name: "Ultra HD Smartphone",
+        description: "Latest flagship phone with advanced camera system",
         price: 999.99,
-        image: "/smart-watch.png",
-        badge: "Limited Stock",
-        rating: 4.6,
+        image: TEST_IMAGE,
+        category: "Smartphones",
+        stock: 15
+    },
+    {
+        id: 2,
+        name: "Pro Gaming Laptop",
+        description: "High-performance gaming laptop with RTX graphics",
+        price: 1999.99,
+        image: TEST_IMAGE,
+        category: "Laptops",
+        stock: 8
+    },
+    {
+        id: 3,
+        name: "Wireless Headphones",
+        description: "Premium noise-cancelling headphones",
+        price: 299.99,
+        image: TEST_IMAGE,
+        category: "Audio",
+        stock: 20
+    },
+    {
+        id: 4,
+        name: "Gaming Console",
+        description: "Next-gen gaming console with 4K support",
+        price: 499.99,
+        image: TEST_IMAGE,
+        category: "Gaming",
+        stock: 5
+    },
+    {
+        id: 5,
+        name: "Smart Watch",
+        description: "Advanced fitness tracking and notifications",
+        price: 249.99,
+        image: TEST_IMAGE,
+        category: "Wearables",
+        stock: 12
+    },
+    {
+        id: 6,
+        name: "Wireless Earbuds",
+        description: "True wireless earbuds with long battery life",
+        price: 159.99,
+        image: TEST_IMAGE,
+        category: "Audio",
+        stock: 0
     }
 ];
 
@@ -298,126 +364,134 @@ export const deals = [
     }
 ];
 
-export const categories: Category[] = [
+export const serviceCategories = [
     {
         id: 1,
-        name: "Smartphones & Tablets",
-        description: "Latest mobile devices and accessories",
-        icon: Smartphone
-    },
-    {
-        id: 2,
-        name: "Computing",
-        description: "Laptops, desktops, and components",
-        icon: Cpu
-    },
-    {
-        id: 3,
-        name: "Accessories",
-        description: "Essential add-ons for your devices",
-        icon: Shield
-    },
-    {
-        id: 4,
-        name: "Custom Solutions",
-        description: "Tailored tech solutions for your needs",
-        icon: PenToolIcon
-    }
-];
-
-export const serviceCategories: ServiceCategory[] = [
-    {
-        id: 1,
-        name: "Repair Services",
-        description: "Professional device repair and maintenance",
+        name: "Repairs & Maintenance",
+        description: "Professional repair services for all your devices",
         icon: Wrench,
+        gradient: "from-orange-500 to-orange-600",
         services: [
             {
-                id: 101,
-                name: "Screen Repair",
-                description: "Expert screen replacement for phones and tablets",
-                price: "From $79",
-                duration: "1-2 hours"
+                id: 1,
+                name: "Phone Screen Repair",
+                description: "Professional screen replacement service",
+                price: "$99",
+                duration: "1-2 hours",
+                icon: Smartphone
             },
             {
-                id: 102,
-                name: "Battery Replacement",
-                description: "Restore your device's battery life",
-                price: "From $49",
-                duration: "30 mins"
+                id: 2,
+                name: "Laptop Repair",
+                description: "Hardware and software repairs",
+                price: "$149",
+                duration: "24-48 hours",
+                icon: Cpu
             },
             {
-                id: 103,
-                name: "Water Damage Repair",
-                description: "Recovery services for water-damaged devices",
-                price: "From $99",
-                duration: "24-48 hours"
+                id: 3,
+                name: "Data Recovery",
+                description: "Recover lost or deleted data",
+                price: "$199",
+                duration: "2-3 days",
+                icon: Shield
             }
         ]
     },
     {
         id: 2,
-        name: "Setup & Installation",
-        description: "Expert setup and configuration services",
-        icon: Zap,
+        name: "Installation & Setup",
+        description: "Expert installation services for your tech",
+        icon: PenToolIcon,
+        gradient: "from-orange-400 to-orange-500",
         services: [
             {
-                id: 201,
+                id: 4,
                 name: "Smart Home Setup",
-                description: "Complete smart home device installation",
-                price: "From $149",
-                duration: "2-3 hours"
+                description: "Complete smart home installation",
+                price: "$299",
+                duration: "4-6 hours",
+                icon: Zap
             },
             {
-                id: 202,
-                name: "PC Build Service",
-                description: "Custom PC assembly and testing",
-                price: "From $199",
-                duration: "3-4 hours"
-            },
-            {
-                id: 203,
+                id: 5,
                 name: "Network Installation",
                 description: "Home or office network setup",
-                price: "From $129",
-                duration: "1-2 hours"
+                price: "$199",
+                duration: "2-3 hours",
+                icon: Shield
+            },
+            {
+                id: 6,
+                name: "Security System",
+                description: "Security camera installation",
+                price: "$399",
+                duration: "4-5 hours",
+                icon: Shield
             }
         ]
     }
 ];
 
-export const newArrivals: NewArrival[] = [
-    {
-        id: 1,
-        name: "Next-Gen Gaming Console",
-        description: "Experience gaming like never before with 8K support and ray tracing",
-        price: 499.99,
-        image: "/products/gaming-console.jpg",
-        releaseDate: "2024-03-15",
-        arrivalDate: "2024-03-15",
-        category: "Gaming",
-        preorderAvailable: true
-    },
-    {
-        id: 2,
-        name: "Smart Home Hub Pro",
-        description: "Control your entire home with advanced AI capabilities",
-        price: 299.99,
-        image: "/products/smart-hub.jpg",
-        releaseDate: "2024-03-10",
-        arrivalDate: "2024-03-10",
-        category: "Smart Home",
-        preorderAvailable: false
-    },
-    {
-        id: 3,
-        name: "Ultra-Light Laptop",
-        description: "Powerful performance in an ultra-portable design",
-        price: 1299.99,
-        image: "/products/laptop.jpg",
-        releaseDate: "2024-03-01",
-        arrivalDate: "2024-03-01",
-        category: "Computing",
-        preorderAvailable: true
-    }
-]; 
+export const newArrivals: NewArrivalsData = {
+    featured: [
+        {
+            id: 1,
+            name: "Next-Gen Gaming Console",
+            description: "Experience gaming like never before with our latest console featuring 8K graphics and ray tracing",
+            price: 499.99,
+            image: TEST_IMAGE,
+            rating: 4.9
+        },
+        {
+            id: 2,
+            name: "Smart Home Hub Pro",
+            description: "Control your entire home with this advanced AI-powered hub",
+            price: 299.99,
+            image: TEST_IMAGE,
+            rating: 4.7
+        },
+        {
+            id: 3,
+            name: "Pro Wireless Earbuds",
+            description: "Premium sound quality with active noise cancellation",
+            price: 199.99,
+            image: TEST_IMAGE,
+            rating: 4.8
+        }
+    ],
+    latest: [
+        {
+            id: 4,
+            name: "4K Drone Camera",
+            description: "Capture stunning aerial footage with this lightweight drone",
+            price: 699.99,
+            image: TEST_IMAGE,
+            rating: 4.6
+        },
+        {
+            id: 5,
+            name: "Smart Watch Series X",
+            description: "Track your health and stay connected with our latest smartwatch",
+            price: 349.99,
+            image: TEST_IMAGE,
+            rating: 4.5
+        },
+        {
+            id: 6,
+            name: "Portable Power Bank",
+            description: "Fast charging with 20000mAh capacity",
+            price: 49.99,
+            image: TEST_IMAGE,
+            rating: 4.7
+        },
+        {
+            id: 7,
+            name: "Wireless Gaming Mouse",
+            description: "Ultra-responsive with RGB lighting",
+            price: 79.99,
+            image: TEST_IMAGE,
+            rating: 4.8
+        }
+    ]
+} 
