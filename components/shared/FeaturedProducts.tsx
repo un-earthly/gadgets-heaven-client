@@ -71,13 +71,16 @@ const FeaturedProducts = () => {
                             </CardContent>
                             <CardFooter className="px-6 pb-6 flex gap-3">
                                 <Button
-                                    variant="outline"
-                                    className="flex-1"
+                                    variant="ghost"
+                                    className="flex-1 hover:bg-accent"
                                     asChild
                                 >
                                     <Link href={`/product/${product.id}`}>Details</Link>
                                 </Button>
-                                <Button className="flex-1" variant="default">
+                                <Button
+                                    variant="secondary"
+                                    className="flex-1 bg-orange-500/10 hover:bg-orange-500/20 text-orange-600 dark:text-orange-400"
+                                >
                                     <ShoppingCart className="mr-2 h-4 w-4" /> Add
                                 </Button>
                             </CardFooter>

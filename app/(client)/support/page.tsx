@@ -52,12 +52,13 @@ export default function SupportPage() {
                                         <option.IconBg className="h-4 w-4" />
                                         <span>{option.stats}</span>
                                     </div>
-
+                                </CardContent>
+                                <CardFooter>
                                     <Button variant="outline" className="w-full">
                                         {option.buttonText}
                                         <ArrowRight />
                                     </Button>
-                                </CardContent>
+                                </CardFooter>
                             </Card>
                         ))}
                     </div>
@@ -68,7 +69,7 @@ export default function SupportPage() {
                     <h2 className="text-2xl font-semibold mb-8">Coming Soon</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {upcomingServices.map((service) => (
-                            <Card key={service.title} className="group transition-all duration-300">
+                            <Card key={service.title} className="group transition-all flex-column justify-between duration-300">
                                 <CardContent className="p-6">
                                     <div className="text-4xl mb-4">
                                         {service.icon}
@@ -97,6 +98,7 @@ export default function SupportPage() {
                                 <CardFooter className="p-6 pt-0">
                                     <Button variant="outline" className="w-full">
                                         {service.buttonText}
+                                        <ArrowRight />
                                     </Button>
                                 </CardFooter>
                             </Card>

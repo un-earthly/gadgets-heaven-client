@@ -4,7 +4,7 @@ import { deals } from "@/data"
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Clock, Package, Sparkles } from "lucide-react"
+import { Clock, Package, Sparkles, ShoppingCart } from "lucide-react"
 
 // Define types for our data structure
 type BundleProduct = {
@@ -154,9 +154,20 @@ export default function DealsPage() {
                                     </CardContent>
 
                                     <CardFooter className="p-6 pt-0">
-                                        <Button className="w-full" variant="default">
-                                            Add to Cart
-                                        </Button>
+                                        <div className="flex gap-3 w-full">
+                                            <Button
+                                                variant="ghost"
+                                                className="flex-1 hover:bg-accent"
+                                            >
+                                                Details
+                                            </Button>
+                                            <Button
+                                                variant="secondary"
+                                                className="flex-1 bg-orange-500/10 hover:bg-orange-500/20 text-orange-600 dark:text-orange-400"
+                                            >
+                                                <ShoppingCart className="mr-2 h-4 w-4" /> Add
+                                            </Button>
+                                        </div>
                                     </CardFooter>
                                 </Card>
                             ))}
