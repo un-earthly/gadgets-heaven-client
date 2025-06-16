@@ -24,7 +24,6 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <div id="root" >
-
                         {children}
                     </div>
                 </ThemeProvider>

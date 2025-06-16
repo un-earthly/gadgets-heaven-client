@@ -46,6 +46,8 @@ const FeaturedProducts = () => {
                                     <Image
                                         src={product.image}
                                         alt={product.name}
+                                        width={160}
+                                        height={160}
                                         className="h-40 w-40 object-contain group-hover:scale-110 
                                         transition-transform duration-500 ease-out"
                                     />

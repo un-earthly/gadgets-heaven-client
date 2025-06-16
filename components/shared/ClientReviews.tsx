@@ -13,7 +13,7 @@ const reviews = [
         rating: 5,
         text: "The best tech store I've ever shopped at. Their customer service is exceptional!",
         date: "January 2025",
-        image: "https://randomuser.me/api/portraits/men/96.jpg"
+        image: "/men.jpg"
     },
     {
         name: "Sarah Smith",
@@ -21,7 +21,7 @@ const reviews = [
         rating: 5,
         text: "Outstanding selection of camera gear and exceptional technical support. Their expertise helped me choose the perfect equipment for my studio.",
         date: "December 2024",
-        image: "https://randomuser.me/api/portraits/women/12.jpg"
+        image: "/women.jpg"
     },]
 
 const ClientReviews = () => {
