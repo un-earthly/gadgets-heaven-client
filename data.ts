@@ -1,4 +1,4 @@
-import { BookOpen, Clock, FileText, HeadphonesIcon, MessageCircle, Package, PlayCircle, Smartphone, Trophy, Truck, Video, Wrench, Zap, Shield, PenToolIcon, Cpu, LucideIcon } from "lucide-react";
+import { BookOpen, Clock, FileText, HeadphonesIcon, MessageCircle, Package, PlayCircle, Smartphone, Trophy, Truck, Video, Wrench, Zap, Shield, PenToolIcon, Cpu, LucideIcon, Settings, ArrowUpCircle } from "lucide-react";
 
 type DealType = "time-limited" | "bundle" | "clearance";
 
@@ -170,6 +170,9 @@ export const recommendations = [
         tag: "Trending Now",
         match: "98% Match",
         price: 199.99,
+        rating: 4.8,
+        category: "Audio",
+        stock: 15
     },
     {
         id: 2,
@@ -179,6 +182,9 @@ export const recommendations = [
         tag: "Popular Picks",
         match: "95% Match",
         price: 149.99,
+        rating: 4.5,
+        category: "Smart Home",
+        stock: 8
     },
     {
         id: 3,
@@ -188,6 +194,9 @@ export const recommendations = [
         tag: "Just for You",
         match: "92% Match",
         price: 89.99,
+        rating: 4.6,
+        category: "Wearables",
+        stock: 20
     },
     {
         id: 4,
@@ -197,30 +206,36 @@ export const recommendations = [
         tag: "Trending Now",
         match: "90% Match",
         price: 49.99,
+        rating: 4.7,
+        category: "Accessories",
+        stock: 0
     },
 ];
 
 export const services = [
     {
-        icon: Truck,
-        title: "Delivery & Shipping",
-        description: "Quick delivery options like same-day shipping or free delivery on orders over $100.",
-        link: "/delivery",
+        id: "1",
+        icon: Wrench,
+        title: "Repair Services",
+        description: "Professional repair services for all your gadgets",
+        link: "/services/repair",
         gradient: "from-orange-500 to-orange-600"
     },
     {
-        icon: Smartphone,
-        title: "Gadget Customization",
-        description: "Personalization services (engraving, bundle options).",
-        link: "/customization",
-        gradient: "from-orange-400 to-orange-500"
+        id: "2",
+        icon: Settings,
+        title: "Maintenance",
+        description: "Regular maintenance to keep your devices running smoothly",
+        link: "/services/maintenance",
+        gradient: "from-orange-500 to-orange-600"
     },
     {
-        icon: Wrench,
-        title: "Expert Installation",
-        description: "Set-up assistance for home tech systems.",
-        link: "/installation",
-        gradient: "from-orange-600 to-orange-700"
+        id: "3",
+        icon: ArrowUpCircle,
+        title: "Upgrades",
+        description: "Hardware and software upgrades for better performance",
+        link: "/services/upgrade",
+        gradient: "from-orange-500 to-orange-600"
     }
 ];
 
@@ -265,7 +280,8 @@ export const upcomingServices = [
         status: "Coming Soon",
         availableFrom: "March 2025",
         stats: "24/7 Support",
-        buttonText: "Join Waitlist"
+        buttonText: "Join Waitlist",
+        link: "/waitlist"
     },
     {
         title: "VR Setup Workshop",
@@ -274,7 +290,8 @@ export const upcomingServices = [
         status: "Registration Open",
         availableFrom: "April 2025",
         stats: "2 Hour Session",
-        buttonText: "Register Now"
+        buttonText: "Register Now",
+        link: "/events/register"
     },
     {
         title: "Smart Home Integration",
@@ -283,7 +300,8 @@ export const upcomingServices = [
         status: "Beta Testing",
         availableFrom: "May 2025",
         stats: "Full Setup",
-        buttonText: "Learn More"
+        buttonText: "Learn More",
+        link: "/services/smart-home-integration"
     },
     {
         title: "Tech Recycling Program",
@@ -292,7 +310,8 @@ export const upcomingServices = [
         status: "Coming Soon",
         availableFrom: "June 2025",
         stats: "Free Service",
-        buttonText: "Get Notified"
+        buttonText: "Get Notified",
+        link: "/events/register"
     },
     {
         title: "Custom PC Building",
@@ -301,7 +320,8 @@ export const upcomingServices = [
         status: "Waitlist Open",
         availableFrom: "July 2025",
         stats: "Custom Build",
-        buttonText: "Join Waitlist"
+        buttonText: "Join Waitlist",
+        link: "/waitlist"
     }
 ];
 
@@ -493,4 +513,82 @@ export const newArrivals: NewArrivalsData = {
             rating: 4.8
         }
     ]
-} 
+}
+
+export const reviews = [
+    {
+        id: 1,
+        customerName: "Emily Chen",
+        customerImage: "/women.jpg",
+        productName: "Sony WH-1000XM4",
+        productImage: "/smart-watch.png",
+        productType: "Product",
+        rating: 5,
+        review: "These headphones are absolutely amazing! The noise cancellation is top-notch, and the sound quality is incredible. Battery life exceeds expectations, lasting well over 30 hours. The companion app offers great customization options.",
+        purchaseDate: "2024-03-15",
+        verifiedPurchase: true,
+        helpfulVotes: 24,
+        category: "Audio",
+        price: 349.99
+    },
+    {
+        id: 2,
+        customerName: "James Wilson",
+        customerImage: "/men.jpg",
+        productName: "iPhone Screen Repair",
+        productImage: "/smart-watch.png",
+        productType: "Service",
+        rating: 4,
+        review: "Quick and professional service. My iPhone screen was replaced within 2 hours. The technician was knowledgeable and explained the process. Only giving 4 stars because the price was a bit high, but the quality is undeniable.",
+        purchaseDate: "2024-03-10",
+        verifiedPurchase: true,
+        helpfulVotes: 12,
+        category: "Repair Services",
+        price: 199.99
+    },
+    {
+        id: 3,
+        customerName: "Sarah Miller",
+        customerImage: "/women.jpg",
+        productName: "MacBook Pro M3",
+        productImage: "/smart-watch.png",
+        productType: "Product",
+        rating: 5,
+        review: "The M3 MacBook Pro is a powerhouse! As a video editor, the performance is mind-blowing. Projects that used to take hours now render in minutes. The display is gorgeous, and the battery life is exceptional.",
+        purchaseDate: "2024-03-08",
+        verifiedPurchase: true,
+        helpfulVotes: 18,
+        category: "Laptops",
+        price: 1999.99
+    },
+    {
+        id: 4,
+        customerName: "Michael Brown",
+        customerImage: "/men.jpg",
+        productName: "Smart Home Installation",
+        productImage: "/smart-watch.png",
+        productType: "Service",
+        rating: 5,
+        review: "Professional installation of my entire smart home system. The team was punctual, knowledgeable, and helped me understand how to use everything. They even helped me set up all my automations. Excellent service!",
+        purchaseDate: "2024-03-05",
+        verifiedPurchase: true,
+        helpfulVotes: 15,
+        category: "Installation Services",
+        price: 499.99
+    },
+    {
+        id: 5,
+        customerName: "Lisa Zhang",
+        customerImage: "/women.jpg",
+        productName: "iPad Pro 12.9",
+        productImage: "/smart-watch.png",
+        productType: "Product",
+        rating: 4,
+        review: "The iPad Pro is fantastic for digital art and note-taking. The M2 chip handles everything I throw at it with ease. The only minor complaint is the price, but the quality justifies it. The display is absolutely stunning.",
+        purchaseDate: "2024-03-01",
+        verifiedPurchase: true,
+        helpfulVotes: 21,
+        category: "Tablets",
+        price: 1099.99
+    }
+] 
