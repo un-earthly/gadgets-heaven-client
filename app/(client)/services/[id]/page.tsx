@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import { serviceCategories } from "@/data"
 import { notFound } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"

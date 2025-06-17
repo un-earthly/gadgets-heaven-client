@@ -1,14 +1,14 @@
 "use client"
 
 import { serviceCategories } from "@/data"
-import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Clock, ArrowRight } from "lucide-react"
 import PageHeader from "@/components/shared/PageHeader"
 import SectionHeader from "@/components/shared/SectionHeader"
 import PageWrapper from "@/components/shared/PageWrapper"
 import Link from "next/link"
-import HighlightButton, { HighlightedOutlineButton } from "@/components/shared/HighlightButton"
+import { HighlightedOutlineButton } from "@/components/shared/HighlightButton"
 
 export default function ServicesPage() {
     return (

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { serviceCategories } from "@/data"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
@@ -15,7 +15,7 @@ import { Calendar as CalendarIcon, Clock, ArrowRight } from "lucide-react"
 import PageHeader from "@/components/shared/PageHeader"
 import PageWrapper from "@/components/shared/PageWrapper"
 
-export default function ModifyServicePage() {
+function ModifyServiceContent() {
     const searchParams = useSearchParams()
     const serviceId = searchParams.get("service")
     const [date, setDate] = useState<Date>()
@@ -172,5 +172,13 @@ export default function ModifyServicePage() {
                 </Card>
             </div>
         </PageWrapper>
+    )
+}
+
+export default function ModifyServicePage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ModifyServiceContent />
+        </Suspense>
     )
 } 

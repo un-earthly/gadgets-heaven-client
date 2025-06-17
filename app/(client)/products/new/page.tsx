@@ -4,12 +4,13 @@ import { newArrivals } from "@/data"
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, ShoppingCart, Star, Sparkles } from "lucide-react"
+import { ShoppingCart, Star, Sparkles } from "lucide-react"
 import PageHeader from "@/components/shared/PageHeader"
 import SectionHeader from "@/components/shared/SectionHeader"
 import PageWrapper from "@/components/shared/PageWrapper"
-import DimmedButton, { DimmedButtonWithArrow } from "@/components/shared/DimmedButton"
+import { DimmedButtonWithArrow } from "@/components/shared/DimmedButton"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function NewArrivalsPage() {
     return (
@@ -36,10 +37,11 @@ export default function NewArrivalsPage() {
                         >
                             <CardHeader className="p-0">
                                 <div className="relative h-64">
-                                    <img
+                                    <Image
                                         src={product.image}
                                         alt={product.name}
-                                        className="w-full h-full object-cover"
+                                        fill
+                                        className="object-cover"
                                     />
                                     <Badge
                                         variant="secondary"
@@ -97,10 +99,11 @@ export default function NewArrivalsPage() {
                         >
                             <CardHeader className="p-0">
                                 <div className="relative h-48">
-                                    <img
+                                    <Image
                                         src={product.image}
                                         alt={product.name}
-                                        className="w-full h-full object-cover"
+                                        fill
+                                        className="object-cover"
                                     />
                                     <Badge
                                         variant="secondary"

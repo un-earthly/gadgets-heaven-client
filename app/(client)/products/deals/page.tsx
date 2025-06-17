@@ -4,10 +4,11 @@ import { deals } from "@/data"
 import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Clock, Package, Sparkles, ShoppingCart, Tag } from "lucide-react"
+import { Clock, Package, ShoppingCart, Tag } from "lucide-react"
 import PageHeader from "@/components/shared/PageHeader"
 import SectionHeader from "@/components/shared/SectionHeader"
 import PageWrapper from "@/components/shared/PageWrapper"
+import Image from "next/image"
 
 // Define types for our data structure
 type BundleProduct = {
@@ -65,10 +66,11 @@ export default function DealsPage() {
                             >
                                 <CardHeader className="p-0">
                                     <div className="relative h-64">
-                                        <img
+                                        <Image
                                             src={product.image}
                                             alt={product.name}
-                                            className="w-full h-full object-cover"
+                                            fill
+                                            className="object-cover"
                                         />
                                         {deal.type === "bundle" ? (
                                             <Badge

@@ -12,9 +12,13 @@ import { Star, ShoppingCart, Package, Shield, Truck } from "lucide-react"
 import PageWrapper from "@/components/shared/PageWrapper"
 import DimmedButton from "@/components/shared/DimmedButton"
 
-export default function ProductPage({ params }: { params: { id: string } }) {
+interface ProductDetailProps {
+    productId: string;
+}
+
+function ProductDetail({ productId }: ProductDetailProps) {
     const [quantity, setQuantity] = useState(1)
-    const product = products.find(p => p.id === parseInt(params.id))
+    const product = products.find(p => p.id === parseInt(productId))
 
     if (!product) {
         notFound()
@@ -162,4 +166,14 @@ export default function ProductPage({ params }: { params: { id: string } }) {
             </div>
         </PageWrapper>
     )
+}
+
+interface PageProps {
+    params: {
+        id: string;
+    };
+}
+
+export default function ProductPage({ params }: PageProps) {
+    return <ProductDetail productId={params.id} />
 } 
