@@ -6,54 +6,8 @@ import { Button } from "../ui/button"
 import { Card, CardHeader, CardContent, CardFooter } from "../ui/card"
 import { Badge } from "../ui/badge"
 import Link from "next/link"
-
-const upcomingServices = [
-    {
-        title: "AI-Powered Tech Support",
-        icon: "🤖",
-        description: "Get instant help with our new AI assistant.",
-        status: "Coming Soon",
-        availableFrom: "March 2025",
-        stats: "24/7 Support",
-        buttonText: "Join Waitlist"
-    },
-    {
-        title: "VR Setup Workshop",
-        icon: "🥽",
-        description: "Learn how to set up and optimize your VR system.",
-        status: "Registration Open",
-        availableFrom: "April 2025",
-        stats: "2 Hour Session",
-        buttonText: "Register Now"
-    },
-    {
-        title: "Smart Home Integration",
-        icon: "🏠",
-        description: "Connect all your smart devices seamlessly.",
-        status: "Beta Testing",
-        availableFrom: "May 2025",
-        stats: "Full Setup",
-        buttonText: "Learn More"
-    },
-    {
-        title: "Tech Recycling Program",
-        icon: "♻️",
-        description: "Responsibly dispose of your old gadgets.",
-        status: "Coming Soon",
-        availableFrom: "June 2025",
-        stats: "Free Service",
-        buttonText: "Get Notified"
-    },
-    {
-        title: "Custom PC Building",
-        icon: "🖥️",
-        description: "Design and build your dream gaming rig.",
-        status: "Waitlist Open",
-        availableFrom: "July 2025",
-        stats: "Premium Service",
-        buttonText: "Join Waitlist"
-    },
-]
+import { upcomingServices } from "@/data"
+import { DimmedButtonWithArrow } from "./DimmedButton"
 
 const UpcomingServices = () => {
     const scrollRef = useRef<HTMLDivElement>(null)
@@ -184,16 +138,11 @@ const UpcomingServices = () => {
                                 </CardContent>
 
                                 <CardFooter className="justify-center pt-2">
-                                    <Button asChild
-                                        className="bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 
-                                            dark:hover:bg-orange-700 text-white group/btn"
-                                    >
-                                        <Link href="#" className="flex items-center gap-2">
+                                    <Link href={service.link || "#"}>
+                                        <DimmedButtonWithArrow>
                                             {service.buttonText}
-                                            <ArrowRight className="h-4 w-4 transition-transform 
-                                                group-hover/btn:translate-x-1" />
-                                        </Link>
-                                    </Button>
+                                        </DimmedButtonWithArrow>
+                                    </Link>
                                 </CardFooter>
                             </Card>
                         ))}

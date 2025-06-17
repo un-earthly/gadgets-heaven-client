@@ -5,6 +5,7 @@ import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { Separator } from "../ui/separator"
 import { Mail, Send, Bell, Star } from "lucide-react"
+import HighlightButton from "./HighlightButton"
 
 const Newsletter = () => {
     const [email, setEmail] = useState("")
@@ -71,20 +72,11 @@ const Newsletter = () => {
                                     required
                                 />
                             </div>
-                            <Button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className="bg-gradient-to-r from-orange-500 to-orange-600 
-                                    dark:from-orange-600 dark:to-orange-700 
-                                    hover:from-orange-600 hover:to-orange-700 
-                                    dark:hover:from-orange-500 dark:hover:to-orange-600 
-                                    text-white font-medium shadow-lg shadow-orange-500/25 
-                                    dark:shadow-orange-900/30 transition-all duration-300 
-                                    whitespace-nowrap"
-                            >
+                            <HighlightButton isDisabled={isSubmitting}>
+
                                 <Send className="mr-2 h-4 w-4" />
                                 {isSubmitting ? "Subscribing..." : "Subscribe Now"}
-                            </Button>
+                            </HighlightButton>
                         </form>
                     </div>
 

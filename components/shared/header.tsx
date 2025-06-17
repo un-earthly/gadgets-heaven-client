@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
+import { usePathname } from "next/navigation"
 
 function ModeToggle() {
   const { setTheme } = useTheme()
@@ -41,6 +42,7 @@ const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const { theme } = useTheme()
   const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light")
+  const pathname = usePathname()
 
   useEffect(() => {
     if (theme === "system") {
@@ -94,9 +96,11 @@ const Header = () => {
               <Button variant="ghost" size="sm" className="text-zinc-600 dark:text-zinc-400" asChild>
                 <Link href="/auth/login">Sign In</Link>
               </Button>
-              <Button variant="ghost" size="icon" className="text-zinc-600 dark:text-zinc-400">
-                <ShoppingCart className="h-5 w-5" />
-              </Button>
+              <Link href="/cart">
+                <Button variant="ghost" size="icon" className="text-zinc-600 dark:text-zinc-400">
+                  <ShoppingCart className="h-5 w-5" />
+                </Button>
+              </Link>
               <ModeToggle />
             </div>
 
@@ -130,31 +134,46 @@ const Header = () => {
             <div className="flex items-center space-x-8">
               <Link
                 href="/products"
-                className="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 font-medium"
+                className={`font-medium ${pathname === "/products"
+                  ? "text-orange-600 dark:text-orange-400"
+                  : "text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400"
+                  }`}
               >
                 Shop All
               </Link>
               <Link
                 href="/products/new"
-                className="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 font-medium"
+                className={`font-medium ${pathname === "/products/new"
+                  ? "text-orange-600 dark:text-orange-400"
+                  : "text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400"
+                  }`}
               >
                 New Arrivals
               </Link>
               <Link
                 href="/products/deals"
-                className="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 font-medium"
+                className={`font-medium ${pathname === "/products/deals"
+                  ? "text-orange-600 dark:text-orange-400"
+                  : "text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400"
+                  }`}
               >
                 Deals
               </Link>
               <Link
                 href="/services"
-                className="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 font-medium"
+                className={`font-medium ${pathname === "/services"
+                  ? "text-orange-600 dark:text-orange-400"
+                  : "text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400"
+                  }`}
               >
                 Services
               </Link>
               <Link
                 href="/support"
-                className="text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 font-medium"
+                className={`font-medium ${pathname === "/support"
+                  ? "text-orange-600 dark:text-orange-400"
+                  : "text-zinc-600 dark:text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400"
+                  }`}
               >
                 Support
               </Link>

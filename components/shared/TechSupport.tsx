@@ -3,6 +3,9 @@ import { ArrowRight, Star, LucideIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardHeader, CardContent, CardFooter } from "../ui/card";
 import { supportOptions } from '@/data';
+import DimmedButton, { DimmedButtonWithArrow } from './DimmedButton';
+import { HighlightedOutlineButton } from './HighlightButton';
+import Link from 'next/link';
 
 type SupportOption = {
     icon: LucideIcon;
@@ -90,18 +93,9 @@ const TechSupport = () => {
                             </CardContent>
 
                             <CardFooter className="justify-center relative">
-                                <Button
-                                    className="bg-gradient-to-r from-orange-500 to-orange-600 
-                                        dark:from-orange-600 dark:to-orange-700 
-                                        hover:from-orange-600 hover:to-orange-700 
-                                        dark:hover:from-orange-500 dark:hover:to-orange-600 
-                                        text-white border-0 group-hover:pl-6 group-hover:pr-4 
-                                        transition-all"
-                                >
+                                <DimmedButtonWithArrow>
                                     {option.buttonText}
-                                    <ArrowRight className="ml-2 h-4 w-4 opacity-0 
-                                        group-hover:opacity-100 transition-opacity" />
-                                </Button>
+                                </DimmedButtonWithArrow>
                             </CardFooter>
                         </Card>
                     ))}
@@ -111,15 +105,11 @@ const TechSupport = () => {
                     <p className="text-gray-600 dark:text-gray-400 mb-4">
                         Can&apos;t find what you&apos;re looking for?
                     </p>
-                    <Button
-                        variant="outline"
-                        className="border-orange-200 dark:border-orange-800 
-                            hover:bg-orange-50 dark:hover:bg-orange-950/50 
-                            hover:text-orange-600 dark:hover:text-orange-400 
-                            text-orange-500 dark:text-orange-400"
-                    >
-                        Contact Our Support Team
-                    </Button>
+                    <HighlightedOutlineButton isDisabled={false} size="lg" arrowEnabled={true} >
+                        <Link href="/support" className="flex items-center gap-2">
+                            Contact Our Support Team
+                        </Link>
+                    </HighlightedOutlineButton>
                 </div>
             </div>
         </section>

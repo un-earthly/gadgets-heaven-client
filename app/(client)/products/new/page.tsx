@@ -8,6 +8,8 @@ import { ArrowRight, ShoppingCart, Star, Sparkles } from "lucide-react"
 import PageHeader from "@/components/shared/PageHeader"
 import SectionHeader from "@/components/shared/SectionHeader"
 import PageWrapper from "@/components/shared/PageWrapper"
+import DimmedButton, { DimmedButtonWithArrow } from "@/components/shared/DimmedButton"
+import Link from "next/link"
 
 export default function NewArrivalsPage() {
     return (
@@ -130,10 +132,11 @@ export default function NewArrivalsPage() {
                             </CardContent>
 
                             <CardFooter>
-                                <Button variant="outline" className="w-full">
-                                    View Details
-                                    <ArrowRight className="ml-2 h-4 w-4" />
-                                </Button>
+                                <DimmedButtonWithArrow>
+                                    <Link href={`/products/${product.id}`}>
+                                        View Details
+                                    </Link>
+                                </DimmedButtonWithArrow>
                             </CardFooter>
                         </Card>
                     ))}

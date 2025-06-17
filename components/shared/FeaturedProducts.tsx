@@ -3,16 +3,14 @@ import { Button } from "../ui/button"
 import { Card, CardHeader, CardContent, CardFooter } from "../ui/card"
 import { ShoppingCart, Star } from "lucide-react"
 import Image from "next/image"
-import { products } from "@/data"
+import { products, Product as DataProduct } from "@/data"
 import { Badge } from "../ui/badge"
+import DimmedButton from "./DimmedButton"
+import { HighlightedOutlineButton } from "./HighlightButton"
 
-type Product = {
-    id: number
-    name: string
-    price: number
-    image: string
-    badge?: string
-    rating: number
+type Product = DataProduct & {
+    badge?: string;
+    rating?: number;
 }
 
 const FeaturedProducts = () => {
@@ -75,17 +73,21 @@ const FeaturedProducts = () => {
                                     className="flex-1 hover:bg-accent"
                                     asChild
                                 >
-                                    <Link href={`/product/${product.id}`}>Details</Link>
+                                    <Link href={`/products/${product.id}`}>Details</Link>
                                 </Button>
-                                <Button
-                                    variant="secondary"
-                                    className="flex-1 bg-orange-500/10 hover:bg-orange-500/20 text-orange-600 dark:text-orange-400"
-                                >
+                                <DimmedButton>
                                     <ShoppingCart className="mr-2 h-4 w-4" /> Add
-                                </Button>
+                                </DimmedButton>
                             </CardFooter>
                         </Card>
                     ))}
+                </div>
+                <div className="flex justify-center mt-8">
+                    <HighlightedOutlineButton isDisabled={false} arrowEnabled={true} size="lg" >
+                        <Link href="/products" className="flex items-center gap-2">
+                            View All Products
+                        </Link>
+                    </HighlightedOutlineButton>
                 </div>
             </div>
         </section>

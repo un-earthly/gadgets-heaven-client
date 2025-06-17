@@ -7,6 +7,8 @@ import { Clock, ArrowRight } from "lucide-react"
 import PageHeader from "@/components/shared/PageHeader"
 import SectionHeader from "@/components/shared/SectionHeader"
 import PageWrapper from "@/components/shared/PageWrapper"
+import Link from "next/link"
+import HighlightButton, { HighlightedOutlineButton } from "@/components/shared/HighlightButton"
 
 export default function ServicesPage() {
     return (
@@ -56,11 +58,18 @@ export default function ServicesPage() {
                                             </div>
                                         </div>
                                     </CardContent>
-                                    <CardFooter>
-                                        <Button variant="outline" className="w-full">
-                                            Book Now
-                                            <ArrowRight className="ml-2 h-4 w-4" />
+                                    <CardFooter className="grid lg:grid-cols-2  w-full  gap-2">
+                                        <Button variant="outline" asChild>
+                                            <Link href={`/services/${service.id}`}>
+                                                View Details
+                                                <ArrowRight className="ml-2 h-4 w-4" />
+                                            </Link>
                                         </Button>
+                                        <HighlightedOutlineButton isDisabled={false} arrowEnabled={true} size="lg">
+                                            <Link href={`/dashboard/user/services/modify?service=${service.id}`}>
+                                                Book Now
+                                            </Link>
+                                        </HighlightedOutlineButton>
                                     </CardFooter>
                                 </Card>
                             ))}

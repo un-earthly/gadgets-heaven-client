@@ -5,6 +5,8 @@ import { Star, ChevronLeft, ChevronRight, Quote, User } from "lucide-react"
 import { Button } from "../ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
+import { HighlightedOutlineButton } from "./HighlightButton"
+import Link from "next/link"
 
 const reviews = [
     {
@@ -22,7 +24,8 @@ const reviews = [
         text: "Outstanding selection of camera gear and exceptional technical support. Their expertise helped me choose the perfect equipment for my studio.",
         date: "December 2024",
         image: "/women.jpg"
-    },]
+    },
+]
 
 const ClientReviews = () => {
     const [currentReview, setCurrentReview] = useState(0)
@@ -142,41 +145,24 @@ const ClientReviews = () => {
                                 </AnimatePresence>
                             </div>
 
-                            {/* Navigation buttons */}
                             <div className="flex justify-center gap-2 mt-6 border-t 
                                 border-orange-100/20 dark:border-orange-900/20 pt-6">
-                                <Button
-                                    variant="outline"
-                                    size="icon"
-                                    onClick={prevReview}
-                                    className="hover:bg-orange-50 dark:hover:bg-orange-950/50 
-                                        border-orange-200 dark:border-orange-800 
-                                        text-orange-500 dark:text-orange-400"
-                                >
+                                <HighlightedOutlineButton isDisabled={false} size="icon" onClick={prevReview}>
                                     <ChevronLeft className="h-4 w-4" />
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    size="icon"
-                                    onClick={nextReview}
-                                    className="hover:bg-orange-50 dark:hover:bg-orange-950/50 
-                                        border-orange-200 dark:border-orange-800 
-                                        text-orange-500 dark:text-orange-400"
-                                >
+                                </HighlightedOutlineButton>
+                                <HighlightedOutlineButton isDisabled={false} size="icon" onClick={nextReview}>
                                     <ChevronRight className="h-4 w-4" />
-                                </Button>
+                                </HighlightedOutlineButton>
                             </div>
                         </motion.div>
                     </div>
 
                     <div className="text-center mt-8">
-                        <Button
-                            variant="link"
-                            className="text-orange-500 hover:text-orange-600 dark:text-orange-400 
-                                dark:hover:text-orange-300"
-                        >
-                            Read more reviews →
-                        </Button>
+                        <HighlightedOutlineButton isDisabled={false} arrowEnabled={true} size="lg" >
+                            <Link href="/products/reviews" className="flex items-center gap-2">
+                                Read more reviews
+                            </Link>
+                        </HighlightedOutlineButton>
                     </div>
                 </div>
             </div>

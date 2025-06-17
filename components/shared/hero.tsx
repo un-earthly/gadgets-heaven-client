@@ -6,6 +6,8 @@ import * as motion from "motion/react-client"
 import { Sparkles, ShoppingCart, Wrench, ArrowRight } from "lucide-react"
 import { stats } from "@/data"
 import { LucideIcon } from "lucide-react"
+import { DimmedButtonWithArrowLink } from "./DimmedButton"
+import HighlightButton from "./HighlightButton"
 
 type Stat = {
     value: string;
@@ -76,27 +78,16 @@ const Hero = () => {
                             transition={{ delay: 0.5 }}
                             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                         >
-                            <Button
-                                size="lg"
-                                className="bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 
-                                dark:hover:bg-orange-700 text-white font-medium px-8 inline-flex items-center gap-2"
-                            >
+                            <HighlightButton size="lg" isDisabled={false}>
                                 <ShoppingCart className="w-5 h-5" />
-                                <Link href="/shop">Explore Products</Link>
+                                <Link href="/products">Explore Products</Link>
                                 <ArrowRight className="w-4 h-4" />
-                            </Button>
-                            <Button
-                                variant="outline"
-                                size="lg"
-                                className="bg-white/50 dark:bg-zinc-900/50 hover:bg-orange-50 dark:hover:bg-orange-950/50 
-                                text-orange-600 dark:text-orange-300 border-orange-200 dark:border-orange-700 
-                                hover:border-orange-300 dark:hover:border-orange-600 inline-flex items-center gap-2 
-                                transition-all duration-300"
-                            >
+                            </HighlightButton>
+                            <DimmedButtonWithArrowLink>
                                 <Wrench className="w-5 h-5" />
                                 <Link href="/services">View Services</Link>
                                 <ArrowRight className="w-4 h-4" />
-                            </Button>
+                            </DimmedButtonWithArrowLink>
                         </motion.div>
 
                         <motion.div
