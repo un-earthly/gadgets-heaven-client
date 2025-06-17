@@ -2,6 +2,7 @@ import { BookOpen, Clock, FileText, HeadphonesIcon, MessageCircle, Package, Play
 
 type DealType = "time-limited" | "bundle" | "clearance";
 
+const TEST_IMAGE = "/laptop.jpg";
 export type Category = {
     id: number;
     name: string;
@@ -75,8 +76,6 @@ export const stats = [
     }
 ];
 
-// Test image for development
-const TEST_IMAGE = "/laptop.jpg";
 
 export const categories: Category[] = [
     {
@@ -318,7 +317,7 @@ export const deals = [
                 name: "Wireless Charger",
                 originalPrice: 49.99,
                 discountedPrice: 29.99,
-                image: "/products/wireless-charger.jpg",
+                image: TEST_IMAGE,
                 discount: 40
             },
             {
@@ -326,7 +325,7 @@ export const deals = [
                 name: "Bluetooth Speaker",
                 originalPrice: 89.99,
                 discountedPrice: 59.99,
-                image: "/products/bluetooth-speaker.jpg",
+                image: TEST_IMAGE,
                 discount: 33
             }
         ]
@@ -342,7 +341,7 @@ export const deals = [
                 items: ["Wireless Keyboard", "Mouse", "Webcam"],
                 originalPrice: 199.99,
                 bundlePrice: 149.99,
-                image: "/products/home-office-bundle.jpg",
+                image: TEST_IMAGE,
                 savings: 50
             }
         ]
@@ -357,7 +356,7 @@ export const deals = [
                 name: "Previous Gen Smartwatch",
                 originalPrice: 199.99,
                 discountedPrice: 99.99,
-                image: "/products/smartwatch-prev.jpg",
+                image: TEST_IMAGE,
                 discount: 50
             }
         ]
