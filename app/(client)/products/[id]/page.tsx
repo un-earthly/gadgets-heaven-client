@@ -11,14 +11,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Star, ShoppingCart, Package, Shield, Truck } from "lucide-react"
 import PageWrapper from "@/components/shared/PageWrapper"
 import DimmedButton from "@/components/shared/DimmedButton"
+import { useRouter } from "next/router"
 
-interface ProductDetailProps {
-    productId: string;
-}
-
-function ProductDetail({ productId }: ProductDetailProps) {
+export default function ProductPage() {
     const [quantity, setQuantity] = useState(1)
-    const product = products.find(p => p.id === parseInt(productId))
+    const router = useRouter();
+    const product = products.find(p => p.id === parseInt(router.query.id as string))
 
     if (!product) {
         notFound()
@@ -167,13 +165,3 @@ function ProductDetail({ productId }: ProductDetailProps) {
         </PageWrapper>
     )
 }
-
-interface PageProps {
-    params: {
-        id: string;
-    };
-}
-
-export default function ProductPage({ params }: PageProps) {
-    return <ProductDetail productId={params.id} />
-} 

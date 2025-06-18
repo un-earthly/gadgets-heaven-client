@@ -9,14 +9,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Clock, ArrowRight, Shield, CheckCircle, Users } from "lucide-react"
 import PageWrapper from "@/components/shared/PageWrapper"
 import Link from "next/link"
+import { useRouter } from "next/router"
 
-export default function ServiceDetailsPage({ params }: { params: { id: string } }) {
+export default function ServiceDetailsPage() {
     // Find the service and its category
     let selectedService = null;
     let serviceCategory = null;
+    const router = useRouter()
 
     for (const category of serviceCategories) {
-        const service = category.services.find(s => s.id === parseInt(params.id));
+        const service = category.services.find(s => s.id === parseInt(router.query.id as string));
         if (service) {
             selectedService = service;
             serviceCategory = category;
@@ -71,7 +73,7 @@ export default function ServiceDetailsPage({ params }: { params: { id: string } 
                                 </div>
                                 <Card>
                                     <CardHeader>
-                                        <CardTitle>What's Included</CardTitle>
+                                        <CardTitle>What&apos;s Included</CardTitle>
                                     </CardHeader>
                                     <CardContent>
                                         <ul className="space-y-2">

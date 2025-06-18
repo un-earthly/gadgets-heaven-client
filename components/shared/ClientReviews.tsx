@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { Star, ChevronLeft, ChevronRight, Quote, User } from "lucide-react"
-import { Button } from "../ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { HighlightedOutlineButton } from "./HighlightButton"

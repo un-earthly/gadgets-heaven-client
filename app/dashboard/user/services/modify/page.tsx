@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { format } from "date-fns"
-import { Calendar as CalendarIcon, Clock, ArrowRight } from "lucide-react"
+import { Calendar as CalendarIcon, Clock } from "lucide-react"
 import PageHeader from "@/components/shared/PageHeader"
 import PageWrapper from "@/components/shared/PageWrapper"
 
@@ -161,7 +161,7 @@ function ModifyServiceContent() {
                     </CardContent>
                     <CardFooter className="bg-orange-50 dark:bg-orange-950/50">
                         <div className="text-sm text-muted-foreground w-full">
-                            <p className="font-medium text-foreground mb-1">What's included:</p>
+                            <p className="font-medium text-foreground mb-1">What&apos;s included:</p>
                             <ul className="list-disc list-inside space-y-1">
                                 <li>Professional service by certified technicians</li>
                                 <li>90-day service warranty</li>

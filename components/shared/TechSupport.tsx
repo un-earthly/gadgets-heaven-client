@@ -1,22 +1,21 @@
 import React from 'react';
-import { ArrowRight, Star, LucideIcon } from "lucide-react";
-import { Button } from "../ui/button";
+import { Star } from "lucide-react";
 import { Card, CardHeader, CardContent, CardFooter } from "../ui/card";
 import { supportOptions } from '@/data';
-import DimmedButton, { DimmedButtonWithArrow } from './DimmedButton';
+import { DimmedButtonWithArrow } from './DimmedButton';
 import { HighlightedOutlineButton } from './HighlightButton';
 import Link from 'next/link';
 
-type SupportOption = {
-    icon: LucideIcon;
-    title: string;
-    description: string;
-    buttonText: string;
-    stats: string;
-    action: string;
-    IconBg: LucideIcon;
-    gradient: string;
-}
+// type SupportOption = {
+//     icon: LucideIcon;
+//     title: string;
+//     description: string;
+//     buttonText: string;
+//     stats: string;
+//     action: string;
+//     IconBg: LucideIcon;
+//     gradient: string;
+// }
 
 const TechSupport = () => {
 

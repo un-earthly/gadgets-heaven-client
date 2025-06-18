@@ -1,19 +1,16 @@
-import { ArrowRight } from 'lucide-react'
 import { Card, CardHeader, CardContent, CardFooter } from '../ui/card';
-import { Button } from '../ui/button';
 import Link from 'next/link';
 import { services } from '@/data';
-import { LucideIcon } from 'lucide-react';
-import DimmedButton, { DimmedButtonWithArrow } from './DimmedButton';
+import { DimmedButtonWithArrow } from './DimmedButton';
 import { HighlightedOutlineButton } from './HighlightButton';
 
-type Service = {
-    icon: LucideIcon;
-    title: string;
-    description: string;
-    link: string;
-    gradient: string;
-}
+// type Service = {
+//     icon: LucideIcon;
+//     title: string;
+//     description: string;
+//     link: string;
+//     gradient: string;
+// }
 
 const AvailableServices = () => {
     return (

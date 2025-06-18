@@ -1,7 +1,7 @@
 "use client"
 
 import { supportOptions, upcomingServices } from "@/data"
-import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Clock, HeadphonesIcon, Sparkles } from "lucide-react"

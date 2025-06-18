@@ -27,14 +27,14 @@ export default function ForgotPasswordPage() {
             <CardHeader className="space-y-1">
                 <CardTitle className="text-2xl font-bold">Reset password</CardTitle>
                 <CardDescription>
-                    Enter your email address and we'll send you a link to reset your password
+                    Enter your email address and we&apos;ll send you a link to reset your password
                 </CardDescription>
             </CardHeader>
             <CardContent>
                 {isSubmitted ? (
                     <div className="space-y-4">
                         <div className="p-4 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-lg text-sm">
-                            We've sent you an email with instructions to reset your password.
+                            We&apos;ve sent you an email with instructions to reset your password.
                             Please check your inbox.
                         </div>
                         <Button

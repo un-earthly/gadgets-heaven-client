@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { Input } from "../ui/input"
-import { Button } from "../ui/button"
 import { Separator } from "../ui/separator"
 import { Mail, Send, Bell, Star } from "lucide-react"
 import HighlightButton from "./HighlightButton"

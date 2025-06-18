@@ -8,21 +8,7 @@ import { Button } from "../ui/button";
 import { Sparkles, ArrowRight, Star, ShoppingCart, Percent } from 'lucide-react';
 import { recommendations } from '@/data';
 import Image from 'next/image';
-import DimmedButton from './DimmedButton';
 import { HighlightedOutlineButton } from './HighlightButton';
-
-type Recommendation = {
-    id: number;
-    name: string;
-    description: string;
-    image: string;
-    tag: string;
-    match: string;
-    price: number;
-    rating?: number;
-    category?: string;
-    stock?: number;
-}
 
 const PersonalizedRecommendations = () => {
     return (

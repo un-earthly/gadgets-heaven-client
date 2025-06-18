@@ -11,32 +11,32 @@ import PageWrapper from "@/components/shared/PageWrapper"
 import Image from "next/image"
 
 // Define types for our data structure
-type BundleProduct = {
-    id: number
-    name: string
-    items: string[]
-    originalPrice: number
-    bundlePrice: number
-    image: string
-    savings: number
-}
+// type BundleProduct = {
+//     id: number
+//     name: string
+//     items: string[]
+//     originalPrice: number
+//     bundlePrice: number
+//     image: string
+//     savings: number
+// }
 
-type DiscountProduct = {
-    id: number
-    name: string
-    originalPrice: number
-    discountedPrice: number
-    image: string
-    discount: number
-}
+// type DiscountProduct = {
+//     id: number
+//     name: string
+//     originalPrice: number
+//     discountedPrice: number
+//     image: string
+//     discount: number
+// }
 
-type Deal = {
-    id: number
-    name: string
-    type: "time-limited" | "bundle" | "clearance"
-    endsAt?: string
-    products: (BundleProduct | DiscountProduct)[]
-}
+// type Deal = {
+//     id: number
+//     name: string
+//     type: "time-limited" | "bundle" | "clearance"
+//     endsAt?: string
+//     products: (BundleProduct | DiscountProduct)[]
+// }
 
 export default function DealsPage() {
     return (

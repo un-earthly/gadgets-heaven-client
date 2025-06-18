@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
-import { ShoppingCart, User, Menu, X, Moon, Sun, Search } from "lucide-react"
+import { ShoppingCart, Menu, X, Moon, Sun, Search } from "lucide-react"
 import Image from "next/image"
 import { useTheme } from "next-themes"
 import {
@@ -12,7 +12,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
 import { usePathname } from "next/navigation"
 

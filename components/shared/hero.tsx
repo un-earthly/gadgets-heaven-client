@@ -1,21 +1,19 @@
 "use client"
 import Link from "next/link"
-import { Button } from "../ui/button"
 import Image from "next/image"
 import * as motion from "motion/react-client"
 import { Sparkles, ShoppingCart, Wrench, ArrowRight } from "lucide-react"
 import { stats } from "@/data"
-import { LucideIcon } from "lucide-react"
 import { DimmedButtonWithArrowLink } from "./DimmedButton"
 import HighlightButton from "./HighlightButton"
 
-type Stat = {
-    value: string;
-    label: string;
-    icon: LucideIcon;
-    gradient: string;
-    darkGradient: string;
-}
+// type Stat = {
+//     value: string;
+//     label: string;
+//     icon: LucideIcon;
+//     gradient: string;
+//     darkGradient: string;
+// }
 
 const Hero = () => {
 
