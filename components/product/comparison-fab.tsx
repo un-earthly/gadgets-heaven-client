@@ -8,7 +8,6 @@ import {
   GitCompare,
   X,
   Eye,
-  ChevronUp,
   ChevronDown,
   Trash2
 } from "lucide-react"

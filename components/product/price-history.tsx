@@ -19,7 +19,6 @@ import {
   Bell, 
   DollarSign,
   Calendar,
-  Target,
   AlertCircle
 } from "lucide-react"
 import { Product } from "@/data"
@@ -128,7 +127,7 @@ export default function PriceHistory({ product, className }: PriceHistoryProps) 
                 <div className="space-y-4">
                   <div>
                     <p className="text-sm text-zinc-600 mb-4">
-                      Get notified when the price of "{product.name}" drops to your target price.
+                      Get notified when the price of &lsquo;{product.name}&lsquo; drops to your target price.
                     </p>
                     <div className="space-y-3">
                       <div>
@@ -269,7 +268,7 @@ export default function PriceHistory({ product, className }: PriceHistoryProps) 
                 </h4>
                 <p className="text-sm text-blue-700 dark:text-blue-300">
                   Set up price alerts to get notified when this product goes on sale. 
-                  We'll email you when the price drops to your target amount.
+                  We&apos;ll email you when the price drops to your target amount.
                 </p>
               </div>
             </div>

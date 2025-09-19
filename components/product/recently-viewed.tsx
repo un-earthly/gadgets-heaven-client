@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Star, ShoppingCart, X, Eye } from "lucide-react"
@@ -17,9 +17,9 @@ interface RecentlyViewedProps {
   layout?: 'horizontal' | 'vertical'
 }
 
-export default function RecentlyViewed({ 
-  className, 
-  maxItems = 6, 
+export default function RecentlyViewed({
+  className,
+  maxItems = 6,
   showTitle = true,
   layout = 'horizontal'
 }: RecentlyViewedProps) {
@@ -88,7 +88,7 @@ export default function RecentlyViewed({
       >
         <X className="h-3 w-3" />
       </Button>
-      
+
       <div className="relative aspect-square overflow-hidden">
         <Image
           src={product.images[0]}
@@ -107,14 +107,14 @@ export default function RecentlyViewed({
           </div>
         )}
       </div>
-      
+
       <CardContent className="p-4">
         <Link href={`/products/${product.id}`}>
           <h3 className="font-semibold hover:text-orange-600 transition-colors line-clamp-2 mb-2">
             {product.name}
           </h3>
         </Link>
-        
+
         <div className="flex items-center gap-2 mb-2">
           <div className="flex items-center">
             <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
@@ -123,7 +123,7 @@ export default function RecentlyViewed({
           </div>
           <Badge variant="outline" className="text-xs">{product.brand}</Badge>
         </div>
-        
+
         <div className="flex items-center justify-between">
           <div>
             {product.originalPrice && (
@@ -136,9 +136,9 @@ export default function RecentlyViewed({
             </span>
           </div>
         </div>
-        
-        <Button 
-          className="w-full mt-3" 
+
+        <Button
+          className="w-full mt-3"
           size="sm"
           disabled={product.availability === 'out-of-stock'}
         >
@@ -163,15 +163,15 @@ export default function RecentlyViewed({
           </Button>
         </div>
       )}
-      
+
       <div className={cn(
-        layout === 'horizontal' 
-          ? "flex gap-4 overflow-x-auto pb-4" 
+        layout === 'horizontal'
+          ? "flex gap-4 overflow-x-auto pb-4"
           : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
       )}>
         {recentlyViewed.map(product => (
-          <div 
-            key={product.id} 
+          <div
+            key={product.id}
             className={cn(
               layout === 'horizontal' && "flex-shrink-0 w-64"
             )}
@@ -190,20 +190,20 @@ export const useRecentlyViewed = () => {
     try {
       const stored = localStorage.getItem('recentlyViewed')
       let productIds: number[] = []
-      
+
       if (stored) {
         productIds = JSON.parse(stored)
       }
-      
+
       // Remove if already exists and add to beginning
       productIds = productIds.filter(id => id !== productId)
       productIds.unshift(productId)
-      
+
       // Keep only last 20 items
       productIds = productIds.slice(0, 20)
-      
+
       localStorage.setItem('recentlyViewed', JSON.stringify(productIds))
-      
+
       // Dispatch custom event to notify other components
       window.dispatchEvent(new CustomEvent('recentlyViewedUpdated'))
     } catch (error) {

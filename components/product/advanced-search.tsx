@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useMemo } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -22,10 +22,10 @@ interface AdvancedSearchProps {
   className?: string
 }
 
-export default function AdvancedSearch({ 
-  onSearch, 
+export default function AdvancedSearch({
+  onSearch,
   placeholder = "Search for products...",
-  className 
+  className
 }: AdvancedSearchProps) {
   const [query, setQuery] = useState("")
   const [isOpen, setIsOpen] = useState(false)
@@ -35,13 +35,13 @@ export default function AdvancedSearch({
   const inputRef = useRef<HTMLInputElement>(null)
 
   // Mock trending searches
-  const trendingSearches = [
+  const trendingSearches = useMemo(() => [
     "Gaming Laptop",
-    "Wireless Headphones", 
+    "Wireless Headphones",
     "Smart Watch",
     "iPhone",
     "Gaming Console"
-  ]
+  ], [])
 
   useEffect(() => {
     // Load recent searches from localStorage
@@ -70,7 +70,7 @@ export default function AdvancedSearch({
         type: 'recent',
         text: search
       }))
-      
+
       const trendingSuggestions: SearchSuggestion[] = trendingSearches.slice(0, 5).map(search => ({
         type: 'trending',
         text: search
@@ -80,9 +80,9 @@ export default function AdvancedSearch({
     } else {
       // Generate suggestions based on query
       const newSuggestions: SearchSuggestion[] = []
-      
+
       // Product suggestions
-      const matchingProducts = products.filter(product => 
+      const matchingProducts = products.filter(product =>
         product.name.toLowerCase().includes(query.toLowerCase()) ||
         product.description.toLowerCase().includes(query.toLowerCase()) ||
         product.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
@@ -127,7 +127,7 @@ export default function AdvancedSearch({
 
       setSuggestions(newSuggestions)
     }
-  }, [query, recentSearches])
+  }, [query, recentSearches, trendingSearches])
 
   const handleSearch = (searchQuery: string) => {
     if (searchQuery.trim()) {
@@ -135,7 +135,7 @@ export default function AdvancedSearch({
       const updatedRecent = [searchQuery, ...recentSearches.filter(s => s !== searchQuery)].slice(0, 5)
       setRecentSearches(updatedRecent)
       localStorage.setItem('recentSearches', JSON.stringify(updatedRecent))
-      
+
       onSearch?.(searchQuery)
       setQuery(searchQuery)
       setIsOpen(false)

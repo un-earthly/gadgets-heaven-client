@@ -2,13 +2,11 @@
 
 import { useState, useMemo } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Slider } from "@/components/ui/slider"
 import { Separator } from "@/components/ui/separator"
-import { Grid, List, Filter, SlidersHorizontal, Star } from "lucide-react"
+import { Grid, List, SlidersHorizontal, Star } from "lucide-react"
 import { products, categories } from "@/data"
 import { cn } from "@/lib/utils"
 import AdvancedSearch from "@/components/product/advanced-search"
@@ -98,7 +96,7 @@ export default function ProductsPage() {
     }
   }, [searchQuery, filters, sortBy])
 
-  const handleFilterChange = (key: keyof FilterState, value: any) => {
+  const handleFilterChange = (key: keyof FilterState, value: string | number | [number, number] | string[]) => {
     setFilters(prev => ({ ...prev, [key]: value }))
   }
 

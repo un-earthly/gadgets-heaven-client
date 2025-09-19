@@ -3,21 +3,21 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle, 
-  DialogTrigger 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
 } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { 
-  Share2, 
-  Copy, 
-  Check, 
-  Facebook, 
-  Twitter, 
+import {
+  Share2,
+  Copy,
+  Check,
+  Facebook,
+  Twitter,
   Mail,
   MessageCircle,
   Link as LinkIcon,
@@ -25,6 +25,7 @@ import {
 } from "lucide-react"
 import { Product } from "@/data"
 import { cn } from "@/lib/utils"
+import Image from "next/image"
 
 interface ProductShareProps {
   product: Product
@@ -113,12 +114,12 @@ export default function ProductShare({ product, trigger, className }: ProductSha
           </Button>
         )}
       </DialogTrigger>
-      
+
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Share Product</DialogTitle>
         </DialogHeader>
-        
+
         <div className="space-y-6">
           {/* Product Preview */}
           <div className="flex items-center gap-3 p-3 bg-zinc-50 dark:bg-zinc-900 rounded-lg">
@@ -193,7 +194,7 @@ export default function ProductShare({ product, trigger, className }: ProductSha
             <label className="text-sm font-medium">QR Code</label>
             <div className="flex flex-col items-center gap-3">
               <div className="p-4 bg-white rounded-lg border">
-                <img
+                <Image
                   src={generateQRCode()}
                   alt="QR Code"
                   className="w-32 h-32"
@@ -227,7 +228,7 @@ export default function ProductShare({ product, trigger, className }: ProductSha
                 <Share2 className="h-4 w-4 mr-2" />
                 Native Share (Mobile)
               </Button>
-              
+
               <Button
                 variant="outline"
                 size="sm"
@@ -244,7 +245,7 @@ export default function ProductShare({ product, trigger, className }: ProductSha
                     ctx.fillText(product.name, 20, 40)
                     ctx.fillText(`$${product.price}`, 20, 70)
                     ctx.fillText(productUrl, 20, 100)
-                    
+
                     canvas.toBlob((blob) => {
                       if (blob) {
                         const url = URL.createObjectURL(blob)

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo, useEffect } from "react"
-import { notFound } from "next/navigation"
+import { notFound, useSearchParams } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -12,14 +12,13 @@ import { Separator } from "@/components/ui/separator"
 import { Progress } from "@/components/ui/progress"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Textarea } from "@/components/ui/textarea"
-import { Input } from "@/components/ui/input"
-import { 
-  Star, 
-  Heart, 
-  Share2, 
-  ShoppingCart, 
-  Truck, 
-  Shield, 
+import {
+  Star,
+  Heart,
+  Share2,
+  ShoppingCart,
+  Truck,
+  Shield,
   RotateCcw,
   Plus,
   Minus,
@@ -38,70 +37,68 @@ import PriceHistory from "@/components/product/price-history"
 import ProductShare from "@/components/product/product-share"
 import AvailabilityNotification from "@/components/product/availability-notification"
 
-interface ProductPageProps {
-  params: {
-    id: string
-  }
-}
+export default function ProductPage() {
+  const searchParams = useSearchParams();
+  const productId = parseInt(searchParams.get("id") || "");
 
-export default function ProductPage({ params }: ProductPageProps) {
-  const productId = parseInt(params.id)
-  const product = products.find(p => p.id === productId)
-  
-  if (!product) {
-    notFound()
-  }
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedVariants, setSelectedVariants] = useState<{ [key: string]: string }>({});
+  const [quantity, setQuantity] = useState(1);
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
-  const [selectedVariants, setSelectedVariants] = useState<{ [key: string]: string }>({})
-  const [quantity, setQuantity] = useState(1)
-  const [isWishlisted, setIsWishlisted] = useState(false)
-  const [showImageZoom, setShowImageZoom] = useState(false)
-  
-  const { addToRecentlyViewed } = useRecentlyViewed()
+  const { addToRecentlyViewed } = useRecentlyViewed();
 
-  // Add to recently viewed when component mounts
-  useEffect(() => {
-    addToRecentlyViewed(productId)
-  }, [productId, addToRecentlyViewed])
-
-  const reviews = productReviews[productId] || []
-  const questions = productQuestions[productId] || []
-  const relatedProducts = products.filter(p => product.relatedProducts.includes(p.id))
+  const product = products.find((p) => p.id === productId);
+  const reviews = useMemo(() => productReviews[productId] || [], [productId]);
+  const questions = useMemo(() => productQuestions[productId] || [], [productId]);
+  const relatedProducts = useMemo(
+    () => products.filter((p) => product?.relatedProducts.includes(p.id)),
+    [product]
+  );
 
   // Calculate variant price
   const variantPrice = useMemo(() => {
-    let additionalPrice = 0
-    if (product.variants) {
+    let additionalPrice = 0;
+    if (product?.variants) {
       Object.entries(selectedVariants).forEach(([variantType, variantId]) => {
-        const variant = product.variants![variantType]?.find(v => v.id === variantId)
+        const variant = product.variants![variantType]?.find((v) => v.id === variantId);
         if (variant?.price) {
-          additionalPrice += variant.price
+          additionalPrice += variant.price;
         }
-      })
+      });
     }
-    return product.price + additionalPrice
-  }, [product, selectedVariants])
+    return (product?.price ?? 0) + additionalPrice;
+  }, [product, selectedVariants]);
 
   // Calculate rating distribution
   const ratingDistribution = useMemo(() => {
-    const distribution = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 }
-    reviews.forEach(review => {
-      distribution[review.rating as keyof typeof distribution]++
-    })
-    return distribution
-  }, [reviews])
+    const distribution = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 };
+    reviews.forEach((review) => {
+      distribution[review.rating as keyof typeof distribution]++;
+    });
+    return distribution;
+  }, [reviews]);
+
+  useEffect(() => {
+    if (productId) {
+      addToRecentlyViewed(productId);
+    }
+  }, [productId, addToRecentlyViewed]);
+
+  if (!productId || !product) {
+    return notFound();
+  }
 
   const handleVariantChange = (variantType: string, variantId: string) => {
-    setSelectedVariants(prev => ({
+    setSelectedVariants((prev) => ({
       ...prev,
-      [variantType]: variantId
-    }))
-  }
+      [variantType]: variantId,
+    }));
+  };
 
   const handleQuantityChange = (change: number) => {
-    setQuantity(prev => Math.max(1, Math.min(product.stock, prev + change)))
-  }
+    setQuantity((prev) => Math.max(1, Math.min(product.stock, prev + change)));
+  };
 
   const ImageGallery = () => (
     <div className="space-y-4">
@@ -113,15 +110,10 @@ export default function ProductPage({ params }: ProductPageProps) {
           fill
           className="object-cover"
         />
-        <Button
-          variant="secondary"
-          size="icon"
-          className="absolute top-4 right-4"
-          onClick={() => setShowImageZoom(true)}
-        >
+        <Button variant="secondary" size="icon" className="absolute top-4 right-4">
           <Zoom className="h-4 w-4" />
         </Button>
-        
+
         {/* Navigation arrows */}
         {product.images.length > 1 && (
           <>
@@ -129,9 +121,11 @@ export default function ProductPage({ params }: ProductPageProps) {
               variant="secondary"
               size="icon"
               className="absolute left-4 top-1/2 transform -translate-y-1/2"
-              onClick={() => setSelectedImageIndex(prev => 
-                prev === 0 ? product.images.length - 1 : prev - 1
-              )}
+              onClick={() =>
+                setSelectedImageIndex((prev) =>
+                  prev === 0 ? product.images.length - 1 : prev - 1
+                )
+              }
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -139,9 +133,11 @@ export default function ProductPage({ params }: ProductPageProps) {
               variant="secondary"
               size="icon"
               className="absolute right-4 top-1/2 transform -translate-y-1/2"
-              onClick={() => setSelectedImageIndex(prev => 
-                prev === product.images.length - 1 ? 0 : prev + 1
-              )}
+              onClick={() =>
+                setSelectedImageIndex((prev) =>
+                  prev === product.images.length - 1 ? 0 : prev + 1
+                )
+              }
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
@@ -158,17 +154,12 @@ export default function ProductPage({ params }: ProductPageProps) {
               onClick={() => setSelectedImageIndex(index)}
               className={cn(
                 "relative w-20 h-20 rounded-md overflow-hidden border-2 flex-shrink-0",
-                selectedImageIndex === index 
-                  ? "border-orange-500" 
+                selectedImageIndex === index
+                  ? "border-orange-500"
                   : "border-transparent hover:border-zinc-300"
               )}
             >
-              <Image
-                src={image}
-                alt={`${product.name} ${index + 1}`}
-                fill
-                className="object-cover"
-              />
+              <Image src={image} alt={product.name} fill className="object-cover" />
             </button>
           ))}
         </div>
@@ -195,9 +186,9 @@ export default function ProductPage({ params }: ProductPageProps) {
             </Badge>
           )}
         </div>
-        
+
         <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
-        
+
         <div className="flex items-center gap-4 mb-4">
           <div className="flex items-center">
             <div className="flex">
@@ -206,8 +197,8 @@ export default function ProductPage({ params }: ProductPageProps) {
                   key={i}
                   className={cn(
                     "h-4 w-4",
-                    i < Math.floor(product.rating) 
-                      ? "fill-yellow-400 text-yellow-400" 
+                    i < Math.floor(product.rating)
+                      ? "fill-yellow-400 text-yellow-400"
                       : "text-zinc-300"
                   )}
                 />
@@ -251,7 +242,7 @@ export default function ProductPage({ params }: ProductPageProps) {
       {product.variants && Object.entries(product.variants).map(([variantType, variants]) => (
         <div key={variantType} className="space-y-3">
           <h3 className="font-medium capitalize">
-            {variantType}: {selectedVariants[variantType] && 
+            {variantType}: {selectedVariants[variantType] &&
               variants.find(v => v.id === selectedVariants[variantType])?.value
             }
           </h3>
@@ -306,8 +297,8 @@ export default function ProductPage({ params }: ProductPageProps) {
         </div>
 
         <div className="flex gap-3">
-          <Button 
-            className="flex-1" 
+          <Button
+            className="flex-1"
             size="lg"
             disabled={product.availability === 'out-of-stock'}
           >
@@ -324,7 +315,7 @@ export default function ProductPage({ params }: ProductPageProps) {
               isWishlisted && "fill-red-500 text-red-500"
             )} />
           </Button>
-          <ProductShare 
+          <ProductShare
             product={product}
             trigger={
               <Button variant="outline" size="lg">
@@ -467,8 +458,8 @@ export default function ProductPage({ params }: ProductPageProps) {
                           key={i}
                           className={cn(
                             "h-5 w-5",
-                            i < Math.floor(product.rating) 
-                              ? "fill-yellow-400 text-yellow-400" 
+                            i < Math.floor(product.rating)
+                              ? "fill-yellow-400 text-yellow-400"
                               : "text-zinc-300"
                           )}
                         />
@@ -478,14 +469,14 @@ export default function ProductPage({ params }: ProductPageProps) {
                       Based on {product.reviewCount} reviews
                     </p>
                   </div>
-                  
+
                   <div className="space-y-2">
                     {[5, 4, 3, 2, 1].map(rating => (
                       <div key={rating} className="flex items-center gap-3">
                         <span className="text-sm w-8">{rating}★</span>
-                        <Progress 
-                          value={(ratingDistribution[rating as keyof typeof ratingDistribution] / reviews.length) * 100} 
-                          className="flex-1" 
+                        <Progress
+                          value={(ratingDistribution[rating as keyof typeof ratingDistribution] / reviews.length) * 100}
+                          className="flex-1"
                         />
                         <span className="text-sm text-zinc-600 w-8">
                           {ratingDistribution[rating as keyof typeof ratingDistribution]}
@@ -507,7 +498,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                         <AvatarImage src={review.userImage} />
                         <AvatarFallback>{review.userName[0]}</AvatarFallback>
                       </Avatar>
-                      
+
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="font-medium">{review.userName}</span>
@@ -518,7 +509,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                             </Badge>
                           )}
                         </div>
-                        
+
                         <div className="flex items-center gap-2 mb-2">
                           <div className="flex">
                             {Array.from({ length: 5 }).map((_, i) => (
@@ -526,8 +517,8 @@ export default function ProductPage({ params }: ProductPageProps) {
                                 key={i}
                                 className={cn(
                                   "h-4 w-4",
-                                  i < review.rating 
-                                    ? "fill-yellow-400 text-yellow-400" 
+                                  i < review.rating
+                                    ? "fill-yellow-400 text-yellow-400"
                                     : "text-zinc-300"
                                 )}
                               />
@@ -535,12 +526,12 @@ export default function ProductPage({ params }: ProductPageProps) {
                           </div>
                           <span className="text-sm text-zinc-500">{review.date}</span>
                         </div>
-                        
+
                         <h4 className="font-medium mb-2">{review.title}</h4>
                         <p className="text-zinc-700 dark:text-zinc-300 mb-3">
                           {review.comment}
                         </p>
-                        
+
                         {review.images && (
                           <div className="flex gap-2 mb-3">
                             {review.images.map((image, index) => (
@@ -550,7 +541,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                             ))}
                           </div>
                         )}
-                        
+
                         <div className="flex items-center gap-4 text-sm text-zinc-600">
                           <button className="flex items-center gap-1 hover:text-orange-600">
                             <ThumbsUp className="h-4 w-4" />
@@ -594,7 +585,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                           Asked by {qa.userName} on {qa.date}
                         </p>
                       </div>
-                      
+
                       {qa.answer && (
                         <div className="ml-6 p-4 bg-zinc-50 dark:bg-zinc-900 rounded-lg">
                           <div className="flex items-center gap-2 mb-2">

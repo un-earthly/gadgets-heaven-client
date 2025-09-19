@@ -4,26 +4,25 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogHeader, 
-  DialogTitle, 
-  DialogTrigger 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
 } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { Switch } from "@/components/ui/switch"
-import { 
-  Bell, 
-  Mail, 
-  Smartphone, 
-  Check, 
+import {
+  Bell,
+  Mail,
+  Smartphone,
+  Check,
   AlertCircle,
   Package,
   Clock
 } from "lucide-react"
 import { Product } from "@/data"
-import { cn } from "@/lib/utils"
 
 interface AvailabilityNotificationProps {
   product: Product
@@ -40,7 +39,7 @@ export default function AvailabilityNotification({ product, className }: Availab
 
   const handleSubscribe = () => {
     if (!email && !phone) return
-    
+
     // In a real app, this would save to backend
     const notifications = JSON.parse(localStorage.getItem('availabilityNotifications') || '[]')
     const newNotification = {
@@ -51,13 +50,13 @@ export default function AvailabilityNotification({ product, className }: Availab
       createdAt: new Date().toISOString(),
       status: 'active'
     }
-    
+
     notifications.push(newNotification)
     localStorage.setItem('availabilityNotifications', JSON.stringify(notifications))
-    
+
     setIsSubscribed(true)
     setShowDialog(false)
-    
+
     // Show success message
     alert(`Great! We'll notify you when ${product.name} is back in stock.`)
   }
@@ -146,9 +145,9 @@ export default function AvailabilityNotification({ product, className }: Availab
                     Get notified when back in stock
                   </h4>
                   <p className="text-sm text-orange-700 dark:text-orange-300 mb-3">
-                    We'll send you an alert as soon as this item becomes available again.
+                    We&apos;ll send you an alert as soon as this item becomes available again.
                   </p>
-                  
+
                   <Dialog open={showDialog} onOpenChange={setShowDialog}>
                     <DialogTrigger asChild>
                       <Button size="sm" className="bg-orange-600 hover:bg-orange-700">
@@ -156,12 +155,12 @@ export default function AvailabilityNotification({ product, className }: Availab
                         Notify Me
                       </Button>
                     </DialogTrigger>
-                    
+
                     <DialogContent>
                       <DialogHeader>
                         <DialogTitle>Stock Alert for {product.name}</DialogTitle>
                       </DialogHeader>
-                      
+
                       <div className="space-y-4">
                         <div className="p-3 bg-zinc-50 dark:bg-zinc-900 rounded-lg">
                           <div className="flex items-center gap-2 mb-2">
@@ -224,21 +223,21 @@ export default function AvailabilityNotification({ product, className }: Availab
 
                         <div className="p-3 bg-blue-50 dark:bg-blue-950 rounded-lg">
                           <p className="text-sm text-blue-700 dark:text-blue-300">
-                            We'll notify you immediately when this product is back in stock. 
+                            We&apos;ll notify you immediately when this product is back in stock.
                             You can unsubscribe at any time.
                           </p>
                         </div>
 
                         <div className="flex gap-2">
-                          <Button 
+                          <Button
                             onClick={handleSubscribe}
                             disabled={(!emailNotifications || !email) && (!smsNotifications || !phone)}
                             className="flex-1"
                           >
                             Subscribe to Alerts
                           </Button>
-                          <Button 
-                            variant="outline" 
+                          <Button
+                            variant="outline"
                             onClick={() => setShowDialog(false)}
                           >
                             Cancel
@@ -256,10 +255,10 @@ export default function AvailabilityNotification({ product, className }: Availab
                 <Check className="h-5 w-5 text-green-500" />
                 <div>
                   <h4 className="font-medium text-green-900 dark:text-green-100">
-                    You're subscribed!
+                    You&apos;re subscribed!
                   </h4>
                   <p className="text-sm text-green-700 dark:text-green-300">
-                    We'll notify you when this item is back in stock.
+                    We&apos;ll notify you when this item is back in stock.
                   </p>
                 </div>
               </div>

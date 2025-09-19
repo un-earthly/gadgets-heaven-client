@@ -622,62 +622,106 @@ export const upcomingServices = [
     }
 ];
 
-export const deals = [
+export type Deal = {
+    id: number;
+    name: string;
+    type: DealType;
+    endsAt: string;
+    products: Product[];
+    bundles?: {
+        id: number;
+        name: string;
+        items: string[];
+        originalPrice: number;
+        bundlePrice: number;
+        savings: number;
+    }[]; // Optional for non-bundle deals
+};
+
+export const deals: Deal[] = [
     {
         id: 1,
         name: "Flash Sale",
-        type: "time-limited" as DealType,
-        endsAt: "2024-03-20",
+        type: "time-limited",
+        endsAt: "2025-09-30T23:59:59Z",
         products: [
             {
                 id: 101,
-                name: "Wireless Charger",
-                originalPrice: 49.99,
-                discountedPrice: 29.99,
-                image: TEST_IMAGE,
-                discount: 40
+                name: "Smartphone X",
+                description: "Latest model with advanced features",
+                price: 699,
+                originalPrice: 799,
+                images: [TEST_IMAGE],
+                category: "Electronics",
+                brand: "BrandX",
+                stock: 50,
+                rating: 4.5,
+                reviewCount: 120,
+                specifications: [],
+                features: ["5G", "128GB Storage"],
+                tags: ["smartphone", "electronics"],
+                availability: "in-stock",
+                shippingInfo: {
+                    freeShipping: true,
+                    estimatedDays: 3,
+                    weight: 0.5,
+                },
+                warranty: "1 Year Limited Warranty",
+                returnPolicy: "30-day return policy",
+                relatedProducts: [],
             },
-            {
-                id: 102,
-                name: "Bluetooth Speaker",
-                originalPrice: 89.99,
-                discountedPrice: 59.99,
-                image: TEST_IMAGE,
-                discount: 33
-            }
-        ]
+        ],
     },
     {
         id: 2,
         name: "Bundle Deals",
-        type: "bundle" as DealType,
-        products: [
+        type: "bundle",
+        endsAt: "2025-10-15T23:59:59Z",
+        products: [],
+        bundles: [
             {
                 id: 201,
-                name: "Home Office Bundle",
-                items: ["Wireless Keyboard", "Mouse", "Webcam"],
-                originalPrice: 199.99,
-                bundlePrice: 149.99,
-                image: TEST_IMAGE,
-                savings: 50
-            }
-        ]
+                name: "Home Office Setup",
+                items: ["Desk", "Chair", "Lamp"],
+                originalPrice: 500,
+                bundlePrice: 400,
+                savings: 100,
+            },
+        ],
     },
     {
         id: 3,
-        name: "Clearance",
-        type: "clearance" as DealType,
+        name: "Clearance Sale",
+        type: "clearance",
+        endsAt: "2025-09-25T23:59:59Z",
         products: [
             {
                 id: 301,
-                name: "Previous Gen Smartwatch",
-                originalPrice: 199.99,
-                discountedPrice: 99.99,
-                image: TEST_IMAGE,
-                discount: 50
-            }
-        ]
-    }
+                name: "Old Model Laptop",
+                description: "Clearance sale - limited stock available",
+                price: 299,
+                originalPrice: 499,
+                images: [TEST_IMAGE],
+                category: "Computers",
+                brand: "BrandY",
+                stock: 5,
+                rating: 4.2,
+                reviewCount: 80,
+                specifications: [],
+                features: ["Clearance", "Limited Stock"],
+                tags: ["laptop", "clearance"],
+                availability: "in-stock",
+                shippingInfo: {
+                    freeShipping: true,
+                    estimatedDays: 5,
+                    weight: 2,
+                },
+                warranty: "No Warranty",
+                returnPolicy: "Final sale - no returns",
+                relatedProducts: [],
+            },
+        ],
+    },
 ];
 
 export const serviceCategories = [
@@ -977,4 +1021,4 @@ export const reviews = [
         category: "Tablets",
         price: 1099.99
     }
-] 
+]
