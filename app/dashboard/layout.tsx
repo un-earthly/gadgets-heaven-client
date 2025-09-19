@@ -30,6 +30,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DesktopSidebar, MobileSidebar } from '@/components/app-sidebar';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 const adminItems = [
   { name: 'Dashboard', href: '/dashboard/admin', icon: Home },
@@ -223,7 +224,7 @@ const userItems = [
 ];
 
 
-const DashboardLayout = ({ children }:{children:React.ReactNode}) => {
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const items = usePathname()?.split('/')[2] === "user" ? userItems : adminItems;
   return (
     <div className="flex h-screen bg-gradient-to-b from-gray-50 to bg-gray-100 dark:bg-zinc-950">
@@ -264,8 +265,16 @@ const DashboardLayout = ({ children }:{children:React.ReactNode}) => {
                 <DropdownMenuContent align="end" className="w-56">
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Settings</DropdownMenuItem>
+                  <Link href="/dashboard/user/settings/profile">
+                    <DropdownMenuItem>
+                      Profile
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/dashboard/user/settings/security">
+                    <DropdownMenuItem>
+                      Settings
+                    </DropdownMenuItem>
+                  </Link>
                   <DropdownMenuItem className="text-red-600">
                     <LogOut className="w-4 h-4 mr-2" />
                     Logout

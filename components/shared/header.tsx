@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { ShoppingCart, Menu, X, Moon, Sun, Search } from "lucide-react"
 import Image from "next/image"
 import { useTheme } from "next-themes"
+import AdvancedSearch from "../product/advanced-search"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -80,14 +80,12 @@ const Header = () => {
 
             {/* Desktop Search Bar */}
             <div className="hidden md:flex flex-1 max-w-xl mx-8">
-              <div className="relative w-full">
-                <Input
-                  type="search"
-                  placeholder="Search for products..."
-                  className="w-full pl-10 bg-orange-50/50 dark:bg-zinc-900/50 border-orange-100 dark:border-zinc-800"
-                />
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-400" />
-              </div>
+              <AdvancedSearch 
+                onSearch={(query) => {
+                  // Navigate to products page with search query
+                  window.location.href = `/products?search=${encodeURIComponent(query)}`
+                }}
+              />
             </div>
 
             {/* Desktop Actions */}
@@ -117,14 +115,13 @@ const Header = () => {
           {/* Mobile Search (Collapsible) */}
           {isSearchOpen && (
             <div className="md:hidden py-3 border-t border-orange-100 dark:border-zinc-800">
-              <div className="relative">
-                <Input
-                  type="search"
-                  placeholder="Search for products..."
-                  className="w-full pl-10 bg-orange-50/50 dark:bg-zinc-900/50 border-orange-100 dark:border-zinc-800"
-                />
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-zinc-400" />
-              </div>
+              <AdvancedSearch 
+                onSearch={(query) => {
+                  // Navigate to products page with search query
+                  window.location.href = `/products?search=${encodeURIComponent(query)}`
+                  setIsSearchOpen(false)
+                }}
+              />
             </div>
           )}
 

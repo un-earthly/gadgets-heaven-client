@@ -1,17 +1,7 @@
 import Link from "next/link"
-import { Button } from "../ui/button"
-import { Card, CardHeader, CardContent, CardFooter } from "../ui/card"
-import { ShoppingCart, Star } from "lucide-react"
-import Image from "next/image"
-import { products, Product as DataProduct } from "@/data"
-import { Badge } from "../ui/badge"
-import DimmedButton from "./DimmedButton"
+import { products } from "@/data"
+import ProductCard from "../product/product-card"
 import { HighlightedOutlineButton } from "./HighlightButton"
-
-type Product = DataProduct & {
-    badge?: string;
-    rating?: number;
-}
 
 const FeaturedProducts = () => {
     return (
@@ -33,53 +23,12 @@ const FeaturedProducts = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {products.map((product: Product) => (
-                        <Card key={product.id} className="group relative overflow-hidden hover:bg-accent/50 transition-all duration-200">
-                            {product.badge && (
-                                <div className="absolute top-4 right-4 z-10">
-                                    <Badge variant="secondary">
-                                        {product.badge}
-                                    </Badge>
-                                </div>
-                            )}
-                            <CardHeader className="pt-8 px-6">
-                                <div className="relative h-48 flex items-center justify-center">
-                                    <Image
-                                        src={product.image}
-                                        alt={product.name}
-                                        width={160}
-                                        height={160}
-                                        className="h-40 w-40 object-contain group-hover:scale-105 
-                                        transition-transform duration-500 ease-out"
-                                    />
-                                </div>
-                            </CardHeader>
-                            <CardContent className="px-6">
-                                <h3 className="text-xl font-semibold mb-2 group-hover:text-orange-500 
-                                    dark:group-hover:text-orange-400 transition-colors">{product.name}</h3>
-                                <div className="flex justify-between items-center mb-4">
-                                    <span className="text-2xl font-bold text-orange-500/90 dark:text-orange-400/90">
-                                        ${product.price.toFixed(2)}
-                                    </span>
-                                    <span className="flex items-center gap-1 text-sm text-muted-foreground">
-                                        <Star className="h-4 w-4 text-orange-400/90" />
-                                        {product.rating}
-                                    </span>
-                                </div>
-                            </CardContent>
-                            <CardFooter className="px-6 pb-6 flex gap-3">
-                                <Button
-                                    variant="ghost"
-                                    className="flex-1 hover:bg-accent"
-                                    asChild
-                                >
-                                    <Link href={`/products/${product.id}`}>Details</Link>
-                                </Button>
-                                <DimmedButton>
-                                    <ShoppingCart className="mr-2 h-4 w-4" /> Add
-                                </DimmedButton>
-                            </CardFooter>
-                        </Card>
+                    {products.slice(0, 4).map((product) => (
+                        <ProductCard 
+                            key={product.id} 
+                            product={product}
+                            showCompareButton={true}
+                        />
                     ))}
                 </div>
                 <div className="flex justify-center mt-8">

@@ -5,6 +5,7 @@ import { ArrowUp, MessageCircle, X, Send } from "lucide-react"
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { cn } from "@/lib/utils"
+import ComparisonFAB from "../product/comparison-fab"
 
 const FloatingButtons = () => {
     const [isScrollVisible, setIsScrollVisible] = useState(false)
@@ -33,6 +34,8 @@ const FloatingButtons = () => {
     return (
         <>
             <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
+                <ComparisonFAB />
+
                 {isScrollVisible && (
                     <Button
                         variant="outline"

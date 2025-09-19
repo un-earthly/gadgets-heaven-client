@@ -3,6 +3,7 @@ import BackgroundGradient from "@/components/shared/BackgroundGradient"
 import Header from "@/components/shared/header"
 import FloatingButtons from "@/components/shared/FloatingButtons"
 import Footer from "@/components/shared/Footer"
+import { ComparisonProvider } from "@/contexts/comparison-context"
 
 export default function RootLayout({
     children,
@@ -10,16 +11,18 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
     return (
-        <div >
-            <div className="min-h-screen relative">
-                <BackgroundGradient />
-                <div className="sticky z-50 backdrop-blur-xl top-0">
-                    <Header />
+        <ComparisonProvider>
+            <div >
+                <div className="min-h-screen relative">
+                    <BackgroundGradient />
+                    <div className="sticky z-50 backdrop-blur-xl top-0">
+                        <Header />
+                    </div>
+                    {children}
+                    <Footer />
+                    <FloatingButtons />
                 </div>
-                {children}
-                <Footer />
-                <FloatingButtons />
             </div>
-        </div>
+        </ComparisonProvider>
     )
 }
