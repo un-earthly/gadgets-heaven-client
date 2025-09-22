@@ -24,7 +24,7 @@ export default function NewArrivalsPage() {
                     icon={Star}
                     gradient="from-orange-500 to-orange-600"
                 />
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {newArrivals.featured.map((product) => {
                         // Convert NewArrival to Product format for ProductCard
                         const productData = {

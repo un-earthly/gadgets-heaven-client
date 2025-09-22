@@ -27,7 +27,7 @@ export default function DealsPage() {
                     gradient="from-red-500 to-red-600"
                 />
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     {deals.find(deal => deal.type === 'time-limited')?.products.map((product) => {
                         return (
                             <ProductCard

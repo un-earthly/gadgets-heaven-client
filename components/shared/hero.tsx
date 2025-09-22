@@ -7,14 +7,6 @@ import { stats } from "@/data"
 import { DimmedButtonWithArrowLink } from "./DimmedButton"
 import HighlightButton from "./HighlightButton"
 
-// type Stat = {
-//     value: string;
-//     label: string;
-//     icon: LucideIcon;
-//     gradient: string;
-//     darkGradient: string;
-// }
-
 const Hero = () => {
 
 

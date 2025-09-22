@@ -15,9 +15,7 @@ export default function RootLayout({
             <div >
                 <div className="min-h-screen relative">
                     <BackgroundGradient />
-                    <div className="sticky z-50 backdrop-blur-xl top-0">
-                        <Header />
-                    </div>
+                    <Header />
                     {children}
                     <Footer />
                     <FloatingButtons />
