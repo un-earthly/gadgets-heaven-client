@@ -1,0 +1,26 @@
+
+> gadgets-heaven-client@0.1.0 build /Volumes/D/projects/gadgets-heaven/client
+> next build
+
+   ▲ Next.js 15.1.6
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+
+Failed to compile.
+
+./app/(client)/products/page.tsx
+6:47  Error: 'X' is defined but never used.  @typescript-eslint/no-unused-vars
+6:58  Error: 'Menu' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/product/filter-sidebar.tsx
+10:16  Error: 'X' is defined but never used.  @typescript-eslint/no-unused-vars
+
+./components/shared/header.tsx
+43:22  Error: 'setIsScrolled' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+44:10  Error: 'showStickyBar' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+44:25  Error: 'setShowStickyBar' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+ ELIFECYCLE  Command failed with exit code 1.
