@@ -6,8 +6,10 @@ import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { cn } from "@/lib/utils"
 import ComparisonFAB from "../product/comparison-fab"
+import { useTenant } from "@/contexts/tenant-context"
 
 const FloatingButtons = () => {
+    const tenant = useTenant()
     const [isScrollVisible, setIsScrollVisible] = useState(false)
     const [isChatOpen, setIsChatOpen] = useState(false)
 
@@ -103,7 +105,7 @@ const FloatingButtons = () => {
                             text-orange-600 dark:text-orange-300 
                             rounded-full text-sm font-medium self-start">
                             <MessageCircle className="w-4 h-4" />
-                            Welcome to Gadgets Heaven!
+                            Welcome to {tenant.name}!
                         </div>
                         <p className="text-zinc-600 dark:text-zinc-400">
                             How can we help you today?

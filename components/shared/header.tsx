@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { useTenant } from "@/contexts/tenant-context"
 
 function ModeToggle() {
   const { setTheme } = useTheme()
@@ -38,6 +39,7 @@ function ModeToggle() {
 }
 
 const Header = () => {
+  const tenant = useTenant()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -69,7 +71,7 @@ const Header = () => {
         {/* Top Bar - Contact & Support */}
         <div className="bg-orange-50 dark:bg-zinc-900 py-2 border-b border-orange-100 dark:border-zinc-800">
           <div className="container mx-auto px-4 flex justify-between items-center text-sm">
-            <span className="text-zinc-600 dark:text-zinc-400">Support: (123) 456-7890</span>
+            <span className="text-zinc-600 dark:text-zinc-400">Support: {tenant.contactPhone || '(123) 456-7890'}</span>
             <Link href="/track-order" className="text-orange-600 dark:text-orange-400 hover:underline">
               Track Your Order
             </Link>
@@ -83,10 +85,10 @@ const Header = () => {
             <div className="py-4 flex items-center justify-between">
               <Link href="/" className="flex-shrink-0">
                 <Image
-                  src={resolvedTheme === "light" ? "/logo-text-dark.png" : "/logo-beige.png"}
+                  src={tenant.logoUrl || (resolvedTheme === "light" ? "/logo-text-dark.png" : "/logo-beige.png")}
                   height={100}
                   width={120}
-                  alt="logo"
+                  alt={tenant.name || "logo"}
                 />
               </Link>
 

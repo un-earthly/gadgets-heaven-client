@@ -4,23 +4,29 @@ import Header from "@/components/shared/header"
 import FloatingButtons from "@/components/shared/FloatingButtons"
 import Footer from "@/components/shared/Footer"
 import { ComparisonProvider } from "@/contexts/comparison-context"
+import { getServerTenantBranding } from "@/lib/server-api-client"
+import { TenantProvider } from "@/contexts/tenant-context"
 
-export default function RootLayout({
+export default async function StorefrontLayout({
     children,
 }: {
     children: React.ReactNode
 }) {
+    const tenant = await getServerTenantBranding();
+
     return (
-        <ComparisonProvider>
-            <div >
-                <div className="min-h-screen relative">
-                    <BackgroundGradient />
-                    <Header />
-                    {children}
-                    <Footer />
-                    <FloatingButtons />
+        <TenantProvider tenant={tenant}>
+            <ComparisonProvider>
+                <div >
+                    <div className="min-h-screen relative">
+                        <BackgroundGradient />
+                        <Header />
+                        {children}
+                        <Footer />
+                        <FloatingButtons />
+                    </div>
                 </div>
-            </div>
-        </ComparisonProvider>
+            </ComparisonProvider>
+        </TenantProvider>
     )
 }

@@ -1,8 +1,10 @@
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
 import { Button } from "../ui/button"
+import { useTenant } from "@/contexts/tenant-context"
 
 const Footer = () => {
+    const tenant = useTenant();
     return (
         <footer className="relative bg-gradient-to-b from-white to-orange-50 dark:from-zinc-950 dark:to-black border-t">
             <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_50%,#ffa50010,transparent)]" />
@@ -12,7 +14,7 @@ const Footer = () => {
                     <div className="space-y-4">
                         <h3 className="text-xl font-semibold text-orange-600 dark:text-orange-400">About Us</h3>
                         <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                            Gadgets Heaven is your one-stop shop for all things tech. We provide the latest gadgets and expert
+                            {tenant.name} is your one-stop shop. We provide quality products and expert
                             services to keep you connected and up-to-date.
                         </p>
                     </div>
@@ -39,8 +41,8 @@ const Footer = () => {
                         <ul className="space-y-3">
                             {[
                                 { icon: MapPin, text: "123 Tech Street, Gadget City, 12345" },
-                                { icon: Phone, text: "(123) 456-7890" },
-                                { icon: Mail, text: "info@gadgetsheaven.com" }
+                                { icon: Phone, text: tenant.contactPhone || "(123) 456-7890" },
+                                { icon: Mail, text: tenant.contactEmail || "info@gadgetsheaven.com" }
                             ].map((item, index) => (
                                 <li key={index} className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
                                     <item.icon className="h-4 w-4 text-orange-500" />
@@ -71,7 +73,7 @@ const Footer = () => {
 
                 <div className="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800 text-center">
                     <p className="text-zinc-600 dark:text-zinc-400">
-                        &copy; {new Date().getFullYear()} Gadgets Heaven. All rights reserved.
+                        {tenant.footerText || `© ${new Date().getFullYear()} ${tenant.name}. All rights reserved.`}
                     </p>
                 </div>
             </div>

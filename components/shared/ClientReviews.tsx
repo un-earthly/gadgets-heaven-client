@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { HighlightedOutlineButton } from "./HighlightButton"
 import Link from "next/link"
+import { useTenant } from "@/contexts/tenant-context"
 
 const reviews = [
     {
@@ -27,6 +28,7 @@ const reviews = [
 ]
 
 const ClientReviews = () => {
+    const tenant = useTenant()
     const [currentReview, setCurrentReview] = useState(0)
 
     const nextReview = () => {
@@ -59,7 +61,7 @@ const ClientReviews = () => {
                         What Our Clients Say
                     </h2>
                     <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                        Discover why thousands of tech enthusiasts trust Gadgets Heaven for their technology needs
+                        Discover why thousands of clients trust {tenant.name} for their shopping needs
                     </p>
                 </div>
 
