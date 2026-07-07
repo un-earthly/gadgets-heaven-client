@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -24,9 +25,11 @@ const InventoryOverviewPage = () => {
             <Download className="mr-2 h-4 w-4" />
             Export
           </Button>
-          <Button>
-            <Plus className="mr-2 h-4 w-4" />
-            Add Product
+          <Button asChild>
+            <Link href="/dashboard/admin/inventory/products">
+              <Plus className="mr-2 h-4 w-4" />
+              Manage Products
+            </Link>
           </Button>
         </div>
       </div>

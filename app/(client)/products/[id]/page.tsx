@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo, useEffect } from "react"
-import { notFound, useSearchParams } from "next/navigation"
+import { notFound, useParams, useSearchParams } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -36,8 +36,24 @@ import { useRecentlyViewed } from "@/components/product/recently-viewed"
 import PriceHistory from "@/components/product/price-history"
 import ProductShare from "@/components/product/product-share"
 import AvailabilityNotification from "@/components/product/availability-notification"
+import ApiProductDetail from "@/components/product/api-product-detail"
+import { isUuid } from "@/lib/api/products"
 
 export default function ProductPage() {
+  const params = useParams<{ id: string }>();
+  const searchParams = useSearchParams();
+
+  // Real (API) products use UUID ids in the route path; the legacy demo
+  // catalogue uses numeric ids passed as ?id=. Route accordingly.
+  const routeId = typeof params?.id === "string" ? params.id : "";
+  if (isUuid(routeId)) {
+    return <ApiProductDetail productId={routeId} />;
+  }
+
+  return <MockProductPage />;
+}
+
+function MockProductPage() {
   const searchParams = useSearchParams();
   const productId = parseInt(searchParams.get("id") || "");
 

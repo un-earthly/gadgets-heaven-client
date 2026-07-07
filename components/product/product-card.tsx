@@ -55,6 +55,14 @@ export default function ProductCard({
     setIsWishlisted(!isWishlisted)
   }
 
+  // Works for both the legacy mock shape ({ color: [...] }) and the API
+  // shape (ProductVariant[]).
+  const hasMultipleOptions = product.variants
+    ? Array.isArray(product.variants)
+      ? product.variants.length > 0
+      : Object.keys(product.variants).length > 0
+    : false
+
   const getAvailabilityBadge = () => {
     switch (product.availability) {
       case 'in-stock':
@@ -135,6 +143,11 @@ export default function ProductCard({
 
               <div className="flex items-center gap-2">
                 {getAvailabilityBadge()}
+                {hasMultipleOptions && (
+                  <Badge variant="secondary" className="text-xs">
+                    Multiple options available
+                  </Badge>
+                )}
                 {product.shippingInfo.freeShipping && (
                   <Badge variant="outline" className="text-xs text-green-600">
                     Free Shipping
@@ -222,6 +235,9 @@ export default function ProductCard({
             <Badge className="bg-red-500">
               {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
             </Badge>
+          )}
+          {hasMultipleOptions && (
+            <Badge variant="secondary">Multiple options</Badge>
           )}
         </div>
 
