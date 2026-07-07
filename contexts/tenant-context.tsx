@@ -14,6 +14,10 @@ export interface Tenant {
   footerText?: string;
   activePaymentMethods?: string[];
   activeCourier?: string;
+  // When true (base tier), the admin dashboard hides advanced sections
+  // (installments, payouts, flash-sales, coupons, advanced roles/access).
+  // UI-only: the underlying APIs stay fully functional and tenant-guarded.
+  simpleMode?: boolean;
 }
 
 interface TenantContextProps {

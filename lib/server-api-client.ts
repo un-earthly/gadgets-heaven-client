@@ -12,9 +12,16 @@ export interface Tenant {
   footerText?: string;
   activePaymentMethods?: string[];
   activeCourier?: string;
+  simpleMode?: boolean;
 }
 
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api/v1';
+// Server-side (SSR/RSC) calls run inside the container, so they prefer the
+// internal service URL (e.g. http://server:3000/api/v1 on the Docker network).
+// Falls back to the public URL for local `next dev` outside Docker.
+export const API_BASE_URL =
+  process.env.INTERNAL_API_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  'http://localhost:3000/api/v1';
 
 export async function getServerTenantBranding(): Promise<Tenant> {
   let slug = 'gadgets-heaven';

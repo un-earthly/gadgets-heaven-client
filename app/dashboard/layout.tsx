@@ -1,5 +1,6 @@
 "use client"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { apiFetch } from '@/lib/api-client';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -40,7 +41,7 @@ const adminItems = [
     icon: Users,
     subItems: [
       { name: 'Customer Accounts', href: '/dashboard/admin/users' },
-      { name: 'Roles & Permissions', href: '/dashboard/admin/users/roles' },
+      { name: 'Roles & Permissions', href: '/dashboard/admin/users/roles', advanced: true },
       { name: 'Activity Logs', href: '/dashboard/admin/users/activity' },
     ],
   },
@@ -58,8 +59,14 @@ const adminItems = [
   },
 
   {
+    // Standalone warehouse ledger (Inventory.quantity / reserved / location).
+    // This is NOT the authoritative product stock — Product/ProductVariant
+    // .stockQuantity is (see KNOWN_ISSUES.md, V1-STEP 11B). Marked advanced so
+    // base-tier (simple mode) clients never see the unreconciled ledger.
+    // Product & variant stock is managed via Products, which stays visible.
     name: 'Inventory & Warehouse',
     icon: Warehouse,
+    advanced: true,
     subItems: [
       { name: 'Inventory Overview', href: '/dashboard/admin/inventory' },
       { name: 'Manage Stock', href: '/dashboard/admin/inventory/stock' },
@@ -73,9 +80,9 @@ const adminItems = [
     icon: CreditCard,
     subItems: [
       { name: 'Transactions & Payments', href: '/dashboard/admin/finance/transactions' },
-      { name: 'Service Provider Payouts', href: '/dashboard/admin/finance/payouts' },
+      { name: 'Service Provider Payouts', href: '/dashboard/admin/finance/payouts', advanced: true },
       { name: 'Invoices & Billing', href: '/dashboard/admin/finance/invoices' },
-      { name: 'Installment Plans', href: '/dashboard/admin/finance/installments' },
+      { name: 'Installment Plans', href: '/dashboard/admin/finance/installments', advanced: true },
     ],
   },
 
@@ -92,10 +99,11 @@ const adminItems = [
   {
     name: 'Promotions & Marketing',
     icon: Megaphone,
+    advanced: true,
     subItems: [
-      { name: 'Discount Coupons', href: '/dashboard/admin/promotions/coupons' },
-      { name: 'Flash Sales', href: '/dashboard/admin/promotions/flash-sales' },
-      { name: 'Referral & Loyalty Programs', href: '/dashboard/admin/promotions/referrals' },
+      { name: 'Discount Coupons', href: '/dashboard/admin/promotions/coupons', advanced: true },
+      { name: 'Flash Sales', href: '/dashboard/admin/promotions/flash-sales', advanced: true },
+      { name: 'Referral & Loyalty Programs', href: '/dashboard/admin/promotions/referrals', advanced: true },
     ],
   },
 
@@ -124,7 +132,7 @@ const adminItems = [
     subItems: [
       { name: 'Admin Accounts', href: '/dashboard/admin/settings/admins' },
       { name: 'System Configuration', href: '/dashboard/admin/settings/configuration' },
-      { name: 'Access Controls', href: '/dashboard/admin/settings/access' },
+      { name: 'Access Controls', href: '/dashboard/admin/settings/access', advanced: true },
       { name: 'Data Privacy', href: '/dashboard/admin/settings/privacy' },
     ],
   },
@@ -224,8 +232,45 @@ const userItems = [
 ];
 
 
+// A nav entry (group or sub-item) is hidden in simple mode when advanced:true.
+type NavSubItem = { name: string; href: string; advanced?: boolean };
+type NavItem = {
+  name: string;
+  href?: string;
+  icon: React.ComponentType<{ className?: string }>;
+  advanced?: boolean;
+  subItems?: NavSubItem[];
+};
+
+// Config-driven visibility ONLY. This never gates security — the underlying
+// routes/APIs stay fully functional and AdminTenantGuard-protected regardless
+// of simpleMode. When simpleMode is true we drop advanced groups, advanced
+// sub-items, and any group left with no visible sub-items.
+function filterNavForSimpleMode(items: NavItem[], simpleMode: boolean): NavItem[] {
+  if (!simpleMode) return items;
+  return items
+    .filter((group) => !group.advanced)
+    .map((group) =>
+      group.subItems
+        ? { ...group, subItems: group.subItems.filter((s) => !s.advanced) }
+        : group,
+    )
+    .filter((group) => !group.subItems || group.subItems.length > 0);
+}
+
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  const items = usePathname()?.split('/')[2] === "user" ? userItems : adminItems;
+  // Default to simple mode (hide advanced) until the tenant flag loads, so a
+  // base-tier tenant never briefly sees advanced sections.
+  const [simpleMode, setSimpleMode] = useState(true);
+  useEffect(() => {
+    apiFetch<{ simpleMode?: boolean }>('/tenants/branding')
+      .then((t) => setSimpleMode(t?.simpleMode ?? true))
+      .catch(() => setSimpleMode(true));
+  }, []);
+
+  const isUser = usePathname()?.split('/')[2] === "user";
+  const rawItems = (isUser ? userItems : adminItems) as NavItem[];
+  const items = filterNavForSimpleMode(rawItems, simpleMode);
   return (
     <div className="flex h-screen bg-gradient-to-b from-gray-50 to bg-gray-100 dark:bg-zinc-950">
       <DesktopSidebar navigationItems={items} />
@@ -233,7 +278,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="flex flex-col flex-1 overflow-hidden">
         <header className="border-b bg-white dark:bg-zinc-900">
           <div className="flex items-center justify-between px-4 py-4">
-            <MobileSidebar navigationItems={userItems} />
+            <MobileSidebar navigationItems={items} />
             <div className="flex items-center flex-1">
               <form className="max-w-lg flex-1">
                 <div className="relative">
