@@ -2,7 +2,7 @@ import React from "react"
 import "./globals.css"
 import { ThemeProvider } from "next-themes"
 import { getServerTenantBranding } from "@/lib/server-api-client"
-import { hexToHslValues } from "@/contexts/tenant-context"
+import { hexToHslValues } from "@/lib/color-utils"
 import TenantErrorPage from "@/components/shared/tenant-error"
 import { Metadata } from "next"
 
