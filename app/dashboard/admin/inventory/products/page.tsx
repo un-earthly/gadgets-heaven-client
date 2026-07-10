@@ -27,7 +27,15 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
-import { Plus, Pencil, Trash2, Loader2 } from "lucide-react"
+import { Switch } from "@/components/ui/switch"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Plus, Pencil, Trash2, Loader2, Search } from "lucide-react"
 import { ApiProduct, fetchProducts } from "@/lib/api/products"
 import {
   createProduct,
@@ -57,6 +65,7 @@ interface FormState {
   brand: string
   sku: string
   optionTypes: string
+  published: boolean
   variants: VariantRow[]
 }
 
@@ -69,6 +78,7 @@ const emptyForm: FormState = {
   brand: "",
   sku: "",
   optionTypes: "",
+  published: false,
   variants: [],
 }
 
@@ -80,13 +90,23 @@ export default function AdminProductsPage() {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  // Filters state
+  const [search, setSearch] = useState("")
+  const [statusFilter, setStatusFilter] = useState<string>("all")
+  const [categoryFilter, setCategoryFilter] = useState<string>("")
+
   const reload = useCallback(() => {
     setLoading(true)
-    fetchProducts({ limit: 50 })
+    const params: Record<string, any> = { limit: 100 }
+    if (search) params.search = search
+    if (statusFilter !== "all") params.status = statusFilter
+    if (categoryFilter) params.categories = [categoryFilter]
+
+    fetchProducts(params)
       .then((res) => setProducts(res.items))
       .catch((e: Error) => setError(e.message))
       .finally(() => setLoading(false))
-  }, [])
+  }, [search, statusFilter, categoryFilter])
 
   useEffect(() => {
     reload()
@@ -118,6 +138,7 @@ export default function AdminProductsPage() {
       brand: product.brand ?? "",
       sku: product.sku ?? "",
       optionTypes: [...optionTypes].join(", "),
+      published: product.status === "published",
       variants: (product.variants ?? []).map((v) => ({
         id: v.id,
         attributes: { ...v.attributes },
@@ -163,6 +184,7 @@ export default function AdminProductsPage() {
         description: form.description,
         price: Number(form.price),
         stockQuantity: Number(form.stockQuantity),
+        status: form.published ? "published" : "draft",
         categories: form.categories
           .split(",")
           .map((s) => s.trim())
@@ -179,7 +201,7 @@ export default function AdminProductsPage() {
         productId = created.id
       }
 
-      // Variants are optional — a flat product saves with zero variants.
+      // Process variants
       for (const row of form.variants) {
         if (row.markedForDelete) {
           if (row.id) await deleteVariant(productId, row.id)
@@ -240,6 +262,39 @@ export default function AdminProductsPage() {
         </Button>
       </div>
 
+      {/* Filters & Search */}
+      <div className="flex flex-wrap gap-4 items-center bg-white dark:bg-zinc-900 p-4 rounded-lg shadow-sm border">
+        <div className="flex-1 min-w-[200px] relative">
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-zinc-400" />
+          <Input
+            placeholder="Search products..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="pl-9"
+          />
+        </div>
+        <div className="w-[180px]">
+          <Select value={statusFilter} onValueChange={setStatusFilter}>
+            <SelectTrigger>
+              <SelectValue placeholder="Status" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All Statuses</SelectItem>
+              <SelectItem value="published">Published</SelectItem>
+              <SelectItem value="draft">Draft</SelectItem>
+              <SelectItem value="out_of_stock">Out of stock</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="w-[180px]">
+          <Input
+            placeholder="Category filter"
+            value={categoryFilter}
+            onChange={(e) => setCategoryFilter(e.target.value)}
+          />
+        </div>
+      </div>
+
       {error && !dialogOpen && (
         <p className="text-sm text-red-600 font-medium">{error}</p>
       )}
@@ -249,7 +304,7 @@ export default function AdminProductsPage() {
           <CardTitle>Catalogue</CardTitle>
           <CardDescription>
             Products with options show a variant count; stock for those is
-            tracked per variant
+            tracked per variant.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -264,7 +319,7 @@ export default function AdminProductsPage() {
                   <TableHead>Name</TableHead>
                   <TableHead>SKU</TableHead>
                   <TableHead>Price</TableHead>
-                  <TableHead>Stock</TableHead>
+                  <TableHead>Stock Indicator</TableHead>
                   <TableHead>Variants</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Actions</TableHead>
@@ -280,6 +335,7 @@ export default function AdminProductsPage() {
                           0,
                         )
                       : product.stockQuantity
+
                   return (
                     <TableRow key={product.id}>
                       <TableCell className="font-medium">
@@ -287,7 +343,16 @@ export default function AdminProductsPage() {
                       </TableCell>
                       <TableCell>{product.sku ?? "—"}</TableCell>
                       <TableCell>৳{Number(product.price).toFixed(2)}</TableCell>
-                      <TableCell>{stock} units</TableCell>
+                      <TableCell>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-semibold">{stock} units</span>
+                          {stock <= 5 ? (
+                            <Badge variant="destructive">Low Stock</Badge>
+                          ) : (
+                            <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-300">In Stock</Badge>
+                          )}
+                        </div>
+                      </TableCell>
                       <TableCell>
                         {variantCount > 0 ? (
                           <Badge variant="secondary">{variantCount}</Badge>
@@ -414,6 +479,18 @@ export default function AdminProductsPage() {
                   setForm({ ...form, categories: e.target.value })
                 }
                 placeholder="jerseys, cricket"
+              />
+            </div>
+
+            {/* Publish Toggle */}
+            <div className="flex items-center justify-between p-3 border rounded-lg bg-zinc-50 dark:bg-zinc-900">
+              <div>
+                <p className="font-semibold text-sm">Publish Storefront Visibility</p>
+                <p className="text-xs text-muted-foreground">Whether customers can see and buy this product</p>
+              </div>
+              <Switch
+                checked={form.published}
+                onCheckedChange={(checked) => setForm({ ...form, published: checked })}
               />
             </div>
 
