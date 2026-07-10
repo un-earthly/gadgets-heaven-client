@@ -1,22 +1,107 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Separator } from "@/components/ui/separator"
-import { Github, Mail } from "lucide-react"
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/components/auth/auth-context";
+import { apiFetch } from "@/lib/api-client";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 
 export default function SignUpPage() {
-    const [isLoading, setIsLoading] = useState(false)
+    const router = useRouter();
+    const { loginCustomer, user } = useAuth();
+    const [isLoading, setIsLoading] = useState(false);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [error, setError] = useState<string | null>(null);
+    const googleBtnRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (user) {
+            router.push("/account");
+        }
+    }, [user, router]);
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://accounts.google.com/gsi/client";
+        script.async = true;
+        script.defer = true;
+        document.body.appendChild(script);
+
+        script.onload = () => {
+            if ((window as any).google) {
+                (window as any).google.accounts.id.initialize({
+                    client_id: "mock-google-client-id",
+                    callback: handleGoogleCredentialResponse,
+                });
+                (window as any).google.accounts.id.renderButton(googleBtnRef.current, {
+                    theme: "outline",
+                    size: "large",
+                    text: "signup_with",
+                    shape: "rectangular",
+                    width: 320,
+                });
+            }
+        };
+
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
+
+    async function handleGoogleCredentialResponse(response: any) {
+        setIsLoading(true);
+        setError(null);
+        try {
+            const result = await apiFetch<{ token: string; user: any }>("/auth/google", {
+                method: "POST",
+                body: JSON.stringify({ idToken: response.credential }),
+            });
+            loginCustomer(result.token, result.user);
+            router.push("/account");
+        } catch (err: any) {
+            setError(err.message || "Google Sign-In failed.");
+        } finally {
+            setIsLoading(false);
+        }
+    }
 
     async function onSubmit(e: React.FormEvent) {
-        e.preventDefault()
-        setIsLoading(true)
-        // Handle sign up logic here
-        setTimeout(() => setIsLoading(false), 1000)
+        e.preventDefault();
+        setIsLoading(true);
+        setError(null);
+
+        if (password !== confirmPassword) {
+            setError("Passwords do not match.");
+            setIsLoading(false);
+            return;
+        }
+
+        try {
+            const result = await apiFetch<{ token: string; user: any }>("/auth/register", {
+                method: "POST",
+                body: JSON.stringify({
+                    email,
+                    password,
+                    firstName,
+                    lastName,
+                }),
+            });
+            loginCustomer(result.token, result.user);
+            router.push("/account");
+        } catch (err: any) {
+            setError(err.message || "Registration failed.");
+        } finally {
+            setIsLoading(false);
+        }
     }
 
     return (
@@ -28,16 +113,16 @@ export default function SignUpPage() {
                 </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-                <div className="space-y-4">
-                    <Button variant="outline" className="w-full" disabled={isLoading}>
-                        <Github className="mr-2 h-4 w-4" />
-                        Github
-                    </Button>
-                    <Button variant="outline" className="w-full" disabled={isLoading}>
-                        <Mail className="mr-2 h-4 w-4" />
-                        Google
-                    </Button>
+                {error && (
+                    <div className="bg-red-50 text-red-600 p-3 rounded-md text-sm border border-red-200">
+                        {error}
+                    </div>
+                )}
+
+                <div className="w-full flex justify-center py-2">
+                    <div ref={googleBtnRef} />
                 </div>
+
                 <div className="relative">
                     <div className="absolute inset-0 flex items-center">
                         <Separator />
@@ -55,6 +140,8 @@ export default function SignUpPage() {
                             <Input
                                 id="firstName"
                                 placeholder="John"
+                                value={firstName}
+                                onChange={(e) => setFirstName(e.target.value)}
                                 required
                                 disabled={isLoading}
                             />
@@ -64,6 +151,8 @@ export default function SignUpPage() {
                             <Input
                                 id="lastName"
                                 placeholder="Doe"
+                                value={lastName}
+                                onChange={(e) => setLastName(e.target.value)}
                                 required
                                 disabled={isLoading}
                             />
@@ -75,6 +164,8 @@ export default function SignUpPage() {
                             id="email"
                             type="email"
                             placeholder="m@example.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                             disabled={isLoading}
                         />
@@ -84,6 +175,8 @@ export default function SignUpPage() {
                         <Input
                             id="password"
                             type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             required
                             disabled={isLoading}
                         />
@@ -93,6 +186,8 @@ export default function SignUpPage() {
                         <Input
                             id="confirmPassword"
                             type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                             required
                             disabled={isLoading}
                         />
@@ -118,5 +213,5 @@ export default function SignUpPage() {
                 </div>
             </CardFooter>
         </Card>
-    )
-} 
+    );
+}

@@ -23,6 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
+import { AuthProvider } from "@/components/auth/auth-context"
+
 export default async function RootLayout({
     children,
 }: {
@@ -63,9 +65,11 @@ export default async function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <div id="root" >
-                        {children}
-                    </div>
+                    <AuthProvider>
+                        <div id="root" >
+                            {children}
+                        </div>
+                    </AuthProvider>
                 </ThemeProvider>
             </body>
         </html>
