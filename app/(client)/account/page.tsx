@@ -10,28 +10,17 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { User, LogOut, MapPin, ClipboardList, ShieldAlert } from "lucide-react";
 
+import AddressBook from "@/components/shared/address-book";
+
 export default function AccountPage() {
     const router = useRouter();
     const { user, logoutCustomer, isLoading } = useAuth();
-
-    // Local address book state (backed by localStorage for simplicity in V1)
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [isSaving, setIsSaving] = useState(false);
-    const [saveMessage, setSaveMessage] = useState("");
 
     useEffect(() => {
         if (!isLoading && !user) {
             router.push("/auth/login");
         }
     }, [user, isLoading, router]);
-
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            setAddress(localStorage.getItem("customer_address") || "");
-            setCity(localStorage.getItem("customer_city") || "");
-        }
-    }, []);
 
     if (isLoading) {
         return (
@@ -44,18 +33,6 @@ export default function AccountPage() {
     if (!user) {
         return null;
     }
-
-    const handleSaveAddress = (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSaving(true);
-        localStorage.setItem("customer_address", address);
-        localStorage.setItem("customer_city", city);
-        setTimeout(() => {
-            setIsSaving(false);
-            setSaveMessage("Address book updated successfully.");
-            setTimeout(() => setSaveMessage(""), 3000);
-        }, 800);
-    };
 
     return (
         <div className="container mx-auto p-6 max-w-4xl space-y-6 py-12">
@@ -99,42 +76,8 @@ export default function AccountPage() {
                 <div className="md:col-span-2 space-y-6">
                     {/* Address Book */}
                     <Card>
-                        <CardHeader>
-                            <CardTitle className="text-lg flex items-center gap-2">
-                                <MapPin className="h-5 w-5 text-orange-500" />
-                                Address Book
-                            </CardTitle>
-                            <CardDescription>Manage your delivery addresses</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <form onSubmit={handleSaveAddress} className="space-y-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="address">Street Address</Label>
-                                    <Input
-                                        id="address"
-                                        placeholder="123 Street Name"
-                                        value={address}
-                                        onChange={(e) => setAddress(e.target.value)}
-                                        className="focus:border-orange-500"
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="city">City / Area</Label>
-                                    <Input
-                                        id="city"
-                                        placeholder="Dhaka"
-                                        value={city}
-                                        onChange={(e) => setCity(e.target.value)}
-                                        className="focus:border-orange-500"
-                                    />
-                                </div>
-                                <div className="flex justify-between items-center">
-                                    <Button type="submit" disabled={isSaving} className="bg-orange-500 hover:bg-orange-600">
-                                        {isSaving ? "Saving..." : "Save Address"}
-                                    </Button>
-                                    {saveMessage && <span className="text-green-600 text-sm">{saveMessage}</span>}
-                                </div>
-                            </form>
+                        <CardContent className="p-6">
+                            <AddressBook />
                         </CardContent>
                     </Card>
 

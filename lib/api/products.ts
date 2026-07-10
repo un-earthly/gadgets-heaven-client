@@ -53,11 +53,27 @@ export async function fetchProducts(params?: {
   page?: number;
   limit?: number;
   search?: string;
+  categories?: string[];
+  minPrice?: number;
+  maxPrice?: number;
+  brand?: string;
+  inStock?: boolean;
+  sortBy?: string;
+  sortOrder?: 'ASC' | 'DESC';
 }): Promise<{ items: ApiProduct[]; total: number }> {
   const query = new URLSearchParams();
   if (params?.page) query.set('page', String(params.page));
   if (params?.limit) query.set('limit', String(params.limit));
   if (params?.search) query.set('search', params.search);
+  if (params?.categories && params.categories.length > 0) {
+    params.categories.forEach((cat) => query.append('categories', cat));
+  }
+  if (params?.minPrice !== undefined) query.set('minPrice', String(params.minPrice));
+  if (params?.maxPrice !== undefined) query.set('maxPrice', String(params.maxPrice));
+  if (params?.brand) query.set('brand', params.brand);
+  if (params?.inStock !== undefined) query.set('inStock', String(params.inStock));
+  if (params?.sortBy) query.set('sortBy', params.sortBy);
+  if (params?.sortOrder) query.set('sortOrder', params.sortOrder);
   const qs = query.toString();
   return apiFetch<{ items: ApiProduct[]; total: number }>(
     `/products${qs ? `?${qs}` : ''}`,
@@ -72,5 +88,22 @@ export async function addToCart(item: {
   return apiFetch('/cart/items', {
     method: 'POST',
     body: JSON.stringify(item),
+  });
+}
+
+export async function fetchCart(): Promise<any> {
+  return apiFetch('/cart');
+}
+
+export async function updateCartItem(itemId: string, quantity: number): Promise<any> {
+  return apiFetch(`/cart/items/${itemId}`, {
+    method: 'PUT',
+    body: JSON.stringify({ quantity }),
+  });
+}
+
+export async function removeCartItem(itemId: string): Promise<any> {
+  return apiFetch(`/cart/items/${itemId}`, {
+    method: 'DELETE',
   });
 }
