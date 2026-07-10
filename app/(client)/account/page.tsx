@@ -90,9 +90,14 @@ export default function AccountPage() {
                             </CardTitle>
                             <CardDescription>Track your active orders and history</CardDescription>
                         </CardHeader>
-                        <CardContent className="flex gap-4">
-                            <Link href="/track-order" className="w-full">
+                        <CardContent className="flex flex-col sm:flex-row gap-4">
+                            <Link href="/account/orders" className="w-full">
                                 <Button variant="outline" className="w-full justify-start text-orange-600 hover:text-orange-700">
+                                    <ClipboardList className="mr-2 h-4 w-4" /> View Order History
+                                </Button>
+                            </Link>
+                            <Link href="/track-order" className="w-full">
+                                <Button variant="outline" className="w-full justify-start text-zinc-600 hover:text-zinc-700">
                                     Track Active Order
                                 </Button>
                             </Link>

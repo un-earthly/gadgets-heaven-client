@@ -21,7 +21,12 @@ interface Address {
   isDefault: boolean
 }
 
-export default function AddressBook() {
+interface AddressBookProps {
+  onSelect?: (address: Address) => void
+  selectedId?: string
+}
+
+export default function AddressBook({ onSelect, selectedId }: AddressBookProps = {}) {
   const [addresses, setAddresses] = useState<Address[]>([])
   const [loading, setLoading] = useState(true)
   const [isEditing, setIsEditing] = useState(false)
@@ -44,7 +49,16 @@ export default function AddressBook() {
   const loadAddresses = () => {
     setLoading(true)
     apiFetch<Address[]>("/addresses")
-      .then((data) => setAddresses(data || []))
+      .then((data) => {
+        const list = data || []
+        setAddresses(list)
+        if (onSelect && list.length > 0) {
+          const defaultAddr = list.find((a) => a.isDefault) || list[0]
+          if (defaultAddr && !selectedId) {
+            onSelect(defaultAddr)
+          }
+        }
+      })
       .catch((err) => console.error("Error loading addresses:", err))
       .finally(() => setLoading(false))
   }
@@ -317,8 +331,12 @@ export default function AddressBook() {
               key={address.id}
               className={cn(
                 "relative overflow-hidden transition-all",
-                address.isDefault ? "border-orange-500 dark:border-orange-600 shadow-sm" : "border-zinc-200 dark:border-zinc-800"
+                onSelect && "cursor-pointer hover:border-orange-500/80",
+                address.id === selectedId || (address.isDefault && !selectedId)
+                  ? "border-orange-500 dark:border-orange-600 shadow-md ring-2 ring-orange-500/10"
+                  : "border-zinc-200 dark:border-zinc-800"
               )}
+              onClick={() => onSelect?.(address)}
             >
               {address.isDefault && (
                 <div className="absolute top-0 right-0 bg-orange-500 text-white text-[10px] px-2 py-0.5 rounded-bl font-semibold uppercase tracking-wider flex items-center">
